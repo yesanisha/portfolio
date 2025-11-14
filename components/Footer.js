@@ -50,21 +50,8 @@ export default function Footer() {
             className="space-y-4"
           >
             {/* Decorative line with terminal icon */}
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="h-px w-24 bg-gradient-to-r from-transparent via-pink-500/30 to-pink-500/30"></div>
-              <Terminal className="text-pink-500 w-5 h-5" />
-              <div className="h-px w-24 bg-gradient-to-l from-transparent via-pink-500/30 to-pink-500/30"></div>
-            </div>
-
-            <motion.p
-              className="flex items-center justify-center gap-2 text-gray-400 text-lg font-medium font-mono"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              Made with <Heart className="w-5 h-5 fill-pink-500 text-pink-500" /> {' '}
-              by{' '}
-              <span className="text-gradient font-bold">Anisha</span>
-            </motion.p>
+        
+            
 
             <p className="text-sm text-gray-500 font-medium font-mono">
               © {new Date().getFullYear()} Anisha Kumari. All rights reserved.

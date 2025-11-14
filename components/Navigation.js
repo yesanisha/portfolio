@@ -44,7 +44,7 @@ export default function Navigation() {
             className="text-xl font-mono font-bold text-pink-500 hover:text-pink-400 transition-colors"
             whileHover={{ scale: 1.05 }}
           >
-            anisha@dev:~$
+            yesanisha
           </motion.a>
 
           {/* Desktop Navigation */}

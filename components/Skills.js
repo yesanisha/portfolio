@@ -19,7 +19,7 @@ export default function Skills() {
         { name: 'React Native', percentage: 95 },
         { name: 'React.js', percentage: 90 },
         { name: 'Flask', percentage: 85 },
-        { name: 'Express.js', percentage: 70 },
+        { name: 'Next.js', percentage: 70 },
         { name: 'Zustand', percentage: 80 },
       ],
     },

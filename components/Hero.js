@@ -148,9 +148,9 @@ export default function Hero() {
                 {/* Social Links */}
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="flex gap-2 flex-wrap">
                   {[
-                    { icon: Github, href: 'https://github.com/anisha-11', label: 'github' },
-                    { icon: Linkedin, href: 'https://linkedin.com/in/anisha11kumari', label: 'linkedin' },
-                    { icon: Mail, href: 'mailto:anisha.kumari@res.christuniversity.in', label: 'email' },
+                    { icon: Github, href: 'https://github.com/yesanisha-11', label: 'github' },
+                    { icon: Linkedin, href: 'https://linkedin.com/in/yesanisha', label: 'linkedin' },
+                    { icon: Mail, href: 'mailto:anishakumari6145@gmail.com', label: 'email' },
                   ].map((social, index) => (
                     <motion.a key={index} href={social.href} target={social.href.startsWith('http') ? '_blank' : undefined} rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="flex items-center gap-1 px-3 py-1 bg-gray-800/80 hover:bg-gray-800 border border-gray-700 hover:border-pink-500 transition-all font-mono text-xs text-gray-300 hover:text-pink-400" whileHover={{ scale: 1.05 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 + index * 0.1 }}>
                       <social.icon className="w-3 h-3" />
@@ -219,7 +219,7 @@ export default function Hero() {
                         animate={{ opacity: [1, 0.8, 1] }}
                         transition={{ duration: 3, repeat: Infinity }}
                       >
-                        I build apps too! 📱
+                        I build apps too! 
                       </motion.h2>
                       <p className="text-gray-400 text-[10px] font-mono">Mobile & Web Portfolio</p>
                     </motion.div>
@@ -232,53 +232,64 @@ export default function Hero() {
                       className="mb-4"
                     >
                       <h3 className="text-gray-300 font-mono text-xs mb-3 flex items-center gap-2">
-                        <span className="text-pink-400">📱</span> Mobile Applications
+                        <span className="text-pink-400"></span> Mobile Applications
                       </h3>
                       <div className="space-y-2">
                         {[
                           {
                             name: 'Farma',
                             desc: 'AI Plant Disease Detection',
-                            icon: '🌿',
+                            icon: '',
                             color: 'from-green-500 to-emerald-600',
                             tech: 'React Native • Flask • ML',
-                            stats: '5 Plants • 94% Accuracy'
+                            stats: '5 Plants • 94% Accuracy',
+                            link: 'https://farma-eight.vercel.app/'
                           },
                           {
                             name: 'HeyRoomie',
                             desc: 'Smart Roommate Matching',
-                            icon: '🏠',
+                            icon: '',
                             color: 'from-pink-500 to-purple-600',
                             tech: 'React Native • Firebase',
                             stats: 'ML Matching • OAuth 2.0'
                           }
-                        ].map((app, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 1.4 + i * 0.15, type: "spring" }}
-                            whileHover={{ scale: 1.02, x: 3 }}
-                            className="bg-gradient-to-r from-gray-800/40 to-gray-800/20 border border-pink-500/30 rounded-xl p-3 backdrop-blur-sm group cursor-pointer"
-                          >
-                            <div className="flex items-start gap-3">
-                              <motion.div
-                                className={`w-12 h-12 bg-gradient-to-br ${app.color} rounded-xl flex items-center justify-center text-xl shadow-lg flex-shrink-0`}
-                                whileHover={{ rotate: 5, scale: 1.1 }}
-                              >
-                                {app.icon}
-                              </motion.div>
-                              <div className="flex-1 min-w-0">
-                                <h4 className="text-white text-xs font-bold font-mono mb-0.5">{app.name}</h4>
-                                <p className="text-gray-400 text-[9px] font-mono mb-1">{app.desc}</p>
-                                <p className="text-gray-500 text-[8px] font-mono mb-1">{app.tech}</p>
-                                <span className="text-[8px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-mono border border-pink-500/30">
-                                  {app.stats}
-                                </span>
+                        ].map((app, i) => {
+                          const MotionComponent = app.link ? motion.a : motion.div;
+                          const linkProps = app.link ? {
+                            href: app.link,
+                            target: "_blank",
+                            rel: "noopener noreferrer"
+                          } : {};
+
+                          return (
+                            <MotionComponent
+                              key={i}
+                              {...linkProps}
+                              initial={{ opacity: 0, x: -50 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 1.4 + i * 0.15, type: "spring" }}
+                              whileHover={{ scale: 1.02, x: 3 }}
+                              className="bg-gradient-to-r from-gray-800/40 to-gray-800/20 border border-pink-500/30 rounded-xl p-3 backdrop-blur-sm group cursor-pointer block"
+                            >
+                              <div className="flex items-start gap-3">
+                                <motion.div
+                                  className={`w-12 h-12 bg-gradient-to-br ${app.color} rounded-xl flex items-center justify-center text-xl shadow-lg flex-shrink-0`}
+                                  whileHover={{ rotate: 5, scale: 1.1 }}
+                                >
+                                  {app.icon}
+                                </motion.div>
+                                <div className="flex-1 min-w-0">
+                                  <h4 className="text-white text-xs font-bold font-mono mb-0.5">{app.name}</h4>
+                                  <p className="text-gray-400 text-[9px] font-mono mb-1">{app.desc}</p>
+                                  <p className="text-gray-500 text-[8px] font-mono mb-1">{app.tech}</p>
+                                  <span className="text-[8px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-mono border border-pink-500/30">
+                                    {app.stats}
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                          </motion.div>
-                        ))}
+                            </MotionComponent>
+                          );
+                        })}
                       </div>
                     </motion.div>
 
@@ -290,14 +301,17 @@ export default function Hero() {
                       className="mb-4"
                     >
                       <h3 className="text-gray-300 font-mono text-xs mb-3 flex items-center gap-2">
-                        <span className="text-purple-400">🚀</span> Live Websites
+                        <span className="text-purple-400"></span> Live Websites
                       </h3>
-                      <motion.div
+                      <motion.a
+                        href="https://heyroomie.in"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 1.9, type: "spring" }}
                         whileHover={{ scale: 1.02, x: 3 }}
-                        className="bg-gradient-to-r from-purple-900/40 to-pink-900/20 border border-purple-500/40 rounded-xl p-3 backdrop-blur-sm group cursor-pointer"
+                        className="bg-gradient-to-r from-purple-900/40 to-pink-900/20 border border-purple-500/40 rounded-xl p-3 backdrop-blur-sm group cursor-pointer block"
                       >
                         <div className="flex items-start gap-3">
                           <motion.div
@@ -308,7 +322,7 @@ export default function Hero() {
                             }}
                             transition={{ duration: 3, repeat: Infinity }}
                           >
-                            🌐
+                            
                           </motion.div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-0.5">
@@ -335,7 +349,7 @@ export default function Hero() {
                             ›
                           </motion.div>
                         </div>
-                      </motion.div>
+                      </motion.a>
                     </motion.div>
 
                     {/* Bottom CTA */}
