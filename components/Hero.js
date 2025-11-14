@@ -242,8 +242,8 @@ export default function Hero() {
                             icon: '',
                             color: 'from-green-500 to-emerald-600',
                             tech: 'React Native • Flask • ML',
-                            stats: '5 Plants • 94% Accuracy',
-                            link: 'https://farma-eight.vercel.app/'
+                            stats: 'link',
+                            link: ''
                           },
                           {
                             name: 'HeyRoomie',
@@ -251,7 +251,9 @@ export default function Hero() {
                             icon: '',
                             color: 'from-pink-500 to-purple-600',
                             tech: 'React Native • Firebase',
-                            stats: 'ML Matching • OAuth 2.0'
+                            stats: 'link',
+                            link: ''
+
                           }
                         ].map((app, i) => {
                           const MotionComponent = app.link ? motion.a : motion.div;
