@@ -30,23 +30,6 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
-
-      {/* Floating Strawberries Background Elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {[...Array(3)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-6xl opacity-5 animate-float"
-            style={{
-              left: `${20 + i * 30}%`,
-              top: `${30 + i * 20}%`,
-              animationDelay: `${i * 2}s`,
-            }}
-          >
-            🍓
-          </div>
-        ))}
-      </div>
     </main>
   );
 }

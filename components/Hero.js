@@ -1,165 +1,414 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Sparkles, Globe, ExternalLink, Leaf, Users } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function Hero() {
+  const [typedText, setTypedText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  const fullText = 'whoami';
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setTypedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 150);
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  const roles = ['Mobile App Developer', 'Full-Stack Developer', 'Cyber Security Enthusiast', 'Tech Enthusiast'];
+  const [currentRole, setCurrentRole] = useState(0);
+
+  useEffect(() => {
+    const roleInterval = setInterval(() => {
+      setCurrentRole(prev => (prev + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(roleInterval);
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20 relative overflow-hidden">
-      {/* Floating strawberries background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-4xl opacity-20"
-            animate={{
-              y: [0, -100, 0],
-              x: [0, 50, 0],
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 10 + i * 2,
-              repeat: Infinity,
-              delay: i * 0.5,
-            }}
-            style={{
-              left: `${20 + i * 15}%`,
-              top: `${30 + i * 10}%`,
-            }}
-          >
+    <section className="min-h-screen flex items-center justify-center px-4 pt-32 pb-20 relative overflow-hidden bg-black">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
+      {/* Animated gradient orbs */}
+      <motion.div
+        className="absolute top-20 left-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1.2, 1, 1.2],
+          opacity: [0.5, 0.3, 0.5],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto z-10 relative w-full">
+        {/* Split Layout: Terminal + Mobile Frame */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* LEFT SIDE - Terminal */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="order-2 lg:order-1 hidden lg:block"
+          >
+            {/* Terminal Header */}
+            <motion.div
+              className="mb-6"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="bg-gray-900/80 border border-pink-500/50 rounded-t-lg p-1 pulse-glow backdrop-blur-sm">
+                <div className="flex gap-2 px-3 py-2 items-center">
+                  <motion.div className="w-3 h-3 rounded-full bg-red-500" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }} />
+                  <motion.div className="w-3 h-3 rounded-full bg-yellow-500" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.2 }} />
+                  <motion.div className="w-3 h-3 rounded-full bg-green-500" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.4 }} />
+                  <span className="ml-3 text-gray-400 text-xs font-mono">anisha@portfolio:~</span>
+                </div>
+              </div>
+
+              {/* Terminal Content */}
+              <div className="bg-gray-900/60 border-x border-b border-pink-500/30 rounded-b-lg p-6 sm:p-8 backdrop-blur-md hover:border-pink-500/60 transition-all duration-300 relative overflow-hidden group">
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-500/5 to-transparent opacity-0 group-hover:opacity-100"
+                  animate={{ y: ['-100%', '100%'] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                />
+
+                <motion.div className="font-mono text-sm mb-4 relative z-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+                  <span className="text-pink-500">$</span>
+                  <span className="text-gray-400"> </span>
+                  <span className="text-gray-300">
+                    {typedText}
+                    <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-pink-500 ml-1`}>▊</span>
+                  </span>
+                </motion.div>
+
+                <motion.h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 relative z-10" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+                  <span className="text-gradient glitch-hover cursor-pointer">Anisha Kumari</span>
+                </motion.h1>
+
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="space-y-2 mb-6 relative z-10">
+                  <p className="font-mono text-gray-300 text-sm">
+                    <span className="text-pink-500">role:</span>{' '}
+                    <motion.span key={currentRole} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="inline-block text-pink-400 font-bold">
+                      {roles[currentRole]}
+                    </motion.span>
+                  </p>
+                  <p className="font-mono text-gray-300 text-sm">
+                    <span className="text-pink-500">focus:</span> Mobile & Full-Stack Development
+                  </p>
+                  <p className="font-mono text-gray-300 text-sm">
+                    <span className="text-pink-500">stack:</span> React Native, Node.js, MongoDB, Firebase
+                  </p>
+                  <motion.p className="font-mono text-gray-400 text-xs mt-3 pt-3 border-t border-gray-700" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
+                    Building cross-platform mobile apps with scalable architectures and clean code.
+                  </motion.p>
+                </motion.div>
+
+                {/* CTA Buttons */}
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="flex flex-col sm:flex-row gap-3 mb-6">
+                  <motion.a href="#contact" className="group px-4 py-2 bg-gray-900 text-pink-400 border border-pink-500 hover:bg-pink-500 hover:text-white transition-all text-center font-mono text-sm relative overflow-hidden" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <span className="relative z-10">$ contact --now</span>
+                  </motion.a>
+                  <motion.a href="#projects" className="group px-4 py-2 bg-gray-900 text-gray-300 border border-gray-600 hover:border-pink-500 hover:text-pink-400 transition-all text-center font-mono text-sm" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <span className="relative z-10">$ ls projects/</span>
+                  </motion.a>
+                </motion.div>
+
+                {/* Social Links */}
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="flex gap-2 flex-wrap">
+                  {[
+                    { icon: Github, href: 'https://github.com/anisha-11', label: 'github' },
+                    { icon: Linkedin, href: 'https://linkedin.com/in/anisha11kumari', label: 'linkedin' },
+                    { icon: Mail, href: 'mailto:anisha.kumari@res.christuniversity.in', label: 'email' },
+                  ].map((social, index) => (
+                    <motion.a key={index} href={social.href} target={social.href.startsWith('http') ? '_blank' : undefined} rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="flex items-center gap-1 px-3 py-1 bg-gray-800/80 hover:bg-gray-800 border border-gray-700 hover:border-pink-500 transition-all font-mono text-xs text-gray-300 hover:text-pink-400" whileHover={{ scale: 1.05 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 + index * 0.1 }}>
+                      <social.icon className="w-3 h-3" />
+                      <span>{social.label}</span>
+                    </motion.a>
+                  ))}
+                </motion.div>
+
+                {/* Location */}
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="mt-4 flex items-center gap-2 text-gray-500 font-mono text-xs">
+                  <MapPin className="w-3 h-3 text-pink-500" />
+                  <span>Bengaluru, India</span>
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
-        ))}
-      </div>
 
-      <div className="max-w-6xl mx-auto text-center z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Greeting with hidden treasure hint */}
-          <motion.p
-            className="text-strawberry-500 text-lg mb-4 font-semibold cursor-pointer hover:scale-110 transition-transform"
-            title="Psst... try pressing Ctrl+Shift+S for a surprise! 🍓"
-          >
-            Hey There! I'm          </motion.p>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 px-4">
-            <span className="text-gradient">Anisha Kumari</span>
-          </h1>
-
+          {/* RIGHT SIDE - Mobile Phone Frame */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 mb-8 font-light px-4"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex justify-center items-center order-1 lg:order-2"
           >
-            <div className="flex flex-wrap justify-center items-center gap-2">
-              <span className="inline-block">FULL-STACK DEV</span>
-              <span className="text-strawberry-400 hidden sm:inline">•</span>
-              <span className="inline-block">SOFTWARE DEV</span>
-              <span className="text-strawberry-400 hidden sm:inline">•</span>
-              <span className="inline-block">CYBERSECURITY ENTHUSIAST</span>
+            {/* Phone Frame - Sleeker Design */}
+            <div className="relative mt-8 lg:mt-0">
+              {/* Phone outer frame with notch - Black with silver outline */}
+              <div className="relative w-[300px] sm:w-[340px] h-[600px] sm:h-[680px] bg-black rounded-[2.5rem] border-[6px] border-black shadow-2xl overflow-hidden group/phone hover:shadow-pink-500/30" style={{ boxShadow: '0 0 0 1px rgba(192, 192, 192, 0.3), 0 20px 60px rgba(0, 0, 0, 0.8)' }}>
+                {/* Notch - Sleeker */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-5 bg-black rounded-b-2xl z-10 flex items-center justify-center gap-2" style={{ boxShadow: '0 0 0 1px rgba(192, 192, 192, 0.2)' }}>
+                  <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
+                  <div className="w-12 h-1 bg-gray-800 rounded-full"></div>
+                </div>
+
+                {/* Screen glow - More subtle */}
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-purple-500/10 group-hover/phone:from-pink-500/20 group-hover/phone:to-purple-500/20 blur-2xl transition-all duration-300"></div>
+
+{/* Screen content */}
+                <div className="relative w-full h-full bg-gradient-to-br from-gray-950 via-gray-900 to-black overflow-hidden">
+                  {/* Portfolio Gallery View */}
+                  <div className="p-5 h-full flex flex-col overflow-y-auto">
+                    {/* Status bar */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.8 }}
+                      className="flex justify-between items-center text-white text-xs mb-5 mt-2"
+                    >
+                      <span className="font-mono font-bold">9:41</span>
+                      <div className="flex gap-1 items-center">
+                        <motion.div animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }} className="text-[10px]">📶</motion.div>
+                        <motion.div animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.3 }} className="text-[10px]">📡</motion.div>
+                        <motion.div animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.6 }} className="text-[10px]">🔋</motion.div>
+                      </div>
+                    </motion.div>
+
+                    {/* Header */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1 }}
+                      className="text-center mb-4"
+                    >
+                      <motion.h2
+                        className="text-pink-400 font-bold text-xl font-mono mb-1"
+                        animate={{ opacity: [1, 0.8, 1] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      >
+                        I build apps too! 📱
+                      </motion.h2>
+                      <p className="text-gray-400 text-[10px] font-mono">Mobile & Web Portfolio</p>
+                    </motion.div>
+
+                    {/* Mobile Applications Section */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.2 }}
+                      className="mb-4"
+                    >
+                      <h3 className="text-gray-300 font-mono text-xs mb-3 flex items-center gap-2">
+                        <span className="text-pink-400">📱</span> Mobile Applications
+                      </h3>
+                      <div className="space-y-2">
+                        {[
+                          {
+                            name: 'Farma',
+                            desc: 'AI Plant Disease Detection',
+                            icon: '🌿',
+                            color: 'from-green-500 to-emerald-600',
+                            tech: 'React Native • Flask • ML',
+                            stats: '5 Plants • 94% Accuracy'
+                          },
+                          {
+                            name: 'HeyRoomie',
+                            desc: 'Smart Roommate Matching',
+                            icon: '🏠',
+                            color: 'from-pink-500 to-purple-600',
+                            tech: 'React Native • Firebase',
+                            stats: 'ML Matching • OAuth 2.0'
+                          }
+                        ].map((app, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 1.4 + i * 0.15, type: "spring" }}
+                            whileHover={{ scale: 1.02, x: 3 }}
+                            className="bg-gradient-to-r from-gray-800/40 to-gray-800/20 border border-pink-500/30 rounded-xl p-3 backdrop-blur-sm group cursor-pointer"
+                          >
+                            <div className="flex items-start gap-3">
+                              <motion.div
+                                className={`w-12 h-12 bg-gradient-to-br ${app.color} rounded-xl flex items-center justify-center text-xl shadow-lg flex-shrink-0`}
+                                whileHover={{ rotate: 5, scale: 1.1 }}
+                              >
+                                {app.icon}
+                              </motion.div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="text-white text-xs font-bold font-mono mb-0.5">{app.name}</h4>
+                                <p className="text-gray-400 text-[9px] font-mono mb-1">{app.desc}</p>
+                                <p className="text-gray-500 text-[8px] font-mono mb-1">{app.tech}</p>
+                                <span className="text-[8px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-mono border border-pink-500/30">
+                                  {app.stats}
+                                </span>
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+
+                    {/* Live Websites Section */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.7 }}
+                      className="mb-4"
+                    >
+                      <h3 className="text-gray-300 font-mono text-xs mb-3 flex items-center gap-2">
+                        <span className="text-purple-400">🚀</span> Live Websites
+                      </h3>
+                      <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 1.9, type: "spring" }}
+                        whileHover={{ scale: 1.02, x: 3 }}
+                        className="bg-gradient-to-r from-purple-900/40 to-pink-900/20 border border-purple-500/40 rounded-xl p-3 backdrop-blur-sm group cursor-pointer"
+                      >
+                        <div className="flex items-start gap-3">
+                          <motion.div
+                            className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-xl shadow-lg flex-shrink-0"
+                            animate={{
+                              rotate: [0, 5, -5, 0],
+                              scale: [1, 1.05, 1]
+                            }}
+                            transition={{ duration: 3, repeat: Infinity }}
+                          >
+                            🌐
+                          </motion.div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-0.5">
+                              <h4 className="text-white text-xs font-bold font-mono">HeyRoomie.in</h4>
+                              <span className="text-[8px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30 font-mono">
+                                ✓ Live
+                              </span>
+                            </div>
+                            <p className="text-gray-400 text-[9px] font-mono mb-2">Deployed & Published Work</p>
+                            <div className="flex gap-1 flex-wrap">
+                              <span className="text-[8px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full font-mono border border-purple-500/30">
+                                Commissioned
+                              </span>
+                              <span className="text-[8px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full font-mono border border-blue-500/30">
+                                Production
+                              </span>
+                            </div>
+                          </div>
+                          <motion.div
+                            className="text-purple-400 text-xl"
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          >
+                            ›
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Bottom CTA */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 2.1 }}
+                      className="mt-auto"
+                    >
+                      <motion.button
+                        className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-2.5 rounded-xl font-mono text-xs font-bold shadow-lg"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        animate={{
+                          boxShadow: ['0 0 0 0 rgba(236, 72, 153, 0.7)', '0 0 0 10px rgba(236, 72, 153, 0)']
+                        }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        View All Projects ↓
+                      </motion.button>
+                    </motion.div>
+                  </div>
+
+                  {/* Subtle scan line */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-500/3 to-transparent h-24 pointer-events-none"
+                    animate={{ y: ['-100%', '400%'] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                  />
+                </div>
+
+                {/* Side buttons - Sleeker */}
+                <div className="absolute -right-[3px] top-20 w-[3px] h-10 bg-gradient-to-r from-gray-800 to-gray-700 rounded-l shadow-inner"></div>
+                <div className="absolute -right-[3px] top-32 w-[3px] h-14 bg-gradient-to-r from-gray-800 to-gray-700 rounded-l shadow-inner"></div>
+                <div className="absolute -left-[3px] top-28 w-[3px] h-8 bg-gradient-to-l from-gray-800 to-gray-700 rounded-r shadow-inner"></div>
+              </div>
+
+              {/* Glow effect around phone - More dynamic */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-[2.5rem] blur-3xl -z-10"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  opacity: [0.5, 0.7, 0.5]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
             </div>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-base sm:text-lg text-gray-600 mb-12 max-w-2xl mx-auto px-4"
-          >
-            Computer Science student, passionate about building scalable applications,
-            exploring new technologies.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12 px-4"
-          >
-            <a
-              href="#contact"
-              className="px-6 sm:px-8 py-3 sm:py-4 strawberry-gradient text-white rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105 text-center"
-            >
-              Let's Connect!
-            </a>
-            <a
-              href="#projects"
-              className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-strawberry-500 rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105 border-2 border-strawberry-300 text-center"
-            >
-              View My Work
-            </a>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
-            className="flex gap-3 sm:gap-6 justify-center items-center flex-wrap px-4"
-          >
-            <a
-              href="https://github.com/anisha-11"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-white rounded-full hover:bg-strawberry-50 transition-all hover:scale-110 shadow-md"
-              title="GitHub"
-            >
-              <Github className="w-6 h-6 text-gray-700" />
-            </a>
-            <a
-              href="https://linkedin.com/in/anisha11kumari"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-white rounded-full hover:bg-strawberry-50 transition-all hover:scale-110 shadow-md"
-              title="LinkedIn"
-            >
-              <Linkedin className="w-6 h-6 text-blue-600" />
-            </a>
-            <a
-              href="mailto:anisha.kumari@res.christuniversity.in"
-              className="p-3 bg-white rounded-full hover:bg-strawberry-50 transition-all hover:scale-110 shadow-md"
-              title="Email"
-            >
-              <Mail className="w-6 h-6 text-strawberry-500" />
-            </a>
-            <a
-              href="tel:+919102251130"
-              className="p-3 bg-white rounded-full hover:bg-strawberry-50 transition-all hover:scale-110 shadow-md"
-              title="Phone"
-            >
-              <Phone className="w-6 h-6 text-green-600" />
-            </a>
-          </motion.div>
-
-          {/* Location */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
-            className="mt-8 flex items-center justify-center gap-2 text-gray-600"
-          >
-            <MapPin className="w-4 h-4 text-strawberry-400" />
-            <span>Bengaluru, India 📍</span>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator with enhanced animation */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 font-mono text-pink-500 text-sm cursor-pointer z-20"
+        animate={{
+          opacity: [0.5, 1, 0.5],
+          y: [0, 10, 0]
+        }}
         transition={{ duration: 2, repeat: Infinity }}
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
       >
-        <div className="w-6 h-10 border-2 border-strawberry-400 rounded-full flex justify-center">
+        <div className="flex flex-col items-center gap-2">
+          <span>scroll ↓</span>
           <motion.div
-            className="w-1.5 h-1.5 bg-strawberry-500 rounded-full mt-2"
-            animate={{ y: [0, 16, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+            className="w-6 h-10 border-2 border-pink-500 rounded-full p-1"
+            whileHover={{ scale: 1.2 }}
+          >
+            <motion.div
+              className="w-1 h-2 bg-pink-500 rounded-full mx-auto"
+              animate={{ y: [0, 16, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
+          </motion.div>
         </div>
       </motion.div>
     </section>

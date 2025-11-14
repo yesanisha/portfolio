@@ -94,25 +94,27 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4 bg-gradient-to-b from-white via-strawberry-50/20 to-white">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-20 px-4 bg-black relative overflow-hidden">
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl font-bold text-center mb-4">
-            Featured <span className="text-gradient">Projects</span>
+          <h2 className="text-5xl font-bold text-center mb-4 font-mono">
+            <span className="text-pink-500">$</span> ls <span className="text-gradient">projects/</span>
           </h2>
-          <p className="text-center text-gray-600 mb-12">
-            Some things I've built with love (and lots of coffee ☕)
+          <p className="text-center text-gray-400 mb-12 font-mono">
+            Some things I've built with love (and lots of coffee)
           </p>
 
           {/* Featured Projects */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              {/* <Star className="text-yellow-500 fill-yellow-500" /> */}
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 font-mono text-gray-200">
               Highlighted Work
             </h3>
             <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -124,33 +126,33 @@ export default function Projects() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02, y: -5 }}
-                  className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-strawberry-100 hover:shadow-2xl transition-all overflow-hidden group"
+                  className="bg-gray-900/50 backdrop-blur-sm border border-pink-500/20 hover:border-pink-500/50 hover:shadow-2xl hover:shadow-pink-500/10 transition-all overflow-hidden group"
                 >
                   {/* Project Image */}
-                  <div className="relative h-48 bg-gray-100 overflow-hidden">
+                  <div className="relative h-48 bg-gray-800 overflow-hidden border-b border-pink-500/20">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="object-cover group-hover:scale-110 transition-transform duration-300 opacity-80 group-hover:opacity-100"
                     />
                   </div>
 
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-2">
-                      <h4 className="text-xl font-bold text-gray-800">{project.title}</h4>
+                      <h4 className="text-xl font-bold text-gray-200 font-mono">{project.title}</h4>
                       {project.period && (
-                        <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap ml-2">
+                        <span className="text-xs text-gray-500 bg-gray-800/50 px-2 py-1 border border-pink-500/20 whitespace-nowrap ml-2 font-mono">
                           {project.period}
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-600 mb-4 text-sm">{project.description}</p>
+                    <p className="text-gray-400 mb-4 text-sm font-mono">{project.description}</p>
 
                     <ul className="space-y-1 mb-4 max-h-40 overflow-y-auto">
                       {project.highlights.map((highlight, i) => (
-                        <li key={i} className="text-xs text-gray-600 flex items-start gap-2">
-                          <span className="text-strawberry-400 mt-0.5">•</span>
+                        <li key={i} className="text-xs text-gray-500 flex items-start gap-2 font-mono">
+                          <span className="text-pink-400 mt-0.5">›</span>
                           <span>{highlight}</span>
                         </li>
                       ))}
@@ -160,7 +162,7 @@ export default function Projects() {
                       {project.tech.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-2 py-1 bg-strawberry-50 text-strawberry-700 rounded-full text-xs font-medium"
+                          className="px-2 py-1 bg-pink-500/10 text-pink-400 border border-pink-500/30 rounded-full text-xs font-medium font-mono"
                         >
                           {tech}
                         </span>
@@ -172,7 +174,7 @@ export default function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm"
+                        className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-gray-300 border border-pink-500/30 hover:border-pink-500 hover:text-pink-400 transition-colors text-sm font-mono"
                       >
                         <Github className="w-4 h-4" />
                         Code
@@ -182,7 +184,7 @@ export default function Projects() {
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-4 py-2 strawberry-gradient text-white rounded-lg hover:shadow-lg transition-all text-sm"
+                          className="flex items-center gap-2 px-4 py-2 bg-pink-500/20 border border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white transition-all text-sm font-mono"
                         >
                           <ExternalLink className="w-4 h-4" />
                           Live Demo
@@ -197,7 +199,7 @@ export default function Projects() {
 
           {/* Other Projects */}
           <div>
-            <h3 className="text-2xl font-bold mb-6">Other Notable Projects</h3>
+            <h3 className="text-2xl font-bold mb-6 font-mono text-gray-200">Other Notable Projects</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.filter(p => !p.featured).map((project, index) => (
                 <motion.div
@@ -207,24 +209,24 @@ export default function Projects() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-strawberry-100 hover:shadow-xl transition-all"
+                  className="bg-gray-900/50 backdrop-blur-sm p-6 border border-pink-500/20 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/10 transition-all"
                 >
-                  <div className="relative h-40 bg-gray-100 overflow-hidden rounded-lg mb-4">
+                  <div className="relative h-40 bg-gray-800 overflow-hidden border border-pink-500/20 mb-4">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover hover:scale-110 transition-transform duration-300"
+                      className="object-cover hover:scale-110 transition-transform duration-300 opacity-80 hover:opacity-100"
                     />
                   </div>
-                  <h4 className="text-lg font-bold text-gray-800 mb-2">{project.title}</h4>
-                  <p className="text-gray-600 text-sm mb-4">{project.description}</p>
+                  <h4 className="text-lg font-bold text-gray-200 mb-2 font-mono">{project.title}</h4>
+                  <p className="text-gray-400 text-sm mb-4 font-mono">{project.description}</p>
 
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-2 py-1 bg-strawberry-50 text-strawberry-700 rounded text-xs"
+                        className="px-2 py-1 bg-pink-500/10 text-pink-400 border border-pink-500/30 rounded text-xs font-mono"
                       >
                         {tech}
                       </span>
@@ -235,7 +237,7 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-strawberry-500 hover:text-strawberry-600 font-semibold text-sm"
+                    className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 font-semibold text-sm font-mono"
                   >
                     <Github className="w-4 h-4" />
                     View Code
@@ -253,9 +255,9 @@ export default function Projects() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="mt-12 text-center"
           >
-            <p className="text-sm text-gray-500 italic">
-              🔍 Want to see more? Check out my{' '}
-              <a href="https://github.com/yesanisha" target="_blank" rel="noopener noreferrer" className="text-strawberry-500 hover:underline font-semibold">
+            <p className="text-sm text-gray-500 italic font-mono">
+              Want to see more? Check out my{' '}
+              <a href="https://github.com/yesanisha" target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:underline font-semibold">
                 GitHub (@yesanisha)
               </a>
               {' '}for 19+ repositories!

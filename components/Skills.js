@@ -57,14 +57,17 @@ export default function Skills() {
   const getColorClass = (percentage) => {
     if (percentage >= 90) return 'from-emerald-400 to-teal-500';
     if (percentage >= 80) return 'from-blue-400 to-indigo-500';
-    if (percentage >= 70) return 'from-strawberry-400 to-pink-500';
+    if (percentage >= 70) return 'from-pink-400 to-pink-500';
     if (percentage >= 60) return 'from-amber-400 to-orange-500';
     return 'from-gray-400 to-slate-500';
   };
 
   return (
-    <section id="skills" className="py-20 px-4 bg-gradient-to-b from-white via-strawberry-50/20 to-white">
-      <div className="max-w-[1400px] mx-auto">
+    <section id="skills" className="py-20 px-4 bg-black relative overflow-hidden">
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+      <div className="max-w-[1400px] mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,11 +76,11 @@ export default function Skills() {
         >
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">
-              Technical <span className="text-gradient">Skills</span>
+            <h2 className="text-5xl font-bold mb-4 font-mono">
+              <span className="text-pink-500">$</span> ls <span className="text-gradient">skills/</span>
             </h2>
-            <p className="text-gray-600 text-lg">
-              Full-Stack Development | Distributed Systems | Cloud & Security
+            <p className="text-gray-400 text-lg font-mono">
+              Mobile Development | Full-Stack | Cloud & Security | Distributed Systems
             </p>
           </div>
 
@@ -91,14 +94,14 @@ export default function Skills() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white border border-gray-200 rounded-2xl shadow-md p-6 hover:shadow-2xl hover:border-strawberry-300 transition-all"
+                className="bg-gray-900/50 border border-pink-500/20 hover:border-pink-500/50 p-6 hover:shadow-2xl hover:shadow-pink-500/10 transition-all backdrop-blur-sm"
               >
                 {/* Category Header */}
                 <div className="mb-6">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">
+                  <h3 className="text-lg font-bold text-gray-200 mb-2 font-mono">
                     {category.title}
                   </h3>
-                  <div className="w-12 h-1 bg-gradient-to-r from-strawberry-400 to-pink-500 rounded-full"></div>
+                  <div className="w-12 h-1 bg-gradient-to-r from-pink-400 to-pink-500 rounded-full"></div>
                 </div>
 
                 {/* Skills List */}
@@ -114,16 +117,16 @@ export default function Skills() {
                     >
                       {/* Skill Name and Percentage */}
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-semibold text-gray-800 group-hover:text-strawberry-600 transition-colors">
+                        <span className="text-sm font-semibold text-gray-300 group-hover:text-pink-400 transition-colors font-mono">
                           {skill.name}
                         </span>
-                        <span className="text-xs font-bold text-gray-500">
+                        <span className="text-xs font-bold text-gray-500 font-mono">
                           {skill.percentage}%
                         </span>
                       </div>
 
                       {/* Progress Bar */}
-                      <div className="relative h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="relative h-2 bg-gray-800 rounded-full overflow-hidden border border-gray-700">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.percentage}%` }}
@@ -159,27 +162,24 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-12 bg-white rounded-2xl border border-gray-200 shadow-md p-6"
+            className="mt-12 bg-gray-900/50 border border-pink-500/20 shadow-md p-6 backdrop-blur-sm"
           >
-            {/* <h4 className="text-lg font-bold text-gray-800 mb-4 text-center">
-              Proficiency Levels
-            </h4> */}
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
+            <div className="flex flex-wrap justify-center gap-6 text-sm font-mono">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500"></div>
-                <span className="text-gray-700 font-medium">Expert ≥ 90%</span>
+                <span className="text-gray-400 font-medium">Expert ≥ 90%</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-2 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500"></div>
-                <span className="text-gray-700 font-medium">Advanced 80–89%</span>
+                <span className="text-gray-400 font-medium">Advanced 80–89%</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-2 rounded-full bg-gradient-to-r from-strawberry-400 to-pink-500"></div>
-                <span className="text-gray-700 font-medium">Proficient 70–79%</span>
+                <div className="w-8 h-2 rounded-full bg-gradient-to-r from-pink-400 to-pink-500"></div>
+                <span className="text-gray-400 font-medium">Proficient 70–79%</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-2 rounded-full bg-gradient-to-r from-amber-400 to-orange-500"></div>
-                <span className="text-gray-700 font-medium">Intermediate 60–69%</span>
+                <span className="text-gray-400 font-medium">Intermediate 60–69%</span>
               </div>
             </div>
           </motion.div>
@@ -192,8 +192,8 @@ export default function Skills() {
             transition={{ duration: 0.6, delay: 1 }}
             className="mt-8 text-center"
           >
-            <p className="text-sm text-gray-600">
-              <span className="font-semibold text-strawberry-600">AWS Academy Certified</span> |
+            <p className="text-sm text-gray-400 font-mono">
+              <span className="font-semibold text-pink-400">AWS Academy Certified</span> |
               <span className="ml-2">1+ Year Internship Experience</span> |
               <span className="ml-2">Agile Development</span>
             </p>

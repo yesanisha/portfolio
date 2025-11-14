@@ -31,7 +31,7 @@ export default function Experience() {
         'Working in agile environment with bi-weekly sprints, code reviews, and handling ambiguous product requirements'
       ],
       tech: ['React Native', 'FastAPI', 'Firebase', 'OAuth 2.0', 'ML', 'Python', 'Agile'],
-      color: 'strawberry'
+      color: 'pink'
     },
 
     {
@@ -78,26 +78,29 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="experience" className="py-20 px-4 bg-black relative overflow-hidden">
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl font-bold text-center mb-4">
-            Experience & <span className="text-gradient">Education</span>
+          <h2 className="text-5xl font-bold text-center mb-4 font-mono">
+            <span className="text-pink-500">$</span> cat <span className="text-gradient">experience.log</span>
           </h2>
-          <p className="text-center text-gray-600 mb-12">
+          <p className="text-center text-gray-400 mb-12 font-mono">
             My professional journey so far
           </p>
 
           {/* Experience Timeline */}
           <div className="mb-16">
-            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <Briefcase className="text-strawberry-500" />
-              Work Experience
+            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 font-mono">
+              <Briefcase className="text-pink-500" />
+              <span className="text-gray-200">Work Experience</span>
             </h3>
             <div className="space-y-8">
               {experiences.map((exp, index) => (
@@ -107,22 +110,22 @@ export default function Experience() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="relative pl-8 border-l-4 border-strawberry-300"
+                  className="relative pl-8 border-l-4 border-pink-500/30"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute -left-2.5 top-0 w-5 h-5 bg-strawberry-500 rounded-full border-4 border-white shadow-lg" />
+                  <div className="absolute -left-2.5 top-0 w-5 h-5 bg-pink-500 rounded-full border-4 border-black shadow-lg shadow-pink-500/50" />
 
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-strawberry-100 hover:shadow-xl transition-all"
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="bg-gray-900/50 backdrop-blur-sm p-6 border border-pink-500/20 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/10 transition-all"
                   >
                     <div className="flex flex-wrap items-start justify-between mb-3">
                       <div>
-                        <h4 className="text-xl font-bold text-gray-800">{exp.title}</h4>
-                        <p className="text-lg text-strawberry-500 font-semibold">{exp.company}</p>
-                        <p className="text-sm text-gray-600">{exp.location}</p>
+                        <h4 className="text-xl font-bold text-gray-200 font-mono">{exp.title}</h4>
+                        <p className="text-lg text-pink-400 font-semibold font-mono">{exp.company}</p>
+                        <p className="text-sm text-gray-500 font-mono">{exp.location}</p>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-600 bg-strawberry-50 px-3 py-1 rounded-full">
+                      <div className="flex items-center gap-2 text-gray-400 bg-gray-800/50 px-3 py-1 border border-pink-500/20 font-mono">
                         <Calendar className="w-4 h-4" />
                         <span className="text-sm font-medium">{exp.period}</span>
                       </div>
@@ -130,8 +133,8 @@ export default function Experience() {
 
                     <ul className="space-y-2 mb-4">
                       {exp.description.map((item, i) => (
-                        <li key={i} className="text-gray-600 flex items-start gap-2">
-                          <span className="text-strawberry-400 mt-1">•</span>
+                        <li key={i} className="text-gray-400 flex items-start gap-2 font-mono text-sm">
+                          <span className="text-pink-400 mt-1">›</span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -141,7 +144,7 @@ export default function Experience() {
                       {exp.tech.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 bg-gradient-to-r from-strawberry-100 to-pink-100 text-strawberry-700 rounded-full text-xs font-medium"
+                          className="px-3 py-1 bg-pink-500/10 text-pink-400 border border-pink-500/30 rounded text-xs font-medium font-mono"
                         >
                           {tech}
                         </span>
@@ -160,32 +163,33 @@ export default function Experience() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <Book className="text-strawberry-500" /> Education
+            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 font-mono">
+              <Book className="text-pink-500" />
+              <span className="text-gray-200">Education</span>
             </h3>
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-strawberry-100 hover:shadow-xl transition-all"
+              className="bg-gray-900/50 backdrop-blur-sm p-8 border border-pink-500/20 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/10 transition-all"
             >
               <div className="flex flex-wrap items-start justify-between mb-4">
                 <div>
-                  <h4 className="text-2xl font-bold text-gray-800">{education.degree}</h4>
-                  <p className="text-lg text-strawberry-500 font-semibold">{education.school}</p>
-                  <p className="text-sm text-gray-600">{education.location}</p>
+                  <h4 className="text-2xl font-bold text-gray-200 font-mono">{education.degree}</h4>
+                  <p className="text-lg text-pink-400 font-semibold font-mono">{education.school}</p>
+                  <p className="text-sm text-gray-500 font-mono">{education.location}</p>
                 </div>
                 <div className="text-right">
-                  <div className="flex items-center gap-2 text-gray-600 bg-strawberry-50 px-3 py-1 rounded-full mb-2">
+                  <div className="flex items-center gap-2 text-gray-400 bg-gray-800/50 px-3 py-1 border border-pink-500/20 mb-2 font-mono">
                     <Calendar className="w-4 h-4" />
                     <span className="text-sm font-medium">{education.period}</span>
                   </div>
-                  <div className="text-2xl font-bold text-strawberry-500">{education.gpa}</div>
+                  <div className="text-2xl font-bold text-pink-500 font-mono">{education.gpa}</div>
                 </div>
               </div>
 
               <ul className="space-y-2">
                 {education.highlights.map((item, i) => (
-                  <li key={i} className="text-gray-600 flex items-start gap-2">
-                    <span className="text-strawberry-400 mt-1">🍓</span>
+                  <li key={i} className="text-gray-400 flex items-start gap-2 font-mono text-sm">
+                    <span className="text-pink-400 mt-1">›</span>
                     <span>{item}</span>
                   </li>
                 ))}
