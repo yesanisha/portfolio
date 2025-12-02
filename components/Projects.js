@@ -1,9 +1,13 @@
 'use client';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Star, Coffee } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import AppEmulatorModal from './AppEmulatorModal';
 
 export default function Projects() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedApp, setSelectedApp] = useState(null);
   const projects = [
     {
       title: 'HeyRoomie',
@@ -12,6 +16,7 @@ export default function Projects() {
       period: 'Sept 2025 - Present',
       tech: ['React Native', 'FastAPI', 'Firebase', 'OAuth 2.0', 'ML', 'Python', 'Zustand'],
       github: 'https://github.com/yesanisha/heyroomie-app',
+      live: 'https://heyroomie.in',
       featured: true,
       highlights: [
         'Architecting mobile app with multi-tiered architecture: React Native frontend, FastAPI backend, Firebase, and ML recommendation engine',
@@ -27,28 +32,16 @@ export default function Projects() {
       period: 'June 2025 - Oct 2025',
       tech: ['React Native', 'Firebase', 'Flask', 'YOLOv5/v8', 'GraphQL', 'GCP', 'PostgreSQL', 'ResNet50'],
       github: 'https://github.com/yesanisha/farma-v3',
+      live: 'https://expo.dev/accounts/yesanisha/projects/farma/builds/f9da75a2-1427-4216-8308-7a19f37e0143',
+      showEmulator: true,
+      appetizeKey: 'b_ff44pezyfq6kwk2vcb4jor6ja4',
+      appetizePlayUrl: 'https://appetize.io/app/b_ff44pezyfq6kwk2vcb4jor6ja4',
       featured: true,
       highlights: [
         'Built cross-platform app with React Native frontend, Firebase backend, and Flask ML API',
         'Created offline-first architecture with AsyncStorage caching for 5 plant species, handling network failures gracefully',
         'Successfully integrated Gemini API chatbot to enhance user interaction and automate intelligent support',
         'Secure authentication with Firebase Phone Auth + JWT serving real-time ML predictions at scale',
-      ]
-    },
-    {
-      title: 'Secure+',
-      description: 'Enterprise-grade JWT authentication microservice with comprehensive security features and vulnerability scanning.',
-      image: '/images/Secure+.jpg',
-      period: 'Aug 2025 - Oct 2025',
-      tech: ['PostgreSQL', 'Express', 'React', 'Node.js', 'JWT', 'OWASP ZAP'],
-      github: 'https://github.com/yesanisha/secure-auth-api',
-      featured: true,
-      highlights: [
-        'Implemented JWT authentication microservice with refresh token rotation',
-        'Built-in rate limiting and SQL injection prevention',
-        'OWASP security headers and best practices implementation',
-        'Integrated vulnerability scanning with OWASP ZAP',
-        'Production-ready with comprehensive error handling and logging'
       ]
     },
     {
@@ -180,15 +173,28 @@ export default function Projects() {
                         Code
                       </a>
                       {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-4 py-2 bg-pink-500/20 border border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white transition-all text-sm font-mono"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Live Demo
-                        </a>
+                        project.showEmulator ? (
+                          <button
+                            onClick={() => {
+                              setSelectedApp(project);
+                              setIsModalOpen(true);
+                            }}
+                            className="flex items-center gap-2 px-4 py-2 bg-pink-500/20 border border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white transition-all text-sm font-mono"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                            Live Demo
+                          </button>
+                        ) : (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-4 py-2 bg-pink-500/20 border border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white transition-all text-sm font-mono"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                            Live Demo
+                          </a>
+                        )
                       )}
                     </div>
                   </div>
@@ -265,6 +271,19 @@ export default function Projects() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* App Emulator Modal */}
+      <AppEmulatorModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedApp(null);
+        }}
+        appTitle={selectedApp?.title}
+        appetizePublicKey={selectedApp?.appetizeKey}
+        appetizePlayUrl={selectedApp?.appetizePlayUrl}
+        downloadUrl={selectedApp?.live}
+      />
     </section>
   );
 }
