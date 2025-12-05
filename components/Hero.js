@@ -451,10 +451,10 @@ export default function Hero() {
 
               {/* Glow effect around phone - Enhanced */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-[2.5rem] blur-3xl -z-10"
+                className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-[2.5rem] blur-3xl -z-10"
                 animate={{
                   scale: [1, 1.05, 1],
-                  opacity: [0.5, 0.7, 0.5]
+                  opacity: [0.3, 0.5, 0.3]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
