@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, MapPin, Sparkles, Globe, ExternalLink, Leaf, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Hero() {
   const [typedText, setTypedText] = useState('');
@@ -176,22 +177,78 @@ export default function Hero() {
             className="flex justify-center items-center order-1 lg:order-2"
           >
             {/* Phone Frame - Sleeker Design */}
-            <div className="relative mt-8 lg:mt-0">
+            <div className="relative mt-8 lg:mt-0 group" style={{ perspective: '1000px' }}>
+              {/* Floating particles around phone */}
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-pink-500 rounded-full"
+                  style={{
+                    left: `${20 + Math.cos(i * Math.PI / 4) * 200}px`,
+                    top: `${300 + Math.sin(i * Math.PI / 4) * 250}px`,
+                  }}
+                  animate={{
+                    y: [0, -20, 0],
+                    x: [0, Math.cos(i) * 10, 0],
+                    opacity: [0.3, 1, 0.3],
+                    scale: [1, 1.5, 1],
+                  }}
+                  transition={{
+                    duration: 3 + i * 0.2,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                  }}
+                />
+              ))}
+
+
               {/* Phone outer frame with notch - Black with silver outline */}
-              <div className="relative w-[300px] sm:w-[340px] h-[600px] sm:h-[680px] bg-black rounded-[2.5rem] border-[6px] border-black shadow-2xl overflow-hidden group/phone hover:shadow-pink-500/30" style={{ boxShadow: '0 0 0 1px rgba(192, 192, 192, 0.3), 0 20px 60px rgba(0, 0, 0, 0.8)' }}>
+              <motion.div
+                className="relative w-[300px] sm:w-[340px] h-[600px] sm:h-[680px] bg-black rounded-[2.5rem] border-[6px] border-black shadow-2xl overflow-hidden group/phone pulse-glow"
+                style={{ boxShadow: '0 0 0 1px rgba(192, 192, 192, 0.3), 0 20px 60px rgba(0, 0, 0, 0.8)' }}
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                }}
+              >
                 {/* Notch - Sleeker */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-5 bg-black rounded-b-2xl z-10 flex items-center justify-center gap-2" style={{ boxShadow: '0 0 0 1px rgba(192, 192, 192, 0.2)' }}>
                   <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
                   <div className="w-12 h-1 bg-gray-800 rounded-full"></div>
                 </div>
 
-                {/* Screen glow - More subtle */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-purple-500/10 group-hover/phone:from-pink-500/20 group-hover/phone:to-purple-500/20 blur-2xl transition-all duration-300"></div>
-
+                
 {/* Screen content */}
                 <div className="relative w-full h-full bg-gradient-to-br from-gray-950 via-gray-900 to-black overflow-hidden">
+                  {/* Animated purple glow behind content */}
+                  <motion.div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-500/30 rounded-full blur-3xl"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.4, 0.7, 0.4],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <motion.div
+                    className="absolute top-1/4 right-1/4 w-64 h-64 bg-pink-500/25 rounded-full blur-3xl"
+                    animate={{
+                      scale: [1.2, 1, 1.2],
+                      opacity: [0.3, 0.6, 0.3],
+                    }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
                   {/* Portfolio Gallery View */}
-                  <div className="p-5 h-full flex flex-col overflow-y-auto">
+                  <div className="p-5 h-full flex flex-col overflow-y-auto relative z-10">
                     {/* Status bar */}
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
@@ -239,21 +296,12 @@ export default function Hero() {
                           {
                             name: 'Farma',
                             desc: 'AI Plant Disease Detection',
-                            icon: '',
+                            icon: '🌱',
                             color: 'from-green-500 to-emerald-600',
                             tech: 'React Native • Flask • ML',
-                            stats: 'link',
-                            link: ''
-                          },
-                          {
-                            name: 'HeyRoomie',
-                            desc: 'Smart Roommate Matching',
-                            icon: '',
-                            color: 'from-pink-500 to-purple-600',
-                            tech: 'React Native • Firebase',
-                            stats: 'link',
-                            link: ''
-
+                            stats: 'Download APK',
+                            link: 'https://expo.dev/accounts/yesanisha/projects/farma/builds/f9da75a2-1427-4216-8308-7a19f37e0143',
+                            qrCode: '/qr.png'
                           }
                         ].map((app, i) => {
                           const MotionComponent = app.link ? motion.a : motion.div;
@@ -274,12 +322,24 @@ export default function Hero() {
                               className="bg-gradient-to-r from-gray-800/40 to-gray-800/20 border border-pink-500/30 rounded-xl p-3 backdrop-blur-sm group cursor-pointer block"
                             >
                               <div className="flex items-start gap-3">
-                                <motion.div
-                                  className={`w-12 h-12 bg-gradient-to-br ${app.color} rounded-xl flex items-center justify-center text-xl shadow-lg flex-shrink-0`}
-                                  whileHover={{ rotate: 5, scale: 1.1 }}
-                                >
-                                  {app.icon}
-                                </motion.div>
+                                {app.qrCode ? (
+                                  <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                    <Image
+                                      src={app.qrCode}
+                                      alt="QR Code"
+                                      width={48}
+                                      height={48}
+                                      className="object-contain invert"
+                                    />
+                                  </div>
+                                ) : (
+                                  <motion.div
+                                    className={`w-12 h-12 bg-gradient-to-br ${app.color} rounded-xl flex items-center justify-center text-xl shadow-lg flex-shrink-0`}
+                                    whileHover={{ rotate: 5, scale: 1.1 }}
+                                  >
+                                    {app.icon}
+                                  </motion.div>
+                                )}
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-white text-xs font-bold font-mono mb-0.5">{app.name}</h4>
                                   <p className="text-gray-400 text-[9px] font-mono mb-1">{app.desc}</p>
@@ -387,9 +447,9 @@ export default function Hero() {
                 <div className="absolute -right-[3px] top-20 w-[3px] h-10 bg-gradient-to-r from-gray-800 to-gray-700 rounded-l shadow-inner"></div>
                 <div className="absolute -right-[3px] top-32 w-[3px] h-14 bg-gradient-to-r from-gray-800 to-gray-700 rounded-l shadow-inner"></div>
                 <div className="absolute -left-[3px] top-28 w-[3px] h-8 bg-gradient-to-l from-gray-800 to-gray-700 rounded-r shadow-inner"></div>
-              </div>
+              </motion.div>
 
-              {/* Glow effect around phone - More dynamic */}
+              {/* Glow effect around phone - Enhanced */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-[2.5rem] blur-3xl -z-10"
                 animate={{
@@ -398,6 +458,7 @@ export default function Hero() {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
+              
             </div>
           </motion.div>
         </div>

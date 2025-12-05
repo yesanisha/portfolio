@@ -2,8 +2,31 @@
 import { motion } from 'framer-motion';
 import { Code2, Globe, Heart, Sparkles } from 'lucide-react';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export default function About() {
+  const [counters, setCounters] = useState({ languages: 0, projects: 0, internships: 0 });
+
+  useEffect(() => {
+    // Animate counters
+    const animateCounter = (key, target) => {
+      let current = 0;
+      const increment = target / 50;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        setCounters(prev => ({ ...prev, [key]: Math.floor(current) }));
+      }, 30);
+    };
+
+    animateCounter('languages', 15);
+    animateCounter('projects', 20);
+    animateCounter('internships', 4);
+  }, []);
+
   const interests = [
     { icon: <Code2 className="w-6 h-6" />, title: 'Mobile App Development', desc: 'Building cross-platform mobile apps' },
     { icon: <Globe className="w-6 h-6" />, title: 'Full Stack Development', desc: 'Creating end-to-end solutions' },
@@ -15,6 +38,68 @@ export default function About() {
     <section id="about" className="py-20 px-4 bg-black relative overflow-hidden">
       {/* Grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+      {/* Floating particles */}
+      {[...Array(20)].map((_, i) => {
+        // Use deterministic positioning based on index
+        const leftPos = ((i * 37) % 100);
+        const topPos = ((i * 53) % 100);
+        const xOffset = ((i * 17) % 50) - 25;
+        const duration = 3 + ((i * 0.2) % 2);
+        const delay = (i * 0.3) % 3;
+
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-pink-500 rounded-full"
+            style={{
+              left: `${leftPos}%`,
+              top: `${topPos}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              x: [0, xOffset, 0],
+              opacity: [0, 1, 0],
+              scale: [0, 1.5, 0],
+            }}
+            transition={{
+              duration: duration,
+              repeat: Infinity,
+              delay: delay,
+            }}
+          />
+        );
+      })}
+
+      {/* Animated gradient orbs */}
+      <motion.div
+        className="absolute top-20 left-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.6, 0.3],
+          x: [0, 100, 0],
+          y: [0, 50, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+        animate={{
+          scale: [1.3, 1, 1.3],
+          opacity: [0.6, 0.3, 0.6],
+          x: [0, -100, 0],
+          y: [0, -50, 0],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -88,10 +173,10 @@ export default function About() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6"
           >
             {[
-              { number: '15+', label: 'Languages and Frameworks', icon: '/icons/language.png' },
-              { number: '20+', label: 'Projects Built', icon: '/icons/projects.png' },
-              { number: '4+', label: 'Internships', icon: '/icons/internship.png' },
-              { number: '∞', label: 'Cups of Coffee', icon: '/icons/coffee.png' },
+              { number: counters.languages, suffix: '+', label: 'Languages and Frameworks', icon: '/icons/language.png' },
+              { number: counters.projects, suffix: '+', label: 'Projects Built', icon: '/icons/projects.png' },
+              { number: counters.internships, suffix: '+', label: 'Internships', icon: '/icons/internship.png' },
+              { number: '∞', suffix: '', label: 'Cups of Coffee', icon: '/icons/coffee.png' },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -108,7 +193,7 @@ export default function About() {
                     className="object-contain drop-shadow-md"
                   />
                 </div>
-                <div className="text-3xl font-bold text-pink-500 mb-1 font-mono">{stat.number}</div>
+                <div className="text-3xl font-bold text-pink-500 mb-1 font-mono">{stat.number}{stat.suffix}</div>
                 <div className="text-xs text-gray-400 font-mono">{stat.label}</div>
               </motion.div>
             ))}
