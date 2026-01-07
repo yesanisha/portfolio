@@ -1,27 +1,46 @@
 'use client';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import AppEmulatorModal from './AppEmulatorModal';
 
 export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedApp, setSelectedApp] = useState(null);
+
   const projects = [
+    {
+      title: 'DOTKO.IN',
+      description: 'Comprehensive MSME Trust & Verification Platform - India\'s first transparent B2B rating system for MSMEs with verified transaction tracking and fair dispute resolution.',
+      image: '/images/DOTKO.jpg',
+      period: 'Oct 2025 - Present',
+      tech: ['React Native', 'Expo', 'Firebase', 'Firestore', 'Cloud Storage'],
+      github: 'https://github.com/yesanisha/dotko',
+      live: 'exp+DOTKO://expo-development-client/?url=https://u.expo.dev/41d5cb65-0c72-4b4b-b2dc-f32e4b12ca16/group/d4286421-befc-44eb-aa4a-8a1792403844',
+      showEmulator: false,
+      featured: true,
+      highlights: [
+        'Built comprehensive MSME verification platform with GSTIN/PAN lookup',
+        'Designed fair 72-hour appeal process for transparent dispute resolution',
+        'Implemented secure multi-step signup with business identity verification',
+        'Created supplier protection system with mandatory PDF document proof',
+        'Architected privacy-first design keeping supplier details confidential'
+      ]
+    },
     {
       title: 'HeyRoomie',
       description: 'Mobile app with multi-tiered architecture connecting people looking for roommates through intelligent ML-powered matching algorithms.',
       image: '/images/HeyRoomie.jpg',
       period: 'Sept 2025 - Present',
-      tech: ['React Native', 'FastAPI', 'Firebase', 'OAuth 2.0', 'ML', 'Python', 'Zustand'],
+      tech: ['React Native', 'FastAPI', 'Firebase', 'OAuth 2.0', 'ML'],
       github: 'https://github.com/yesanisha/heyroomie-app',
       live: 'https://heyroomie.in',
       featured: true,
       highlights: [
-        'Architecting mobile app with multi-tiered architecture: React Native frontend, FastAPI backend, Firebase, and ML recommendation engine',
-        'Designing matching algorithms analyzing user preferences and compatibility metrics to optimize user experience',
-        'Implementing secure authentication with OAuth 2.0 and encrypted data storage following OWASP practices',
+        'Architecting mobile app with multi-tiered architecture',
+        'Designing ML-powered matching algorithms analyzing user preferences',
+        'Implementing secure authentication with OAuth 2.0 and encrypted data storage',
         'Working in agile environment with bi-weekly sprints and code reviews'
       ]
     },
@@ -30,7 +49,7 @@ export default function Projects() {
       description: 'Production-ready cross-platform mobile application with AI-powered plant disease detection using computer vision and real-time ML inference.',
       image: '/images/Farma.jpg',
       period: 'June 2025 - Oct 2025',
-      tech: ['React Native', 'Firebase', 'Flask', 'YOLOv5/v8', 'GraphQL', 'GCP', 'PostgreSQL', 'ResNet50'],
+      tech: ['React Native', 'Firebase', 'Flask', 'YOLOv5/v8', 'GCP'],
       github: 'https://github.com/yesanisha/farma-v3',
       live: 'https://expo.dev/accounts/yesanisha/projects/farma/builds/f9da75a2-1427-4216-8308-7a19f37e0143',
       showEmulator: true,
@@ -39,9 +58,9 @@ export default function Projects() {
       featured: true,
       highlights: [
         'Built cross-platform app with React Native frontend, Firebase backend, and Flask ML API',
-        'Created offline-first architecture with AsyncStorage caching for 5 plant species, handling network failures gracefully',
-        'Successfully integrated Gemini API chatbot to enhance user interaction and automate intelligent support',
-        'Secure authentication with Firebase Phone Auth + JWT serving real-time ML predictions at scale',
+        'Created offline-first architecture with AsyncStorage caching for 5 plant species',
+        'Successfully integrated Gemini API chatbot to enhance user interaction',
+        'Secure authentication with Firebase Phone Auth + JWT serving real-time ML predictions'
       ]
     },
     {
@@ -50,12 +69,7 @@ export default function Projects() {
       image: '/images/MovieTime.jpg',
       tech: ['Kotlin', 'Android SDK', 'TMDB API', 'Material Design'],
       github: 'https://github.com/yesanisha/movie-recommendation-application',
-      featured: false,
-      highlights: [
-        'Android native app with Kotlin',
-        'TMDB API integration for movie data',
-        'Personalized recommendations'
-      ]
+      featured: false
     },
     {
       title: 'LinkedIn Auto Search',
@@ -63,212 +77,224 @@ export default function Projects() {
       image: '/images/LinkedIn.jpg',
       tech: ['JavaScript', 'Node.js', 'Puppeteer', 'Automation'],
       github: 'https://github.com/yesanisha/linkedin-auto-search',
-      featured: false,
-      highlights: [
-        'Browser automation for job searching',
-        'Smart filtering and tracking',
-        'Application management'
-      ]
+      featured: false
     },
     {
-      title: 'Portfolio Website',
-      description: 'This website! A creative portfolio with interactive elements, smooth animations, and responsive design.',
-      image: '/images/pic.jpeg',
-      tech: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'React'],
-      github: 'https://github.com/yesanisha',
-      live: '#',
-      featured: false,
-      highlights: [
-        'Server-side rendering with Next.js',
-        'Smooth animations with Framer Motion',
-        'Fully responsive design'
-      ]
+      title: 'MoveABox',
+      description: 'Professional logistics and moving services platform connecting customers with verified movers and packers across India.',
+      image: '/images/MoveABox.jpg',
+      tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
+      github: 'https://github.com/yesanisha/moveabox',
+      live: 'https://moveabox.com',
+      featured: false
     }
   ];
 
   return (
-    <section id="projects" className="py-20 px-4 bg-black relative overflow-hidden">
-      {/* Grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section id="projects" className="py-32 px-6 bg-gradient-to-b from-gray-50 to-white relative">
+      <div className="max-w-7xl mx-auto">
+        {/* Header - Minimal */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <h2 className="text-5xl font-bold text-center mb-4 font-mono">
-            <span className="text-pink-500">$</span> ls <span className="text-gradient">projects/</span>
+          <p className="text-sm text-gray-400 font-mono mb-2">$ ls projects/</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            Selected Work
           </h2>
-          <p className="text-center text-gray-400 mb-12 font-mono">
-            Some things I've built with love (and lots of coffee)
-          </p>
+        </motion.div>
 
-          {/* Featured Projects */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 font-mono text-gray-200">
-              Highlighted Work
-            </h3>
-            <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-              {projects.filter(p => p.featured).map((project, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  className="bg-gray-900/50 backdrop-blur-sm border border-pink-500/20 hover:border-pink-500/50 hover:shadow-2xl hover:shadow-pink-500/10 transition-all overflow-hidden group"
-                >
-                  {/* Project Image */}
-                  <div className="relative h-48 bg-gray-800 overflow-hidden border-b border-pink-500/20">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300 opacity-80 group-hover:opacity-100"
-                    />
+        {/* Featured Projects - Large Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {projects.filter(p => p.featured).map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-xl hover:shadow-gray-100/50 transition-all duration-500"
+            >
+              {/* Image Container */}
+              <div className="relative h-56 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4">
+                    {project.period && (
+                      <span className="inline-block text-xs text-white/90 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                        {project.period}
+                      </span>
+                    )}
                   </div>
+                </div>
+              </div>
 
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-2">
-                      <h4 className="text-xl font-bold text-gray-200 font-mono">{project.title}</h4>
-                      {project.period && (
-                        <span className="text-xs text-gray-500 bg-gray-800/50 px-2 py-1 border border-pink-500/20 whitespace-nowrap ml-2 font-mono">
-                          {project.period}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-gray-400 mb-4 text-sm font-mono">{project.description}</p>
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">
+                  {project.title}
+                </h3>
 
-                    <ul className="space-y-1 mb-4 max-h-40 overflow-y-auto">
-                      {project.highlights.map((highlight, i) => (
-                        <li key={i} className="text-xs text-gray-500 flex items-start gap-2 font-mono">
+                {/* Description - shows only snippet, full on hover */}
+                <div className="relative overflow-hidden mb-4">
+                  <p className="text-sm text-gray-500 line-clamp-2 group-hover:line-clamp-none transition-all">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Tech Stack - compact pills */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.slice(0, 3).map((tech, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-2 py-1 bg-gray-50 text-gray-600 rounded-md border border-gray-100"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.tech.length > 3 && (
+                    <span className="text-xs px-2 py-1 text-gray-400">
+                      +{project.tech.length - 3}
+                    </span>
+                  )}
+                </div>
+
+                {/* Highlights - hidden, shows on hover */}
+                {project.highlights && (
+                  <div className="max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-500 opacity-0 group-hover:opacity-100">
+                    <ul className="space-y-1 mb-4 text-xs text-gray-500">
+                      {project.highlights.slice(0, 3).map((highlight, i) => (
+                        <li key={i} className="flex items-start gap-2">
                           <span className="text-pink-400 mt-0.5">›</span>
                           <span>{highlight}</span>
                         </li>
                       ))}
                     </ul>
-
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tech.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-2 py-1 bg-pink-500/10 text-pink-400 border border-pink-500/30 rounded-full text-xs font-medium font-mono"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex gap-3">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-gray-300 border border-pink-500/30 hover:border-pink-500 hover:text-pink-400 transition-colors text-sm font-mono"
-                      >
-                        <Github className="w-4 h-4" />
-                        Code
-                      </a>
-                      {project.live && (
-                        project.showEmulator ? (
-                          <button
-                            onClick={() => {
-                              setSelectedApp(project);
-                              setIsModalOpen(true);
-                            }}
-                            className="flex items-center gap-2 px-4 py-2 bg-pink-500/20 border border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white transition-all text-sm font-mono"
-                          >
-                            <ExternalLink className="w-4 h-4" />
-                            Live Demo
-                          </button>
-                        ) : (
-                          <a
-                            href={project.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-4 py-2 bg-pink-500/20 border border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white transition-all text-sm font-mono"
-                          >
-                            <ExternalLink className="w-4 h-4" />
-                            Live Demo
-                          </a>
-                        )
-                      )}
-                    </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+                )}
 
-          {/* Other Projects */}
-          <div>
-            <h3 className="text-2xl font-bold mb-6 font-mono text-gray-200">Other Notable Projects</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.filter(p => !p.featured).map((project, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-gray-900/50 backdrop-blur-sm p-6 border border-pink-500/20 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/10 transition-all"
-                >
-                  <div className="relative h-40 bg-gray-800 overflow-hidden border border-pink-500/20 mb-4">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover hover:scale-110 transition-transform duration-300 opacity-80 hover:opacity-100"
-                    />
-                  </div>
-                  <h4 className="text-lg font-bold text-gray-200 mb-2 font-mono">{project.title}</h4>
-                  <p className="text-gray-400 text-sm mb-4 font-mono">{project.description}</p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-pink-500/10 text-pink-400 border border-pink-500/30 rounded text-xs font-mono"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
+                {/* Actions */}
+                <div className="flex gap-2">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 font-semibold text-sm font-mono"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300 rounded-lg transition-colors"
                   >
                     <Github className="w-4 h-4" />
-                    View Code
+                    Code
                   </a>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+                  {project.live && (
+                    project.showEmulator ? (
+                      <button
+                        onClick={() => {
+                          setSelectedApp(project);
+                          setIsModalOpen(true);
+                        }}
+                        className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-900 text-white hover:bg-gray-800 rounded-lg transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Demo
+                      </button>
+                    ) : (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-900 text-white hover:bg-gray-800 rounded-lg transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Live
+                      </a>
+                    )
+                  )}
+                </div>
+              </div>
 
-          {/* GitHub Link */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-12 text-center"
+              {/* Corner accent - appears on hover */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/0 to-purple-500/0 group-hover:from-pink-500/10 group-hover:to-purple-500/10 transition-all duration-300 rounded-bl-[100%]" />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Other Projects - Compact List */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl font-semibold text-gray-900 mb-6">More Projects</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {projects.filter(p => !p.featured).map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="group bg-white border border-gray-100 hover:border-gray-200 rounded-xl p-5 hover:shadow-lg hover:shadow-gray-100/50 transition-all duration-300"
+              >
+                {/* Image - smaller */}
+                <div className="relative h-32 bg-gray-50 rounded-lg overflow-hidden mb-4">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <h4 className="font-semibold text-gray-900 mb-2">{project.title}</h4>
+                <p className="text-sm text-gray-500 mb-3 line-clamp-2">{project.description}</p>
+
+                {/* Tech tags - minimal */}
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {project.tech.slice(0, 2).map((tech, i) => (
+                    <span key={i} className="text-xs px-2 py-0.5 bg-gray-50 text-gray-500 rounded">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  View Code
+                  <ArrowUpRight className="w-3 h-3" />
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* GitHub Link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <a
+            href="https://github.com/yesanisha"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors"
           >
-            <p className="text-sm text-gray-500 italic font-mono">
-              Want to see more? Check out my{' '}
-              <a href="https://github.com/yesanisha" target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:underline font-semibold">
-                GitHub (@yesanisha)
-              </a>
-              {' '}for 19+ repositories!
-            </p>
-          </motion.div>
+            <span>View 19+ repositories on GitHub</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
         </motion.div>
       </div>
 

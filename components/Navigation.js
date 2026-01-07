@@ -8,12 +8,10 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '#' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    // { name: 'Travel', href: '#travel' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -21,7 +19,6 @@ export default function Navigation() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -29,142 +26,133 @@ export default function Navigation() {
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? 'bg-black/90 backdrop-blur-md border-b border-pink-500/30 py-4'
-          : 'bg-black/50 backdrop-blur-sm py-6'
-          }`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-6"
       >
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          {/* Logo */}
+        <motion.div
+          className={`transition-all duration-500 ${
+            isScrolled
+              ? 'bg-white/10 backdrop-blur-xl shadow-lg shadow-black/50 px-6 py-3'
+              : 'bg-white/5 backdrop-blur-lg px-8 py-4'
+          } rounded-full border border-white/10`}
+        >
+          <div className="flex items-center justify-between gap-12">
+          {/* Logo - Minimal */}
           <motion.a
             href="#"
-            className="text-xl font-mono font-bold text-pink-500 hover:text-pink-400 transition-colors"
-            whileHover={{ scale: 1.05 }}
+            className="text-lg font-bold text-white"
+            whileHover={{ scale: 1.02 }}
           >
-            yesanisha
+            ANISHA
           </motion.a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2">
+          {/* Desktop Navigation - Clean links */}
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="px-4 py-2 text-gray-300 hover:text-pink-400 transition-colors font-mono text-sm border border-transparent hover:border-pink-500/30"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: -20 }}
+                className="relative text-sm font-medium text-white/60 hover:text-white transition-colors group"
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05 }}
               >
-                {item.name.toLowerCase()}
+                {item.name}
+                {/* Animated underline */}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
           </div>
 
-          {/* CTA Button Desktop */}
+          {/* CTA Button - Minimal */}
           <motion.a
             href="#contact"
-            className="hidden md:block px-6 py-2 bg-pink-500 hover:bg-pink-600 text-white font-mono text-sm transition-all"
+            className="hidden md:block px-6 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            contact.sh
+            Let's talk
           </motion.a>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 border border-pink-500/30 hover:border-pink-500 transition-colors"
+            className="md:hidden p-2 text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-pink-400" />
+              <X className="w-5 h-5" />
             ) : (
-              <Menu className="w-6 h-6 text-pink-400" />
+              <Menu className="w-5 h-5" />
             )}
           </button>
-        </div>
+          </div>
+        </motion.div>
       </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Clean overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 md:hidden"
-          >
+          <>
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
               onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 md:hidden"
             />
 
-            {/* Menu Content */}
+            {/* Menu Panel */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 20 }}
-              className="absolute right-0 top-0 bottom-0 w-64 bg-gray-900 border-l border-pink-500/30"
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-80 bg-black/95 backdrop-blur-xl shadow-2xl z-50 md:hidden overflow-y-auto border-l border-white/10"
             >
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-8">
-                  <span className="text-xl font-mono font-bold text-pink-500">menu.sh</span>
-                  <button
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <span className="font-bold text-lg text-white">MENU</span>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5 text-white" />
+                </button>
+              </div>
+
+              {/* Nav Items */}
+              <div className="p-6 space-y-3">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 border border-pink-500/30 hover:border-pink-500 transition-colors"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="block px-5 py-3.5 text-white/60 hover:text-white font-medium hover:bg-white/5 rounded-xl transition-all"
                   >
-                    <X className="w-6 h-6 text-pink-400" />
-                  </button>
-                </div>
+                    {item.name}
+                  </motion.a>
+                ))}
 
-                <nav className="flex flex-col gap-2">
-                  {navItems.map((item, index) => (
-                    <motion.a
-                      key={item.name}
-                      href={item.href}
-                      className="px-4 py-3 text-gray-300 hover:text-pink-400 border border-transparent hover:border-pink-500/30 transition-colors font-mono text-sm"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      {item.name.toLowerCase()}
-                    </motion.a>
-                  ))}
-                </nav>
-
+                {/* CTA in mobile */}
                 <motion.a
                   href="#contact"
-                  className="mt-6 block text-center px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white font-mono text-sm transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
+                  className="block w-full px-5 py-3.5 bg-white text-black text-center font-semibold rounded-xl hover:bg-white/90 transition-all mt-6"
                 >
-                  contact.sh
+                  Let's talk
                 </motion.a>
-
-                <motion.div
-                  className="mt-8 text-center text-xs text-gray-500 font-mono"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  © anisha.dev
-                </motion.div>
               </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

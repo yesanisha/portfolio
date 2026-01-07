@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOTKO - Try Now! 🚀</title>
+  <meta name="description" content="Experience DOTKO - India's First MSME Trust & Verification Platform. Try the beta now!">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.3;
+      animation: float 8s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: #ec4899;
+      top: -100px;
+      left: -100px;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: #8b5cf6;
+      bottom: -150px;
+      right: -150px;
+      animation-delay: 2s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: #06b6d4;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.1); }
+      66% { transform: translate(-30px, 30px) scale(0.9); }
+    }
+
+    /* Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(236, 72, 153, 0.2);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      margin-bottom: 24px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      background: linear-gradient(to right, #ec4899, #8b5cf6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      color: #cbd5e1;
+      margin-bottom: 24px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .meta-item {
+      padding: 8px 16px;
+      background: rgba(236, 72, 153, 0.1);
+      border: 1px solid rgba(236, 72, 153, 0.2);
+      border-radius: 20px;
+    }
+
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    /* Card */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(236, 72, 153, 0.5);
+      box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(to bottom right, #ec4899, #8b5cf6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .card-subtitle {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* QR Code */
+    .qr-container {
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .qr-placeholder {
+      width: 256px;
+      height: 256px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      animation: rotate 3s ease-in-out infinite;
+    }
+
+    @keyframes rotate {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .qr-hint {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Features Grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .feature {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+      background: rgba(236, 72, 153, 0.1);
+      border-color: rgba(236, 72, 153, 0.3);
+      transform: scale(1.05);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .feature-text {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 20px 32px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #ec4899, #8b5cf6);
+      color: white;
+      box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(236, 72, 153, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(236, 72, 153, 0.5);
+    }
+
+    .btn-icon {
+      margin-right: 8px;
+    }
+
+    /* Steps */
+    .steps {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1));
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .steps-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .step {
+      display: flex;
+      align-items: start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: #06b6d4;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .step-text {
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 900;
+      background: linear-gradient(to right, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Link Copy */
+    .link-copy {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .link-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .copy-btn {
+      padding: 12px 24px;
+      background: linear-gradient(to right, #ec4899, #8b5cf6);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .copy-btn.copied {
+      background: #10b981;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="badge">
+        <span>✨</span>
+        <span>Client Preview Build Update 01</span>
+      </div>
+
+      <h1>DOTKO</h1>
+
+      <p class="subtitle">
+        Experience the future of MSME verification
+      </p>
+
+      <div class="meta">
+        <span class="meta-item">v1.0.0</span>
+        <span>•</span>
+        <span class="meta-item">Jan 2, 2026</span>
+        <span>•</span>
+        <span class="meta-item">Android</span>
+        <span class="meta-item">iOS</span>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid">
+      <!-- QR Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📱</div>
+          <div>
+            <div class="card-title">Quick Access</div>
+            <div class="card-subtitle">Scan to preview instantly</div>
+          </div>
+        </div>
+
+        <div class="qr-container">
+          <div class="qr-placeholder">
+            📱
+          </div>
+        </div>
+
+        <p class="qr-hint">
+          Scan with your phone camera or Expo Go app
+        </p>
+
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-text">Lightning-fast updates</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🚀</div>
+            <div class="feature-text">Production-ready build</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">✓</div>
+            <div class="feature-text">Cross-platform</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">✨</div>
+            <div class="feature-text">Latest runtime</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <div>
+            <div class="card-title">Preview Methods</div>
+            <div class="card-subtitle">Choose your preferred way</div>
+          </div>
+        </div>
+
+        <a href="exp+DOTKO://expo-development-client/?url=https://u.expo.dev/41d5cb65-0c72-4b4b-b2dc-f32e4b12ca16/group/d4286421-befc-44eb-aa4a-8a1792403844" class="btn btn-primary">
+          <span class="btn-icon">▶</span>
+          Development Build
+        </a>
+
+        <a href="exp+DOTKO://expo-development-client/?url=https://u.expo.dev/41d5cb65-0c72-4b4b-b2dc-f32e4b12ca16/group/d4286421-befc-44eb-aa4a-8a1792403844" class="btn btn-secondary">
+          <span class="btn-icon">📱</span>
+          Expo Go
+        </a>
+
+        <a href="https://expo.dev/preview/update?message=Client+preview+build+update+01&updateRuntimeVersion=1.0.0&createdAt=2026-01-02T07%3A02%3A44.033Z&slug=DOTKO&projectId=41d5cb65-0c72-4b4b-b2dc-f32e4b12ca16&group=d4286421-befc-44eb-aa4a-8a1792403844" class="btn btn-secondary" target="_blank">
+          <span class="btn-icon">🔗</span>
+          Update Details
+        </a>
+
+        <div style="margin-top: 24px;">
+          <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 12px;">📥 Deep Link URL</h3>
+          <div class="link-copy">
+            <input
+              type="text"
+              class="link-input"
+              value="exp+DOTKO://expo-development-client/?url=https://u.expo.dev/41d5cb65-0c72-4b4b-b2dc-f32e4b12ca16/group/d4286421-befc-44eb-aa4a-8a1792403844"
+              readonly
+              id="deepLink"
+            />
+            <button class="copy-btn" onclick="copyLink()">Copy</button>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="steps-title">🚀 Quick Start Guide</div>
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">Install <strong>Expo Go</strong> from App Store or Play Store</div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">Scan the QR code with your camera (iOS) or Expo Go (Android)</div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">Wait for the build to load and start exploring!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">1.0.0</div>
+        <div class="stat-label">Runtime Version</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Platforms</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Live</div>
+        <div class="stat-label">Build Status</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Jan 2</div>
+        <div class="stat-label">Last Updated</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyLink() {
+      const input = document.getElementById('deepLink');
+      const btn = event.target;
+
+      input.select();
+      input.setSelectionRange(0, 99999); // Mobile
+
+      navigator.clipboard.writeText(input.value).then(() => {
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('copied');
+
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Add actual QR code
+    // You can replace the placeholder with a real QR code image
+    // Or use a library like qrcode.js to generate it dynamically
+  </script>
+</body>
+</html>

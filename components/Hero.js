@@ -1,494 +1,710 @@
 'use client';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, MapPin, Sparkles, Globe, ExternalLink, Leaf, Users } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, Linkedin, Mail, Smartphone, Download, Star, ShieldCheck, Leaf, Home, Film, Briefcase, Grid, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function Hero() {
-  const [typedText, setTypedText] = useState('');
-  const [showCursor, setShowCursor] = useState(true);
-  const fullText = 'whoami';
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [selectedApp, setSelectedApp] = useState(null);
 
   useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setTypedText(fullText.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 150);
-
-    return () => clearInterval(typingInterval);
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
-    return () => clearInterval(cursorInterval);
-  }, []);
+  const stats = [
+    { icon: Smartphone, value: '10+', label: 'Apps Built' },
+    { icon: Download, value: '50K+', label: 'Downloads' },
+    { icon: Star, value: '4.8', label: 'Avg Rating' },
+  ];
 
-  const roles = ['Mobile App Developer', 'Full-Stack Developer', 'Cyber Security Enthusiast', 'Tech Enthusiast'];
-  const [currentRole, setCurrentRole] = useState(0);
-
-  useEffect(() => {
-    const roleInterval = setInterval(() => {
-      setCurrentRole(prev => (prev + 1) % roles.length);
-    }, 3000);
-    return () => clearInterval(roleInterval);
-  }, []);
+  const phoneApps = [
+    {
+      name: 'DOTKO',
+      icon: ShieldCheck,
+      gradient: 'bg-gradient-to-br from-blue-500 to-cyan-600',
+      description: 'MSME Trust & Verification Platform',
+      tech: 'React Native • Firebase • Firestore',
+      link: 'exp+DOTKO://expo-development-client/?url=https://u.expo.dev/41d5cb65-0c72-4b4b-b2dc-f32e4b12ca16',
+      badge: 'New'
+    },
+    {
+      name: 'Farma',
+      icon: Leaf,
+      gradient: 'bg-gradient-to-br from-green-500 to-emerald-600',
+      description: 'AI-Powered Plant Disease Detection',
+      tech: 'React Native • ML • Flask',
+      link: 'https://expo.dev/accounts/yesanisha/projects/farma/builds/f9da75a2-1427-4216-8308-7a19f37e0143',
+      badge: '5K+'
+    },
+    {
+      name: 'HeyRoomie',
+      icon: Home,
+      gradient: 'bg-gradient-to-br from-purple-500 to-pink-600',
+      description: 'Smart Roommate Matching Platform',
+      tech: 'FastAPI • ML • OAuth',
+      link: 'https://heyroomie.in'
+    },
+    {
+      name: 'MovieTime',
+      icon: Film,
+      gradient: 'bg-gradient-to-br from-red-500 to-orange-600',
+      description: 'Personalized Movie Recommendations',
+      tech: 'Kotlin • TMDB API',
+      link: 'https://github.com/yesanisha/movie-recommendation-application'
+    },
+    {
+      name: 'Portfolio',
+      icon: Briefcase,
+      gradient: 'bg-gradient-to-br from-pink-500 to-rose-600',
+      description: 'Personal Portfolio Website',
+      tech: 'Next.js • Framer Motion',
+      link: '#'
+    },
+    {
+      name: 'More',
+      icon: Grid,
+      gradient: 'bg-gradient-to-br from-gray-500 to-slate-600',
+      description: 'View All Projects',
+      tech: '10+ Projects',
+      link: '#projects'
+    },
+  ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 pt-32 pb-20 relative overflow-hidden bg-black">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
 
-      {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute top-20 left-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.5, 0.3, 0.5],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      {/* 3D Grid Background */}
+      <div className="absolute inset-0">
+        {/* Perspective Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [transform:perspective(500px)_rotateX(60deg)] origin-center scale-150 opacity-40" />
 
-      <div className="max-w-7xl mx-auto z-10 relative w-full">
-        {/* Split Layout: Terminal + Mobile Frame */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* LEFT SIDE - Terminal */}
+        {/* Subtle floating orbs */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/3 rounded-full blur-3xl"
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+          {/* LEFT COLUMN - Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1 hidden lg:block"
+            transition={{ duration: 0.6 }}
+            className="space-y-10"
           >
-            {/* Terminal Header */}
-            <motion.div
-              className="mb-6"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+            {/* Name - Large 3D text */}
+            <div className="space-y-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-8xl md:text-9xl font-black tracking-tighter"
+                style={{
+                  textShadow: '0 0 80px rgba(255,255,255,0.1), 0 4px 0 rgba(255,255,255,0.05), 0 8px 0 rgba(255,255,255,0.03)'
+                }}
+              >
+                <span className="text-white">ANISHA</span>
+              </motion.h1>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex items-center gap-3"
+              >
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-white/20" />
+                <span className="text-white/60 text-sm font-mono uppercase tracking-widest">
+                  Mobile App Developer
+                </span>
+              </motion.div>
+            </div>
+
+            {/* Description - Clean and minimal */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-lg text-white/40 max-w-md font-light leading-relaxed"
             >
-              <div className="bg-gray-900/80 border border-pink-500/50 rounded-t-lg p-1 pulse-glow backdrop-blur-sm">
-                <div className="flex gap-2 px-3 py-2 items-center">
-                  <motion.div className="w-3 h-3 rounded-full bg-red-500" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-                  <motion.div className="w-3 h-3 rounded-full bg-yellow-500" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.2 }} />
-                  <motion.div className="w-3 h-3 rounded-full bg-green-500" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.4 }} />
-                  <span className="ml-3 text-gray-400 text-xs font-mono">anisha@portfolio:~</span>
-                </div>
-              </div>
+              Crafting cross-platform experiences with React Native, Node.js, and modern web technologies.
+            </motion.p>
 
-              {/* Terminal Content */}
-              <div className="bg-gray-900/60 border-x border-b border-pink-500/30 rounded-b-lg p-6 sm:p-8 backdrop-blur-md hover:border-pink-500/60 transition-all duration-300 relative overflow-hidden group">
+            {/* Stats - 3D cards */}
+            <div className="grid grid-cols-3 gap-4 max-w-md">
+              {stats.slice(0, 3).map((stat, index) => (
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-500/5 to-transparent opacity-0 group-hover:opacity-100"
-                  animate={{ y: ['-100%', '100%'] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                />
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="relative group"
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    perspective: '1000px',
+                  }}
+                >
+                  {/* 3D Card */}
+                  <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/20">
+                    {/* Inner glow on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
 
-                <motion.div className="font-mono text-sm mb-4 relative z-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-                  <span className="text-pink-500">$</span>
-                  <span className="text-gray-400"> </span>
-                  <span className="text-gray-300">
-                    {typedText}
-                    <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-pink-500 ml-1`}>▊</span>
-                  </span>
+                    <div className="relative">
+                      <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                      <div className="text-[10px] text-white/40 uppercase tracking-wider">{stat.label}</div>
+                    </div>
+                  </div>
+
+                  {/* Shadow layer */}
+                  <div className="absolute inset-0 bg-white/5 blur-xl -z-10 group-hover:bg-white/10 transition-all" />
                 </motion.div>
+              ))}
+            </div>
 
-                <motion.h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 relative z-10" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-                  <span className="text-gradient glitch-hover cursor-pointer">Anisha Kumari</span>
-                </motion.h1>
+            {/* CTAs - Minimal and clean */}
+            <div className="flex flex-wrap gap-4 pt-4">
+              <motion.a
+                href="#projects"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                whileHover={{ scale: 1.02, x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-8 py-4 bg-white text-black font-semibold rounded-none overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  View Work
+                  <motion.span
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
+                </span>
+                {/* Hover effect */}
+                <div className="absolute inset-0 bg-white/90 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              </motion.a>
 
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="space-y-2 mb-6 relative z-10">
-                  <p className="font-mono text-gray-300 text-sm">
-                    <span className="text-pink-500">role:</span>{' '}
-                    <motion.span key={currentRole} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="inline-block text-pink-400 font-bold">
-                      {roles[currentRole]}
-                    </motion.span>
-                  </p>
-                  <p className="font-mono text-gray-300 text-sm">
-                    <span className="text-pink-500">focus:</span> Mobile & Full-Stack Development
-                  </p>
-                  <p className="font-mono text-gray-300 text-sm">
-                    <span className="text-pink-500">stack:</span> React Native, Node.js, MongoDB, Firebase
-                  </p>
-                  <motion.p className="font-mono text-gray-400 text-xs mt-3 pt-3 border-t border-gray-700" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-                    Building cross-platform mobile apps with scalable architectures and clean code.
-                  </motion.p>
-                </motion.div>
+              <motion.a
+                href="#contact"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.1 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 border border-white/20 text-white font-semibold rounded-none hover:bg-white/5 transition-all"
+              >
+                Get in touch
+              </motion.a>
+            </div>
 
-                {/* CTA Buttons */}
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="flex flex-col sm:flex-row gap-3 mb-6">
-                  <motion.a href="#contact" className="group px-4 py-2 bg-gray-900 text-pink-400 border border-pink-500 hover:bg-pink-500 hover:text-white transition-all text-center font-mono text-sm relative overflow-hidden" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <span className="relative z-10">$ contact --now</span>
-                  </motion.a>
-                  <motion.a href="#projects" className="group px-4 py-2 bg-gray-900 text-gray-300 border border-gray-600 hover:border-pink-500 hover:text-pink-400 transition-all text-center font-mono text-sm" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <span className="relative z-10">$ ls projects/</span>
-                  </motion.a>
-                </motion.div>
-
-                {/* Social Links */}
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="flex gap-2 flex-wrap">
-                  {[
-                    { icon: Github, href: 'https://github.com/yesanisha-11', label: 'github' },
-                    { icon: Linkedin, href: 'https://linkedin.com/in/yesanisha', label: 'linkedin' },
-                    { icon: Mail, href: 'mailto:anishakumari6145@gmail.com', label: 'email' },
-                  ].map((social, index) => (
-                    <motion.a key={index} href={social.href} target={social.href.startsWith('http') ? '_blank' : undefined} rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="flex items-center gap-1 px-3 py-1 bg-gray-800/80 hover:bg-gray-800 border border-gray-700 hover:border-pink-500 transition-all font-mono text-xs text-gray-300 hover:text-pink-400" whileHover={{ scale: 1.05 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 + index * 0.1 }}>
-                      <social.icon className="w-3 h-3" />
-                      <span>{social.label}</span>
-                    </motion.a>
-                  ))}
-                </motion.div>
-
-                {/* Location */}
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="mt-4 flex items-center gap-2 text-gray-500 font-mono text-xs">
-                  <MapPin className="w-3 h-3 text-pink-500" />
-                  <span>Bengaluru, India</span>
-                </motion.div>
-              </div>
+            {/* Social - Minimal icons */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              className="flex items-center gap-6 pt-2"
+            >
+              {[
+                { icon: Github, href: 'https://github.com/yesanisha-11' },
+                { icon: Linkedin, href: 'https://linkedin.com/in/yesanisha' },
+                { icon: Mail, href: 'mailto:anishakumari6145@gmail.com' },
+              ].map((social, i) => (
+                <motion.a
+                  key={i}
+                  href={social.href}
+                  target={social.href.startsWith('http') ? '_blank' : undefined}
+                  rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  whileHover={{ y: -2 }}
+                  className="text-white/40 hover:text-white transition-colors"
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.a>
+              ))}
             </motion.div>
           </motion.div>
 
-          {/* RIGHT SIDE - Mobile Phone Frame */}
+          {/* RIGHT COLUMN - Metallic 3D Phone */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center items-center order-1 lg:order-2"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="relative h-[600px] flex items-center justify-center"
           >
-            {/* Phone Frame - Sleeker Design */}
-            <div className="relative mt-8 lg:mt-0 group" style={{ perspective: '1000px' }}>
-              {/* Floating particles around phone */}
-              {[...Array(8)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-pink-500 rounded-full"
-                  style={{
-                    left: `${20 + Math.cos(i * Math.PI / 4) * 200}px`,
-                    top: `${300 + Math.sin(i * Math.PI / 4) * 250}px`,
-                  }}
-                  animate={{
-                    y: [0, -20, 0],
-                    x: [0, Math.cos(i) * 10, 0],
-                    opacity: [0.3, 1, 0.3],
-                    scale: [1, 1.5, 1],
-                  }}
-                  transition={{
-                    duration: 3 + i * 0.2,
-                    repeat: Infinity,
-                    delay: i * 0.3,
-                  }}
-                />
-              ))}
-
-
-              {/* Phone outer frame with notch - Black with silver outline */}
+            {/* Animated Character - Floating to the left */}
+            <motion.div
+              initial={{ opacity: 0, x: -100, scale: 0.8 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="absolute -left-24 top-20 z-10 hidden xl:block"
+              style={{
+                x: mousePosition.x * -1,
+                y: mousePosition.y * -0.5,
+              }}
+            >
               <motion.div
-                className="relative w-[300px] sm:w-[340px] h-[600px] sm:h-[680px] bg-black rounded-[2.5rem] border-[6px] border-black shadow-2xl overflow-hidden group/phone pulse-glow"
-                style={{ boxShadow: '0 0 0 1px rgba(192, 192, 192, 0.3), 0 20px 60px rgba(0, 0, 0, 0.8)' }}
                 animate={{
-                  y: [0, -10, 0],
+                  y: [0, -15, 0],
+                  rotate: [0, 3, -3, 0],
                 }}
                 transition={{
-                  y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-white/20 shadow-2xl"
+              >
+                <Image
+                  src="/images/animated_anisha.png"
+                  alt="Anisha"
+                  width={128}
+                  height={128}
+                  className="object-cover"
+                  priority
+                />
+                {/* Online indicator */}
+                <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-400 rounded-full border-2 border-black" />
+              </motion.div>
+            </motion.div>
+
+            {/* Realistic 3D Phone Mockup */}
+            <motion.div
+              animate={{
+                y: [0, -15, 0],
+                rotateY: [-5, 5, -5],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                transformStyle: 'preserve-3d',
+                perspective: '1000px',
+                x: mousePosition.x * 0.5,
+                y: mousePosition.y * 0.5,
+              }}
+              className="relative z-20"
+            >
+              {/* Phone Outer Shell - Aerospace Aluminum */}
+              <div className="relative w-[300px] h-[600px] rounded-[3.5rem] overflow-hidden"
+                style={{
+                  background: `
+                    linear-gradient(135deg,
+                      #0f1419 0%,
+                      #1a2332 5%,
+                      #2d3e50 15%,
+                      #4a5f7a 25%,
+                      #7c91a8 35%,
+                      #b8c5d4 45%,
+                      #dfe6ed 50%,
+                      #b8c5d4 55%,
+                      #7c91a8 65%,
+                      #4a5f7a 75%,
+                      #2d3e50 85%,
+                      #1a2332 95%,
+                      #0f1419 100%
+                    )
+                  `,
+                  boxShadow: `
+                    0 50px 100px -20px rgba(0, 0, 0, 0.9),
+                    0 20px 40px -10px rgba(0, 0, 0, 0.7),
+                    inset -3px -3px 12px rgba(0, 0, 0, 0.6),
+                    inset 3px 3px 12px rgba(255, 255, 255, 0.15),
+                    inset 0 0 30px rgba(255, 255, 255, 0.05)
+                  `,
                 }}
               >
-                {/* Notch - Sleeker */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-5 bg-black rounded-b-2xl z-10 flex items-center justify-center gap-2" style={{ boxShadow: '0 0 0 1px rgba(192, 192, 192, 0.2)' }}>
-                  <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
-                  <div className="w-12 h-1 bg-gray-800 rounded-full"></div>
-                </div>
+                {/* Anodized aluminum finish - realistic light reflection */}
+                <div className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `
+                      linear-gradient(170deg,
+                        rgba(255,255,255,0.6) 0%,
+                        rgba(255,255,255,0.1) 20%,
+                        transparent 40%,
+                        transparent 60%,
+                        rgba(0,0,0,0.2) 80%,
+                        rgba(0,0,0,0.4) 100%
+                      )
+                    `,
+                  }}
+                />
 
-                
-{/* Screen content */}
-                <div className="relative w-full h-full bg-gradient-to-br from-gray-950 via-gray-900 to-black overflow-hidden">
-                  {/* Animated purple glow behind content */}
-                  <motion.div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-500/30 rounded-full blur-3xl"
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.4, 0.7, 0.4],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut"
+                {/* Micro brushed aluminum texture */}
+                <div className="absolute inset-0 opacity-20 pointer-events-none"
+                  style={{
+                    backgroundImage: `
+                      repeating-linear-gradient(
+                        92deg,
+                        transparent,
+                        transparent 1px,
+                        rgba(255,255,255,0.02) 1px,
+                        rgba(255,255,255,0.02) 2px
+                      )
+                    `,
+                  }}
+                />
+
+                {/* Chamfered edge highlight */}
+                <div className="absolute inset-0 rounded-[3.5rem] pointer-events-none"
+                  style={{
+                    boxShadow: 'inset 0 1px 3px rgba(255,255,255,0.4), inset 0 -1px 3px rgba(0,0,0,0.5)',
+                  }}
+                />
+
+                {/* Glass Screen Layer */}
+                <div className="absolute inset-[8px] rounded-[3rem] overflow-hidden"
+                  style={{
+                    background: 'linear-gradient(145deg, #0a0a0a, #000000)',
+                    boxShadow: `
+                      inset 0 2px 6px rgba(0,0,0,0.8),
+                      inset 0 0 20px rgba(0,0,0,0.5),
+                      0 0 0 1px rgba(255,255,255,0.05)
+                    `,
+                  }}
+                >
+                  {/* Gorilla Glass Effect */}
+                  <div className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(160deg, rgba(255,255,255,0.08) 0%, transparent 30%, transparent 100%)',
                     }}
                   />
-                  <motion.div
-                    className="absolute top-1/4 right-1/4 w-64 h-64 bg-pink-500/25 rounded-full blur-3xl"
-                    animate={{
-                      scale: [1.2, 1, 1.2],
-                      opacity: [0.3, 0.6, 0.3],
+
+                  {/* Dynamic Island - Realistic cutout */}
+                  <div className="absolute top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-black rounded-[2rem] z-20"
+                    style={{
+                      boxShadow: `
+                        inset 0 3px 8px rgba(0,0,0,1),
+                        inset 0 -1px 3px rgba(50,50,50,0.5),
+                        0 1px 2px rgba(255,255,255,0.1)
+                      `,
+                      border: '0.5px solid rgba(30,30,30,0.8)',
                     }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  {/* Portfolio Gallery View */}
-                  <div className="p-5 h-full flex flex-col overflow-y-auto relative z-10">
-                    {/* Status bar */}
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.8 }}
-                      className="flex justify-between items-center text-white text-xs mb-5 mt-2"
-                    >
-                      <span className="font-mono font-bold">9:41</span>
-                      <div className="flex gap-1 items-center">
-                        <motion.div animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }} className="text-[10px]">📶</motion.div>
-                        <motion.div animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.3 }} className="text-[10px]">📡</motion.div>
-                        <motion.div animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.6 }} className="text-[10px]">🔋</motion.div>
-                      </div>
-                    </motion.div>
-
-                    {/* Header */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1 }}
-                      className="text-center mb-4"
-                    >
-                      <motion.h2
-                        className="text-pink-400 font-bold text-xl font-mono mb-1"
-                        animate={{ opacity: [1, 0.8, 1] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                      >
-                        I build apps too! 
-                      </motion.h2>
-                      <p className="text-gray-400 text-[10px] font-mono">Mobile & Web Portfolio</p>
-                    </motion.div>
-
-                    {/* Mobile Applications Section */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.2 }}
-                      className="mb-4"
-                    >
-                      <h3 className="text-gray-300 font-mono text-xs mb-3 flex items-center gap-2">
-                        <span className="text-pink-400"></span> Mobile Applications
-                      </h3>
-                      <div className="space-y-2">
-                        {[
-                          {
-                            name: 'Farma',
-                            desc: 'AI Plant Disease Detection',
-                            icon: '🌱',
-                            color: 'from-green-500 to-emerald-600',
-                            tech: 'React Native • Flask • ML',
-                            stats: 'Download APK',
-                            link: 'https://expo.dev/accounts/yesanisha/projects/farma/builds/f9da75a2-1427-4216-8308-7a19f37e0143',
-                            qrCode: '/qr.png'
-                          }
-                        ].map((app, i) => {
-                          const MotionComponent = app.link ? motion.a : motion.div;
-                          const linkProps = app.link ? {
-                            href: app.link,
-                            target: "_blank",
-                            rel: "noopener noreferrer"
-                          } : {};
-
-                          return (
-                            <MotionComponent
-                              key={i}
-                              {...linkProps}
-                              initial={{ opacity: 0, x: -50 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 1.4 + i * 0.15, type: "spring" }}
-                              whileHover={{ scale: 1.02, x: 3 }}
-                              className="bg-gradient-to-r from-gray-800/40 to-gray-800/20 border border-pink-500/30 rounded-xl p-3 backdrop-blur-sm group cursor-pointer block"
-                            >
-                              <div className="flex items-start gap-3">
-                                {app.qrCode ? (
-                                  <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
-                                    <Image
-                                      src={app.qrCode}
-                                      alt="QR Code"
-                                      width={48}
-                                      height={48}
-                                      className="object-contain invert"
-                                    />
-                                  </div>
-                                ) : (
-                                  <motion.div
-                                    className={`w-12 h-12 bg-gradient-to-br ${app.color} rounded-xl flex items-center justify-center text-xl shadow-lg flex-shrink-0`}
-                                    whileHover={{ rotate: 5, scale: 1.1 }}
-                                  >
-                                    {app.icon}
-                                  </motion.div>
-                                )}
-                                <div className="flex-1 min-w-0">
-                                  <h4 className="text-white text-xs font-bold font-mono mb-0.5">{app.name}</h4>
-                                  <p className="text-gray-400 text-[9px] font-mono mb-1">{app.desc}</p>
-                                  <p className="text-gray-500 text-[8px] font-mono mb-1">{app.tech}</p>
-                                  <span className="text-[8px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-mono border border-pink-500/30">
-                                    {app.stats}
-                                  </span>
-                                </div>
-                              </div>
-                            </MotionComponent>
-                          );
-                        })}
-                      </div>
-                    </motion.div>
-
-                    {/* Live Websites Section */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.7 }}
-                      className="mb-4"
-                    >
-                      <h3 className="text-gray-300 font-mono text-xs mb-3 flex items-center gap-2">
-                        <span className="text-purple-400"></span> Live Websites
-                      </h3>
-                      <motion.a
-                        href="https://heyroomie.in"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1.9, type: "spring" }}
-                        whileHover={{ scale: 1.02, x: 3 }}
-                        className="bg-gradient-to-r from-purple-900/40 to-pink-900/20 border border-purple-500/40 rounded-xl p-3 backdrop-blur-sm group cursor-pointer block"
-                      >
-                        <div className="flex items-start gap-3">
-                          <motion.div
-                            className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-xl shadow-lg flex-shrink-0"
-                            animate={{
-                              rotate: [0, 5, -5, 0],
-                              scale: [1, 1.05, 1]
-                            }}
-                            transition={{ duration: 3, repeat: Infinity }}
-                          >
-                            
-                          </motion.div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-0.5">
-                              <h4 className="text-white text-xs font-bold font-mono">HeyRoomie.in</h4>
-                              <span className="text-[8px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30 font-mono">
-                                ✓ Live
-                              </span>
-                            </div>
-                            <p className="text-gray-400 text-[9px] font-mono mb-2">Deployed & Published Work</p>
-                            <div className="flex gap-1 flex-wrap">
-                              <span className="text-[8px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full font-mono border border-purple-500/30">
-                                Commissioned
-                              </span>
-                              <span className="text-[8px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full font-mono border border-blue-500/30">
-                                Production
-                              </span>
-                            </div>
-                          </div>
-                          <motion.div
-                            className="text-purple-400 text-xl"
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                          >
-                            ›
-                          </motion.div>
-                        </div>
-                      </motion.a>
-                    </motion.div>
-
-                    {/* Bottom CTA */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 2.1 }}
-                      className="mt-auto"
-                    >
-                      <motion.button
-                        className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-2.5 rounded-xl font-mono text-xs font-bold shadow-lg"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        animate={{
-                          boxShadow: ['0 0 0 0 rgba(236, 72, 153, 0.7)', '0 0 0 10px rgba(236, 72, 153, 0)']
-                        }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        View All Projects ↓
-                      </motion.button>
-                    </motion.div>
+                  >
+                    {/* Camera lens */}
+                    <div className="absolute left-6 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-blue-900/50 to-purple-900/30"
+                      style={{
+                        boxShadow: 'inset 0 1px 2px rgba(100,100,255,0.3), 0 0 4px rgba(100,100,255,0.2)',
+                      }}
+                    />
+                    {/* Infrared sensor */}
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-red-950/40" />
                   </div>
 
-                  {/* Subtle scan line */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-500/3 to-transparent h-24 pointer-events-none"
-                    animate={{ y: ['-100%', '400%'] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                  />
+                  {/* Speaker Grille - Top */}
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 flex gap-0.5 z-30 opacity-40">
+                    {[...Array(6)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-[3px] h-[2px] rounded-full bg-gradient-to-b from-gray-600 to-gray-800"
+                        style={{
+                          boxShadow: 'inset 0 0.5px 1px rgba(0,0,0,0.8)',
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Screen Content */}
+                  <div className="relative w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-900">
+                    {/* Status Bar */}
+                    <div className="flex justify-between items-center px-8 pt-4 text-white/80 text-xs font-light">
+                      <span className="font-semibold">9:41</span>
+                      <div className="flex items-center gap-1.5">
+                        {/* Signal strength */}
+                        <div className="flex items-end gap-[1px]">
+                          {[2, 3, 4, 5].map(h => (
+                            <div key={h} className="w-[2px] bg-white/80 rounded-full" style={{ height: `${h}px` }} />
+                          ))}
+                        </div>
+                        {/* WiFi */}
+                        <svg className="w-3 h-3 text-white/80" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 3.5c3.5 0 6.7 1.4 9 3.7l-1.4 1.4C15.7 6.8 13 5.5 10 5.5S4.3 6.8 2.4 8.6L1 7.2c2.3-2.3 5.5-3.7 9-3.7zM10 7.5c2.5 0 4.8 1 6.5 2.6L15 11.6c-1.3-1.3-3.1-2.1-5-2.1s-3.7.8-5 2.1L3.5 10c1.7-1.6 4-2.6 6.5-2.6zm0 4c1.4 0 2.6.6 3.5 1.5L10 16.5 6.5 13c.9-.9 2.1-1.5 3.5-1.5z"/>
+                        </svg>
+                        {/* Battery */}
+                        <div className="w-5 h-2.5 border border-white/60 rounded-[2px] relative">
+                          <div className="absolute inset-[1px] bg-white/80 rounded-[1px]" />
+                          <div className="absolute -right-[2px] top-1/2 -translate-y-1/2 w-[1px] h-1.5 bg-white/60 rounded-r" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* App Grid */}
+                    <div className="p-6 grid grid-cols-3 gap-4 mt-10">
+                      {phoneApps.map((app, i) => (
+                        <motion.button
+                          key={i}
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 1 + i * 0.1 }}
+                          whileHover={{ scale: 1.1, y: -5 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setSelectedApp(app)}
+                          className="flex flex-col items-center gap-2 relative cursor-pointer"
+                        >
+                          {/* App Icon - iOS style glass with gradient */}
+                          <div className={`w-16 h-16 ${app.gradient} rounded-[1.2rem] relative overflow-hidden flex items-center justify-center`}
+                            style={{
+                              boxShadow: `
+                                0 8px 16px rgba(0,0,0,0.4),
+                                0 2px 4px rgba(0,0,0,0.3),
+                                inset 0 1px 2px rgba(255,255,255,0.4),
+                                inset 0 -1px 2px rgba(0,0,0,0.2)
+                              `,
+                            }}
+                          >
+                            {/* Glossy top highlight */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-transparent"
+                              style={{
+                                maskImage: 'linear-gradient(to bottom, black 30%, transparent 70%)',
+                              }}
+                            />
+
+                            {/* Edge highlight */}
+                            <div className="absolute inset-0 rounded-[1.2rem]"
+                              style={{
+                                boxShadow: 'inset 0 0 0 0.5px rgba(255,255,255,0.2)',
+                              }}
+                            />
+
+                            {/* App Icon */}
+                            <app.icon className="w-8 h-8 text-white relative z-10"
+                              style={{
+                                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+                              }}
+                            />
+                          </div>
+
+                          {/* Notification Badge */}
+                          {app.badge && (
+                            <motion.div
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              className="absolute -top-1 -right-1 bg-red-500 text-white text-[6px] font-bold px-1.5 py-0.5 rounded-full border border-black"
+                            >
+                              {app.badge}
+                            </motion.div>
+                          )}
+
+                          <span className="text-white text-[9px] font-medium">{app.name}</span>
+                        </motion.button>
+                      ))}
+                    </div>
+
+                    {/* Dock - iOS frosted glass */}
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 px-5 py-3.5 rounded-[2rem]"
+                      style={{
+                        background: 'rgba(30, 30, 30, 0.6)',
+                        backdropFilter: 'blur(40px) saturate(180%)',
+                        boxShadow: `
+                          inset 0 1px 1px rgba(255,255,255,0.15),
+                          inset 0 -1px 1px rgba(0,0,0,0.4),
+                          0 8px 24px rgba(0,0,0,0.4),
+                          0 0 0 0.5px rgba(255,255,255,0.1)
+                        `,
+                      }}
+                    >
+                      {[
+                        'from-blue-500 to-blue-700',
+                        'from-green-500 to-green-700',
+                        'from-orange-500 to-red-600',
+                        'from-purple-500 to-pink-600'
+                      ].map((gradient, i) => (
+                        <motion.div
+                          key={i}
+                          whileHover={{ scale: 1.2, y: -8 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`w-14 h-14 bg-gradient-to-br ${gradient} rounded-[1.2rem] relative overflow-hidden cursor-pointer`}
+                          style={{
+                            boxShadow: `
+                              0 8px 16px rgba(0,0,0,0.4),
+                              0 2px 4px rgba(0,0,0,0.3),
+                              inset 0 1px 2px rgba(255,255,255,0.4),
+                              inset 0 -1px 2px rgba(0,0,0,0.2)
+                            `,
+                          }}
+                        >
+                          {/* iOS glossy effect */}
+                          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-transparent"
+                            style={{
+                              maskImage: 'linear-gradient(to bottom, black 30%, transparent 70%)',
+                            }}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Side buttons - Sleeker */}
-                <div className="absolute -right-[3px] top-20 w-[3px] h-10 bg-gradient-to-r from-gray-800 to-gray-700 rounded-l shadow-inner"></div>
-                <div className="absolute -right-[3px] top-32 w-[3px] h-14 bg-gradient-to-r from-gray-800 to-gray-700 rounded-l shadow-inner"></div>
-                <div className="absolute -left-[3px] top-28 w-[3px] h-8 bg-gradient-to-l from-gray-800 to-gray-700 rounded-r shadow-inner"></div>
-              </motion.div>
+                {/* Volume buttons - Aerospace aluminum */}
+                <div className="absolute -left-[2px] top-32 w-[3px] h-14 rounded-r-sm"
+                  style={{
+                    background: 'linear-gradient(to bottom, #dfe6ed 0%, #7c91a8 50%, #2d3e50 100%)',
+                    boxShadow: `
+                      inset -1px 0 3px rgba(0,0,0,0.6),
+                      1px 0 3px rgba(255,255,255,0.4),
+                      inset 0 1px 1px rgba(255,255,255,0.3),
+                      inset 0 -1px 1px rgba(0,0,0,0.4)
+                    `,
+                  }}
+                />
+                <div className="absolute -left-[2px] top-52 w-[3px] h-10 rounded-r-sm"
+                  style={{
+                    background: 'linear-gradient(to bottom, #dfe6ed 0%, #7c91a8 50%, #2d3e50 100%)',
+                    boxShadow: `
+                      inset -1px 0 3px rgba(0,0,0,0.6),
+                      1px 0 3px rgba(255,255,255,0.4),
+                      inset 0 1px 1px rgba(255,255,255,0.3),
+                      inset 0 -1px 1px rgba(0,0,0,0.4)
+                    `,
+                  }}
+                />
 
-              {/* Glow effect around phone - Enhanced */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-[2.5rem] blur-3xl -z-10"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  opacity: [0.3, 0.5, 0.3]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-              
-            </div>
+                {/* Power button - Aerospace aluminum */}
+                <div className="absolute -right-[2px] top-36 w-[3px] h-20 rounded-l-sm"
+                  style={{
+                    background: 'linear-gradient(to bottom, #dfe6ed 0%, #7c91a8 50%, #2d3e50 100%)',
+                    boxShadow: `
+                      inset 1px 0 3px rgba(0,0,0,0.6),
+                      -1px 0 3px rgba(255,255,255,0.4),
+                      inset 0 1px 1px rgba(255,255,255,0.3),
+                      inset 0 -1px 1px rgba(0,0,0,0.4)
+                    `,
+                  }}
+                />
+
+                {/* Camera bump on back (visible on edge) */}
+                <div className="absolute -right-[1px] top-16 w-[2px] h-8 rounded-l-sm"
+                  style={{
+                    background: 'linear-gradient(to bottom, #7c91a8, #2d3e50)',
+                    boxShadow: 'inset 1px 0 2px rgba(0,0,0,0.5)',
+                  }}
+                />
+              </div>
+
+              {/* Realistic Ambient Glow */}
+              <div className="absolute inset-0 -z-10">
+                {/* Main glow */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-white/10 to-transparent blur-3xl scale-110" />
+                {/* Screen light reflection */}
+                <div className="absolute inset-x-0 top-1/4 h-1/2 bg-gradient-to-b from-blue-500/10 via-purple-500/5 to-transparent blur-2xl" />
+                {/* Bottom shadow */}
+                <div className="absolute inset-x-0 bottom-0 h-32 bg-black/60 blur-2xl" />
+              </div>
+            </motion.div>
+
           </motion.div>
+
         </div>
       </div>
 
-      {/* Scroll indicator with enhanced animation */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 font-mono text-pink-500 text-sm cursor-pointer z-20"
-        animate={{
-          opacity: [0.5, 1, 0.5],
-          y: [0, 10, 0]
-        }}
-        transition={{ duration: 2, repeat: Infinity }}
-        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span>scroll ↓</span>
+      {/* App Detail Modal */}
+      <AnimatePresence>
+        {selectedApp && (
           <motion.div
-            className="w-6 h-10 border-2 border-pink-500 rounded-full p-1"
-            whileHover={{ scale: 1.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-6"
+            onClick={() => setSelectedApp(null)}
           >
             <motion.div
-              className="w-1 h-2 bg-pink-500 rounded-full mx-auto"
-              animate={{ y: [0, 16, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
+              initial={{ scale: 0.8, y: 50, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.8, y: 50, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-md w-full rounded-3xl overflow-hidden"
+              style={{
+                background: 'linear-gradient(145deg, #1a1d23, #2d3748)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.1)',
+              }}
+            >
+              {/* Metallic gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Content */}
+              <div className="relative p-8">
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedApp(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all border border-white/20"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                {/* App Icon Large */}
+                <div className={`w-24 h-24 ${selectedApp.gradient} rounded-3xl shadow-2xl flex items-center justify-center border-2 border-white/20 mb-6 mx-auto relative overflow-hidden`}
+                  style={{
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.2)',
+                  }}
+                >
+                  {/* Glass shine */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent" />
+                  <selectedApp.icon className="w-12 h-12 text-white relative z-10" />
+                </div>
+
+                {/* App Info */}
+                <h3 className="text-3xl font-bold text-white text-center mb-2">{selectedApp.name}</h3>
+                <p className="text-white/70 text-center mb-4">{selectedApp.description}</p>
+                <p className="text-white/50 text-sm text-center mb-6 font-mono">{selectedApp.tech}</p>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                  <a
+                    href={selectedApp.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-3 bg-white text-black rounded-full font-semibold text-center hover:bg-white/90 transition-colors"
+                  >
+                    Open App
+                  </a>
+                  <button
+                    onClick={() => setSelectedApp(null)}
+                    className="flex-1 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold hover:bg-white/20 transition-colors border border-white/20"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
-        </div>
+        )}
+      </AnimatePresence>
+
+      {/* Minimal Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="text-white/20 text-xs font-mono uppercase tracking-widest"
+        >
+          Scroll
+        </motion.div>
       </motion.div>
     </section>
   );
 }
-
