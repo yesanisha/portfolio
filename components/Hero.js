@@ -20,8 +20,8 @@ export default function Hero() {
   }, []);
 
   const stats = [
-    { icon: Smartphone, value: '10+', label: 'Apps Built' },
-    { icon: Download, value: '50K+', label: 'Downloads' },
+    { icon: Smartphone, value: '10+', label: 'Projects Shipped' },
+    { icon: Download, value: '1K+', label: 'Downloads' },
     { icon: Star, value: '4.8', label: 'Avg Rating' },
   ];
 

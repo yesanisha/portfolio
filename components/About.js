@@ -48,7 +48,7 @@ useEffect(() => {
     };
 
     animateCounter('technologies', 15);
-    animateCounter('projects', 10);
+    animateCounter('projects', 20);
     animateCounter('companies', 3);
     animateCounter('downloads', 1);
   }, []);
@@ -117,71 +117,15 @@ useEffect(() => {
 </motion.div>
 
 
-            {/* Quick Intro Stats */}
+            {/* Quick Intro */}
             <div className="flex-1">
               <h3 className="text-2xl font-bold text-white mb-3">Hey, I'm Anisha</h3>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <p className="text-gray-400 leading-relaxed">
 A developer who loves building products that make a real impact.
 From consumer mobile apps used by thousands to enterprise-grade platforms handling real-time logistics, I focus on writing clean, scalable, and production-ready software.              </p>
-
-              {/* Highlight numbers in narrative form */}
-              <div className="grid grid-cols-2 gap-4">
-  {[
-    {
-      number: '15+',
-      label: 'Technologies Mastered',
-      gradient: 'from-cyan-400 to-blue-500',
-    },
-    {
-      number: '20+',
-      label: 'Projects Shipped',
-      gradient: 'from-purple-400 to-pink-500',
-    },
-    {
-      number: '3',
-      label: 'Companies Contributed To',
-      gradient: 'from-orange-400 to-red-500',
-    },
-    {
-      number: '50K+',
-      label: 'Users Reached',
-      gradient: 'from-emerald-400 to-green-500',
-    },
-  ].map((stat, idx) => (
-    <motion.div
-      key={idx}
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.45,
-        delay: idx * 0.08,
-        ease: 'easeOut',
-      }}
-      className="flex flex-col gap-1"
-    >
-      <span
-        className={`text-2xl font-semibold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}
-      >
-        {stat.number}
-      </span>
-      <span className="text-[11px] uppercase tracking-wide text-gray-400">
-        {stat.label}
-      </span>
-    </motion.div>
-  ))}
-</div>
-
             </div>
           </div>
         </motion.div>
-
-
-
-        {/* SEO-friendly text - hidden but accessible */}
-        <div className="sr-only">
-          Full-stack developer and mobile app developer in India, specializing in React, React Native, Node.js, scalable APIs, and production-ready applications for startups and enterprises.
-        </div>
 
         {/* The Impact - Stats Section */}
         <motion.div
@@ -210,8 +154,8 @@ From consumer mobile apps used by thousands to enterprise-grade platforms handli
                 icon: Rocket,
                 number: counters.projects,
                 suffix: '+',
-                label: 'Projects',
-                sublabel: 'Built & shipped',
+                label: 'Projects Built',
+                sublabel: 'Mobile & web apps',
                 gradient: 'from-purple-500 to-pink-500'
               },
               {
