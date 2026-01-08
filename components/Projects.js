@@ -1,9 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Code, Download, Play, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
-import AppEmulatorModal from './AppEmulatorModal';
 
 export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,12 +12,14 @@ export default function Projects() {
     {
       title: 'DOTKO.IN',
       description: 'Comprehensive MSME Trust & Verification Platform - India\'s first transparent B2B rating system for MSMEs with verified transaction tracking and fair dispute resolution.',
-      image: '/images/DOTKO.jpg',
-      period: 'Oct 2025 - Present',
+      image: '/images/dotko.jpg',
+      period: 'Dec 2025 - Present',
       tech: ['React Native', 'Expo', 'Firebase', 'Firestore', 'Cloud Storage'],
       github: 'https://github.com/yesanisha/dotko',
-      live: 'exp+DOTKO://expo-development-client/?url=https://u.expo.dev/41d5cb65-0c72-4b4b-b2dc-f32e4b12ca16/group/d4286421-befc-44eb-aa4a-8a1792403844',
-      showEmulator: false,
+      download: 'https://expo.dev/artifacts/eas/mk2LchUrR6YG4hJ55WnpLe.apk',
+      demo: '/images/dotko.jpg',
+      demoType: 'images',
+      qrCode: '/images/dotkoscanner_app.png',
       featured: true,
       highlights: [
         'Built comprehensive MSME verification platform with GSTIN/PAN lookup',
@@ -28,33 +29,17 @@ export default function Projects() {
         'Architected privacy-first design keeping supplier details confidential'
       ]
     },
-    {
-      title: 'HeyRoomie',
-      description: 'Mobile app with multi-tiered architecture connecting people looking for roommates through intelligent ML-powered matching algorithms.',
-      image: '/images/HeyRoomie.jpg',
-      period: 'Sept 2025 - Present',
-      tech: ['React Native', 'FastAPI', 'Firebase', 'OAuth 2.0', 'ML'],
-      github: 'https://github.com/yesanisha/heyroomie-app',
-      live: 'https://heyroomie.in',
-      featured: true,
-      highlights: [
-        'Architecting mobile app with multi-tiered architecture',
-        'Designing ML-powered matching algorithms analyzing user preferences',
-        'Implementing secure authentication with OAuth 2.0 and encrypted data storage',
-        'Working in agile environment with bi-weekly sprints and code reviews'
-      ]
-    },
+    
     {
       title: 'Farma',
       description: 'Production-ready cross-platform mobile application with AI-powered plant disease detection using computer vision and real-time ML inference.',
       image: '/images/Farma.jpg',
-      period: 'June 2025 - Oct 2025',
+      period: 'Aug 2025 - Oct 2025',
       tech: ['React Native', 'Firebase', 'Flask', 'YOLOv5/v8', 'GCP'],
       github: 'https://github.com/yesanisha/farma-v3',
-      live: 'https://expo.dev/accounts/yesanisha/projects/farma/builds/f9da75a2-1427-4216-8308-7a19f37e0143',
-      showEmulator: true,
-      appetizeKey: 'b_ff44pezyfq6kwk2vcb4jor6ja4',
-      appetizePlayUrl: 'https://appetize.io/app/b_ff44pezyfq6kwk2vcb4jor6ja4',
+      download: 'https://expo.dev/accounts/yesanisha/projects/farma/builds/f9da75a2-1427-4216-8308-7a19f37e0143',
+      demo: 'https://appetize.io/app/b_ff44pezyfq6kwk2vcb4jor6ja4',
+      demoType: 'video',
       featured: true,
       highlights: [
         'Built cross-platform app with React Native frontend, Firebase backend, and Flask ML API',
@@ -64,11 +49,44 @@ export default function Projects() {
       ]
     },
     {
+      title: 'HeyRoomie',
+      description: 'Mobile app with multi-tiered architecture connecting people looking for roommates through intelligent ML-powered matching algorithms.',
+      image: '/images/HeyRoomie.jpg',
+      period: 'Sept 2025 - Nov 2025',
+      tech: ['React Native', 'FastAPI', 'Firebase', 'OAuth 2.0', 'ML'],
+      github: 'https://github.com/yesanisha/heyroomie-app',
+      download: 'https://heyroomie.in',
+      demo: '/images/HeyRoomie.jpg',
+      demoType: 'images',
+      featured: true,
+      highlights: [
+        'Architecting mobile app with multi-tiered architecture',
+        'Designing ML-powered matching algorithms analyzing user preferences',
+        'Implementing secure authentication with OAuth 2.0 and encrypted data storage',
+        'Working in agile environment with bi-weekly sprints and code reviews'
+      ]
+    },
+    
+    {
+      title: 'MoveABox',
+      description: 'Professional logistics and moving services platform connecting customers with verified movers and packers across India.',
+      image: '/images/MoveABox.jpg',
+      tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
+      github: 'https://github.com/yesanisha/moveabox',
+      download: 'https://moveabox.com',
+      demo: '/images/MoveABox.jpg',
+      demoType: 'images',
+      featured: false
+    },
+    {
       title: 'MovieTime',
       description: 'Android movie recommendation application with personalized suggestions and trending content.',
       image: '/images/MovieTime.jpg',
       tech: ['Kotlin', 'Android SDK', 'TMDB API', 'Material Design'],
       github: 'https://github.com/yesanisha/movie-recommendation-application',
+      download: null,
+      demo: '/images/MovieTime.jpg',
+      demoType: 'images',
       featured: false
     },
     {
@@ -77,21 +95,15 @@ export default function Projects() {
       image: '/images/LinkedIn.jpg',
       tech: ['JavaScript', 'Node.js', 'Puppeteer', 'Automation'],
       github: 'https://github.com/yesanisha/linkedin-auto-search',
-      featured: false
-    },
-    {
-      title: 'MoveABox',
-      description: 'Professional logistics and moving services platform connecting customers with verified movers and packers across India.',
-      image: '/images/MoveABox.jpg',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-      github: 'https://github.com/yesanisha/moveabox',
-      live: 'https://moveabox.com',
+      download: null,
+      demo: '/images/LinkedIn.jpg',
+      demoType: 'images',
       featured: false
     }
   ];
 
   return (
-    <section id="projects" className="py-32 px-6 bg-gradient-to-b from-gray-50 to-white relative">
+    <section id="projects" className="py-32 px-6 bg-black relative">
       <div className="max-w-7xl mx-auto">
         {/* Header - Minimal */}
         <motion.div
@@ -100,8 +112,8 @@ export default function Projects() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <p className="text-sm text-gray-400 font-mono mb-2">$ ls projects/</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+          <p className="text-sm text-pink-500 font-mono mb-2">$ ls projects/</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
             Selected Work
           </h2>
         </motion.div>
@@ -115,7 +127,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-xl hover:shadow-gray-100/50 transition-all duration-500"
+              className="group relative bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-800 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/20 transition-all duration-500"
             >
               {/* Image Container */}
               <div className="relative h-56 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
@@ -125,6 +137,20 @@ export default function Projects() {
                   fill
                   className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
+
+                {/* QR Code - Bottom Right */}
+                {project.qrCode && (
+                  <div className="absolute bottom-3 right-3 bg-white p-2 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <img
+                      src={project.qrCode}
+                      alt="Scan QR for application"
+                      className="w-20 h-20"
+                    />
+                    <p className="text-[8px] text-center text-gray-600 mt-1 font-medium">
+                      Scan QR
+                    </p>
+                  </div>
+                )}
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -140,13 +166,13 @@ export default function Projects() {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-pink-500 transition-colors">
                   {project.title}
                 </h3>
 
                 {/* Description - shows only snippet, full on hover */}
                 <div className="relative overflow-hidden mb-4">
-                  <p className="text-sm text-gray-500 line-clamp-2 group-hover:line-clamp-none transition-all">
+                  <p className="text-sm text-gray-400 line-clamp-2 group-hover:line-clamp-none transition-all">
                     {project.description}
                   </p>
                 </div>
@@ -156,13 +182,13 @@ export default function Projects() {
                   {project.tech.slice(0, 3).map((tech, i) => (
                     <span
                       key={i}
-                      className="text-xs px-2 py-1 bg-gray-50 text-gray-600 rounded-md border border-gray-100"
+                      className="text-xs px-2 py-1 bg-gray-800 text-gray-300 rounded-md border border-gray-700"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.tech.length > 3 && (
-                    <span className="text-xs px-2 py-1 text-gray-400">
+                    <span className="text-xs px-2 py-1 text-gray-500">
                       +{project.tech.length - 3}
                     </span>
                   )}
@@ -171,7 +197,7 @@ export default function Projects() {
                 {/* Highlights - hidden, shows on hover */}
                 {project.highlights && (
                   <div className="max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-500 opacity-0 group-hover:opacity-100">
-                    <ul className="space-y-1 mb-4 text-xs text-gray-500">
+                    <ul className="space-y-1 mb-4 text-xs text-gray-400">
                       {project.highlights.slice(0, 3).map((highlight, i) => (
                         <li key={i} className="flex items-start gap-2">
                           <span className="text-pink-400 mt-0.5">›</span>
@@ -182,40 +208,44 @@ export default function Projects() {
                   </div>
                 )}
 
-                {/* Actions */}
-                <div className="flex gap-2">
+                {/* Actions - 3 Buttons */}
+                <div className="flex flex-wrap gap-2">
+                  {/* Code Button */}
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300 rounded-lg transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-400 hover:text-white border border-gray-700 hover:border-gray-600 rounded-lg transition-colors"
                   >
-                    <Github className="w-4 h-4" />
+                    <Code className="w-4 h-4" />
                     Code
                   </a>
-                  {project.live && (
-                    project.showEmulator ? (
-                      <button
-                        onClick={() => {
-                          setSelectedApp(project);
-                          setIsModalOpen(true);
-                        }}
-                        className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-900 text-white hover:bg-gray-800 rounded-lg transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Demo
-                      </button>
-                    ) : (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-900 text-white hover:bg-gray-800 rounded-lg transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Live
-                      </a>
-                    )
+
+                  {/* Download App Button */}
+                  {project.download && (
+                    <a
+                      href={project.download}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 text-sm bg-pink-500 text-white hover:bg-pink-600 rounded-lg transition-colors"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download
+                    </a>
+                  )}
+
+                  {/* Demo Button */}
+                  {project.demo && (
+                    <button
+                      onClick={() => {
+                        setSelectedApp(project);
+                        setIsModalOpen(true);
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-700 text-white hover:bg-gray-600 rounded-lg transition-colors"
+                    >
+                      <Play className="w-4 h-4" />
+                      Demo
+                    </button>
                   )}
                 </div>
               </div>
@@ -232,7 +262,7 @@ export default function Projects() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-semibold text-gray-900 mb-6">More Projects</h3>
+          <h3 className="text-2xl font-semibold text-white mb-6">More Projects</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.filter(p => !p.featured).map((project, index) => (
               <motion.div
@@ -241,10 +271,10 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="group bg-white border border-gray-100 hover:border-gray-200 rounded-xl p-5 hover:shadow-lg hover:shadow-gray-100/50 transition-all duration-300"
+                className="group bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-pink-500/50 rounded-xl p-5 hover:shadow-lg hover:shadow-pink-500/20 transition-all duration-300"
               >
                 {/* Image - smaller */}
-                <div className="relative h-32 bg-gray-50 rounded-lg overflow-hidden mb-4">
+                <div className="relative h-32 bg-gray-800 rounded-lg overflow-hidden mb-4">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -253,13 +283,13 @@ export default function Projects() {
                   />
                 </div>
 
-                <h4 className="font-semibold text-gray-900 mb-2">{project.title}</h4>
-                <p className="text-sm text-gray-500 mb-3 line-clamp-2">{project.description}</p>
+                <h4 className="font-semibold text-white mb-2">{project.title}</h4>
+                <p className="text-sm text-gray-400 mb-3 line-clamp-2">{project.description}</p>
 
                 {/* Tech tags - minimal */}
                 <div className="flex flex-wrap gap-1 mb-3">
                   {project.tech.slice(0, 2).map((tech, i) => (
-                    <span key={i} className="text-xs px-2 py-0.5 bg-gray-50 text-gray-500 rounded">
+                    <span key={i} className="text-xs px-2 py-0.5 bg-gray-800 text-gray-400 rounded border border-gray-700">
                       {tech}
                     </span>
                   ))}
@@ -269,7 +299,7 @@ export default function Projects() {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                  className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   View Code
                   <ArrowUpRight className="w-3 h-3" />
@@ -290,7 +320,7 @@ export default function Projects() {
             href="https://github.com/yesanisha"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
           >
             <span>View 19+ repositories on GitHub</span>
             <ArrowUpRight className="w-4 h-4" />
@@ -298,18 +328,97 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      {/* App Emulator Modal */}
-      <AppEmulatorModal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          setSelectedApp(null);
-        }}
-        appTitle={selectedApp?.title}
-        appetizePublicKey={selectedApp?.appetizeKey}
-        appetizePlayUrl={selectedApp?.appetizePlayUrl}
-        downloadUrl={selectedApp?.live}
-      />
+      {/* Demo Modal */}
+      {isModalOpen && selectedApp && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+          onClick={() => {
+            setIsModalOpen(false);
+            setSelectedApp(null);
+          }}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-gray-900 border border-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="p-6 border-b border-gray-800 flex items-center justify-between">
+              <div>
+                <h3 className="text-2xl font-bold text-white">{selectedApp.title}</h3>
+                <p className="text-gray-400 text-sm mt-1">Demo Preview</p>
+              </div>
+              <button
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setSelectedApp(null);
+                }}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
+              {selectedApp.demoType === 'video' ? (
+                <div className="aspect-video bg-black rounded-lg overflow-hidden">
+                  <iframe
+                    src={selectedApp.demo}
+                    className="w-full h-full"
+                    allow="camera; microphone; geolocation"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div className="grid gap-4">
+                  <img
+                    src={selectedApp.demo}
+                    alt={`${selectedApp.title} demo`}
+                    className="w-full rounded-lg border border-gray-800"
+                  />
+                  <p className="text-gray-400 text-center text-sm">
+                    Demo screenshots and media
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="p-6 border-t border-gray-800 flex gap-3">
+              {selectedApp.github && (
+                <a
+                  href={selectedApp.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 text-sm text-gray-400 hover:text-white border border-gray-700 hover:border-gray-600 rounded-lg transition-colors"
+                >
+                  <Code className="w-4 h-4" />
+                  View Code
+                </a>
+              )}
+              {selectedApp.download && (
+                <a
+                  href={selectedApp.download}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 text-sm bg-pink-500 text-white hover:bg-pink-600 rounded-lg transition-colors"
+                >
+                  <Download className="w-4 h-4" />
+                  Download App
+                </a>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   );
 }

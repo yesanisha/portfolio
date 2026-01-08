@@ -76,9 +76,9 @@ export default function Skills() {
         >
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 font-mono">
-              <span className="text-pink-500">$</span> ls <span className="text-gradient">skills/</span>
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
+            Skills & Expertise
+          </h2>
             <p className="text-gray-400 text-lg font-mono">
               Mobile Development | Full-Stack | Cloud & Security | Distributed Systems
             </p>

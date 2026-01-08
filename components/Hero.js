@@ -201,7 +201,6 @@ export default function Hero() {
                     animate={{ x: [0, 4, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   >
-                    →
                   </motion.span>
                 </span>
                 {/* Hover effect */}
@@ -254,42 +253,7 @@ export default function Hero() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="relative h-[600px] flex items-center justify-center"
           >
-            {/* Animated Character - Floating to the left */}
-            <motion.div
-              initial={{ opacity: 0, x: -100, scale: 0.8 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="absolute -left-24 top-20 z-10 hidden xl:block"
-              style={{
-                x: mousePosition.x * -1,
-                y: mousePosition.y * -0.5,
-              }}
-            >
-              <motion.div
-                animate={{
-                  y: [0, -15, 0],
-                  rotate: [0, 3, -3, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-white/20 shadow-2xl"
-              >
-                <Image
-                  src="/images/animated_anisha.png"
-                  alt="Anisha"
-                  width={128}
-                  height={128}
-                  className="object-cover"
-                  priority
-                />
-                {/* Online indicator */}
-                <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-400 rounded-full border-2 border-black" />
-              </motion.div>
-            </motion.div>
-
+            
             {/* Realistic 3D Phone Mockup */}
             <motion.div
               animate={{

@@ -1,14 +1,39 @@
 'use client';
-import { motion } from 'framer-motion';
-import { Code2, Globe, Heart, Sparkles } from 'lucide-react';
+
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Code2,
+  Rocket,
+  Building2,
+  Download,
+} from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
+
+
 export default function About() {
-  const [counters, setCounters] = useState({ languages: 0, projects: 0, internships: 0 });
+  const [counters, setCounters] = useState({ technologies: 0, projects: 0, companies: 0, downloads: 0 });
+
+  const images = [
+  '/images/pic1.jpeg',
+  '/images/pic2.jpeg',
+  '/images/pic3.jpeg',
+  '/images/pic4.jpeg',
+  '/images/pic5.jpeg',
+];
+const [currentImage, setCurrentImage] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentImage((prev) => (prev + 1) % images.length);
+  }, 3500);
+
+  return () => clearInterval(interval);
+}, [images.length]);
+
 
   useEffect(() => {
-    // Animate counters
     const animateCounter = (key, target) => {
       let current = 0;
       const increment = target / 50;
@@ -22,183 +47,250 @@ export default function About() {
       }, 30);
     };
 
-    animateCounter('languages', 15);
-    animateCounter('projects', 20);
-    animateCounter('internships', 4);
+    animateCounter('technologies', 15);
+    animateCounter('projects', 10);
+    animateCounter('companies', 3);
+    animateCounter('downloads', 1);
   }, []);
-
-  const interests = [
-    { icon: <Code2 className="w-6 h-6" />, title: 'Mobile App Development', desc: 'Building cross-platform mobile apps' },
-    { icon: <Globe className="w-6 h-6" />, title: 'Full Stack Development', desc: 'Creating end-to-end solutions' },
-    { icon: <Heart className="w-6 h-6" />, title: 'Tech Enthusiast', desc: 'Passionate about innovation' },
-    { icon: <Sparkles className="w-6 h-6" />, title: 'Problem Solver', desc: 'Love tackling complex challenges' },
-  ];
 
   return (
     <section id="about" className="py-20 px-4 bg-black relative overflow-hidden">
-      {/* Grid background */}
+      {/* Subtle background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      {/* Floating particles */}
-      {[...Array(20)].map((_, i) => {
-        // Use deterministic positioning based on index
-        const leftPos = ((i * 37) % 100);
-        const topPos = ((i * 53) % 100);
-        const xOffset = ((i * 17) % 50) - 25;
-        const duration = 3 + ((i * 0.2) % 2);
-        const delay = (i * 0.3) % 3;
-
-        return (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-pink-500 rounded-full"
-            style={{
-              left: `${leftPos}%`,
-              top: `${topPos}%`,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              x: [0, xOffset, 0],
-              opacity: [0, 1, 0],
-              scale: [0, 1.5, 0],
-            }}
-            transition={{
-              duration: duration,
-              repeat: Infinity,
-              delay: delay,
-            }}
-          />
-        );
-      })}
-
-      {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute top-20 left-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.3, 0.6, 0.3],
-          x: [0, 100, 0],
-          y: [0, 50, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1.3, 1, 1.3],
-          opacity: [0.6, 0.3, 0.6],
-          x: [0, -100, 0],
-          y: [0, -50, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-
       <div className="max-w-6xl mx-auto relative z-10">
+
+        {/* Opening - The Introduction */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
         >
-          <h2 className="text-5xl font-bold text-center mb-4 font-mono">
-            <span className="text-pink-500">$</span> cat <span className="text-gradient">about.txt</span>
+          
+
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+            Building mobile experiences and full-stack solutions,
+            <span className="block mt-2 bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+              one line of code at a time
+            </span>
           </h2>
-          <p className="text-center text-gray-400 mb-12 font-mono text-sm">
-            Building mobile experiences and full-stack solutions, one line of code at a time
-          </p>
+        </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            {/* Left side - Profile Picture */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex justify-center"
-            >
-              <div className="relative w-full max-w-md">
-                <div className="relative aspect-square overflow-hidden border-2 border-pink-500">
-                  <Image
-                    src="/images/pic.jpeg"
-                    alt="Profile Picture"
-                    fill
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                    priority
-                  />
-                </div>
-                {/* Decorative elements */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-pink-500/20 blur-2xl"></div>
-                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-pink-600/20 blur-2xl"></div>
-              </div>
-            </motion.div>
+        {/* The Visual Introduction */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
+        >
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* Profile Image Carousel */}
+<motion.div
+  whileHover={{ scale: 1.02 }}
+  className="relative w-56 h-56 flex-shrink-0"
+>
+  <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl blur-2xl opacity-20" />
 
-            {/* Right side - Interest cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="grid grid-cols-2 gap-4"
-            >
-              {interests.map((interest, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-gray-900/50 backdrop-blur-sm p-6 border border-pink-500/20 hover:border-pink-500/50 transition-all cursor-pointer"
-                >
-                  <div className="text-pink-400 mb-3">
-                    {interest.icon}
-                  </div>
-                  <h4 className="font-bold text-gray-200 mb-2 font-mono text-sm">{interest.title}</h4>
-                  <p className="text-xs text-gray-400 font-mono">{interest.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
+  <div className="relative w-full h-full rounded-2xl overflow-hidden border border-gray-800">
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={currentImage}
+        initial={{ opacity: 0, scale: 1.04 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.96 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="absolute inset-0"
+      >
+        <Image
+          src={images[currentImage]}
+          alt="Anisha Kumari"
+          fill
+          className="object-cover"
+          priority
+        />
+      </motion.div>
+    </AnimatePresence>
+  </div>
+</motion.div>
+
+
+            {/* Quick Intro Stats */}
+            <div className="flex-1">
+              <h3 className="text-2xl font-bold text-white mb-3">Hey, I'm Anisha</h3>
+              <p className="text-gray-400 leading-relaxed mb-6">
+A developer who loves building products that make a real impact.
+From consumer mobile apps used by thousands to enterprise-grade platforms handling real-time logistics, I focus on writing clean, scalable, and production-ready software.              </p>
+
+              {/* Highlight numbers in narrative form */}
+              <div className="grid grid-cols-2 gap-4">
+  {[
+    {
+      number: '15+',
+      label: 'Technologies Mastered',
+      gradient: 'from-cyan-400 to-blue-500',
+    },
+    {
+      number: '20+',
+      label: 'Projects Shipped',
+      gradient: 'from-purple-400 to-pink-500',
+    },
+    {
+      number: '3',
+      label: 'Companies Contributed To',
+      gradient: 'from-orange-400 to-red-500',
+    },
+    {
+      number: '50K+',
+      label: 'Users Reached',
+      gradient: 'from-emerald-400 to-green-500',
+    },
+  ].map((stat, idx) => (
+    <motion.div
+      key={idx}
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.45,
+        delay: idx * 0.08,
+        ease: 'easeOut',
+      }}
+      className="flex flex-col gap-1"
+    >
+      <span
+        className={`text-2xl font-semibold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}
+      >
+        {stat.number}
+      </span>
+      <span className="text-[11px] uppercase tracking-wide text-gray-400">
+        {stat.label}
+      </span>
+    </motion.div>
+  ))}
+</div>
+
+            </div>
+          </div>
+        </motion.div>
+
+
+
+        {/* SEO-friendly text - hidden but accessible */}
+        <div className="sr-only">
+          Full-stack developer and mobile app developer in India, specializing in React, React Native, Node.js, scalable APIs, and production-ready applications for startups and enterprises.
+        </div>
+
+        {/* The Impact - Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-white mb-2">The Impact</h3>
+            <p className="text-gray-400 text-sm">Numbers that tell the story</p>
           </div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { number: counters.languages, suffix: '+', label: 'Languages and Frameworks', icon: '/icons/language.png' },
-              { number: counters.projects, suffix: '+', label: 'Projects Built', icon: '/icons/projects.png' },
-              { number: counters.internships, suffix: '+', label: 'Internships', icon: '/icons/internship.png' },
-              { number: '∞', suffix: '', label: 'Cups of Coffee', icon: '/icons/coffee.png' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-gray-900/50 backdrop-blur-sm p-6 border border-pink-500/20 hover:border-pink-500/50 text-center transition-all"
-              >
-                {/* Replace emoji with image */}
-                <div className="flex justify-center mb-3">
-                  <Image
-                    src={stat.icon}
-                    alt={stat.label}
-                    width={50}
-                    height={50}
-                    className="object-contain drop-shadow-md"
-                  />
-                </div>
-                <div className="text-3xl font-bold text-pink-500 mb-1 font-mono">{stat.number}{stat.suffix}</div>
-                <div className="text-xs text-gray-400 font-mono">{stat.label}</div>
-              </motion.div>
-            ))}
+              {
+                icon: Code2,
+                number: counters.technologies,
+                suffix: '+',
+                label: 'Technologies',
+                sublabel: 'Mastered & used',
+                gradient: 'from-cyan-500 to-blue-500'
+              },
+              {
+                icon: Rocket,
+                number: counters.projects,
+                suffix: '+',
+                label: 'Projects',
+                sublabel: 'Built & shipped',
+                gradient: 'from-purple-500 to-pink-500'
+              },
+              {
+                icon: Building2,
+                number: counters.companies,
+                suffix: '',
+                label: 'Companies',
+                sublabel: 'Contributed to',
+                gradient: 'from-orange-500 to-red-500'
+              },
+              {
+                icon: Download,
+                number: counters.downloads,
+                suffix: 'K+',
+                label: 'Downloads',
+                sublabel: 'Reached users',
+                gradient: 'from-green-500 to-emerald-500'
+              },
+            ].map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="group relative bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-pink-500/50 rounded-xl p-5 transition-all duration-300"
+                >
+                  {/* Gradient glow on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300`} />
+
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div className={`inline-flex p-2 rounded-lg bg-gradient-to-br ${stat.gradient} mb-3`}>
+                      <Icon className="w-4 h-4 text-white" />
+                    </div>
+
+                    {/* Number */}
+                    <div className="mb-2">
+                      <span className={`text-3xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+                        {stat.number}
+                      </span>
+                      <span className={`text-2xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+                        {stat.suffix}
+                      </span>
+                    </div>
+
+                    {/* Label */}
+                    <div className="text-xs font-semibold text-white mb-1">
+                      {stat.label}
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      {stat.sublabel}
+                    </div>
+                  </div>
+
+                  {/* Decorative corner accent */}
+                  <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-20 blur-2xl rounded-full transition-opacity duration-300`} />
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Closing line */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="mt-10"
+          >
+            <p className="text-gray-500 text-xs">
+              And this is just the beginning of the story
+            </p>
           </motion.div>
         </motion.div>
+
       </div>
     </section>
   );

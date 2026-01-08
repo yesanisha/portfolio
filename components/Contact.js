@@ -47,45 +47,49 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-5xl font-bold text-center mb-4 font-mono">
-            <span className="text-pink-500">$</span> ./contact<span className="text-gradient">.sh</span>
+contact<span className="text-gradient"></span>
           </h2>
           <p className="text-center text-gray-400 mb-12 font-mono">
             Have a project in mind or just want to chat? I'd love to hear from you!
           </p>
 
-          {/* Contact Cards */}
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            {contactMethods.map((method, index) => (
-              <motion.a
-                key={index}
-                href={method.href}
-                target={method.href.startsWith('http') ? '_blank' : undefined}
-                rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-gray-900/50 backdrop-blur-sm p-6 border border-pink-500/20 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/10 transition-all group cursor-pointer"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="p-4 border border-pink-500/30 group-hover:border-pink-500 bg-pink-500/10 text-pink-400 group-hover:scale-110 transition-transform">
-                    {method.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm text-gray-500 mb-1 font-mono">{method.label}</div>
-                    <div className="font-semibold text-gray-300 group-hover:text-pink-400 transition-colors font-mono text-sm">
-                      {method.value}
-                    </div>
-                    <div className="text-xs text-gray-600 mt-1 font-mono">
-                      $ {method.command}
-                    </div>
-                  </div>
-                  <Send className="w-5 h-5 text-gray-600 group-hover:text-pink-400 group-hover:translate-x-1 transition-all" />
-                </div>
-              </motion.a>
-            ))}
-          </div>
+          {/* Contact Cards – Minimal */}
+<div className="grid md:grid-cols-2 gap-3 mb-10">
+  {contactMethods.map((method, index) => (
+    <motion.a
+      key={index}
+      href={method.href}
+      target={method.href.startsWith('http') ? '_blank' : undefined}
+      rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.06 }}
+      whileHover={{ y: -2 }}
+      className="group flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-900/40 px-4 py-3 hover:border-pink-500/40 transition-colors cursor-pointer"
+    >
+      {/* Icon */}
+      <div className="p-2 rounded-md bg-pink-500/10 text-pink-400">
+        {method.icon}
+      </div>
+
+      {/* Text */}
+      <div className="flex-1 min-w-0">
+        <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono">
+          {method.label}
+        </div>
+        <div className="text-sm text-gray-300 truncate font-mono group-hover:text-pink-400 transition-colors">
+          {method.value}
+        </div>
+      </div>
+
+      {/* Arrow */}
+      <span className="text-gray-600 group-hover:text-pink-400 transition-colors text-sm">
+        →
+      </span>
+    </motion.a>
+  ))}
+</div>
 
           {/* CTA Section */}
           <motion.div

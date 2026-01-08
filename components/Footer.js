@@ -57,46 +57,9 @@ export default function Footer() {
               © {new Date().getFullYear()} Anisha Kumari. All rights reserved.
             </p>
 
-            {/* Tech stack badges */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <span className="inline-flex items-center px-4 py-2 bg-gray-900/50 backdrop-blur-sm border border-pink-500/20 text-gray-400 shadow-sm font-medium text-xs font-mono">
-                Next.js
-              </span>
-              <span className="text-pink-400 font-mono">•</span>
-              <span className="inline-flex items-center px-4 py-2 bg-gray-900/50 backdrop-blur-sm border border-pink-500/20 text-gray-400 shadow-sm font-medium text-xs font-mono">
-                Tailwind CSS
-              </span>
-              <span className="text-pink-400 font-mono">•</span>
-              <span className="inline-flex items-center px-4 py-2 bg-gray-900/50 backdrop-blur-sm border border-pink-500/20 text-gray-400 shadow-sm font-medium text-xs font-mono">
-                Framer Motion
-              </span>
-            </div>
           </motion.div>
-
-          {/* Scroll to top button */}
-          <motion.button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 bg-pink-500/20 border border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white font-semibold shadow-lg hover:shadow-pink-500/30 transition-all duration-300 mt-6 font-mono"
-            whileHover={{ scale: 1.05, y: -3 }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <span className="text-lg">↑</span>
-            <span className="hidden sm:inline">$ cd ~</span>
-            <span className="sm:hidden">Top</span>
-          </motion.button>
-
-          {/* Bottom decorative element */}
-          <div className="flex items-center justify-center gap-2 mt-6 opacity-50 font-mono text-gray-600">
-            <span>&lt;</span>
-            <span className="text-pink-500">/</span>
-            <span>&gt;</span>
-          </div>
         </div>
       </div>
     </footer>
-  );
+  );  
 }
