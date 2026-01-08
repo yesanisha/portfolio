@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Linkedin, Github, MapPin, Send } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Contact() {
   const contactMethods = [
@@ -35,135 +36,130 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 bg-black relative overflow-hidden">
+    <section id="contact" className="py-16 px-4 bg-black relative overflow-hidden">
       {/* Grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-5xl font-bold text-center mb-4 font-mono">
-contact<span className="text-gradient"></span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+            Let's Connect
           </h2>
-          <p className="text-center text-gray-400 mb-12 font-mono">
-            Have a project in mind or just want to chat? I'd love to hear from you!
-          </p>
-
-          {/* Contact Cards – Minimal */}
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
-  {contactMethods.map((method, index) => (
-    <motion.a
-      key={index}
-      href={method.href}
-      target={method.href.startsWith('http') ? '_blank' : undefined}
-      rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
-      whileHover={{ y: -2 }}
-      className="group flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-900/40 px-4 py-3 hover:border-pink-500/40 transition-colors cursor-pointer"
-    >
-      {/* Icon */}
-      <div className="p-2 rounded-md bg-pink-500/10 text-pink-400">
-        {method.icon}
-      </div>
-
-      {/* Text */}
-      <div className="flex-1 min-w-0">
-        <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono">
-          {method.label}
-        </div>
-        <div className="text-sm text-gray-300 truncate font-mono group-hover:text-pink-400 transition-colors">
-          {method.value}
-        </div>
-      </div>
-
-      {/* Arrow */}
-      <span className="text-gray-600 group-hover:text-pink-400 transition-colors text-sm">
-        →
-      </span>
-    </motion.a>
-  ))}
-</div>
-
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-gray-900/50 border border-pink-500/30 p-8 md:p-12 shadow-xl shadow-pink-500/10 text-center relative overflow-hidden backdrop-blur-sm"
-          >
-            {/* Terminal-style decorative elements */}
-            <div className="absolute top-4 left-4 text-xs text-gray-600 font-mono">
-              anisha@contact:~$
-            </div>
-            <div className="absolute top-4 right-4 flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-            </div>
-
-            <div className="relative z-10 mt-8">
-              <h3 className="text-3xl font-bold mb-4 font-mono text-gradient">Ready to Work Together?</h3>
-              <p className="text-lg mb-6 max-w-2xl mx-auto text-gray-400 font-mono">
-                Whether you have a project idea, a job opportunity, or just want to connect over
-                coffee, feel free to reach out!
-              </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
-                <a
-                  href="mailto:anishakumari6145@gmail.com"
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold hover:shadow-xl hover:shadow-pink-500/30 transition-all font-mono text-center"
-                >
-                  $ send --email
-                </a>
-                <a
-                  href="https://linkedin.com/in/yesanisha"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-800 text-gray-300 border border-pink-500/30 hover:border-pink-500 hover:text-pink-400 font-semibold transition-all font-mono text-center"
-                >
-                  $ connect --linkedin
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Location */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-12 text-center"
-          >
-            <div className="flex items-center justify-center gap-2 text-gray-400 mb-4 font-mono">
-              <MapPin className="w-5 h-5 text-pink-400" />
-              <span className="font-semibold">Based in Bengaluru, India</span>
-            </div>
-            <p className="text-sm text-gray-500 font-mono">
-              Open to remote opportunities and exciting collaborations worldwide!
-            </p>
-          </motion.div>
-
-          {/* Hidden Easter Egg */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-8 text-center"
-          >
-            <p className="text-xs text-gray-600 italic cursor-pointer hover:text-pink-400 transition-colors font-mono" title="Best time to reach me? Early morning with a cup of coffee!">
-              # Pro tip: I respond fastest to messages in the morning!
-            </p>
-          </motion.div>
         </motion.div>
+
+        {/* Main Content - Two Column Layout */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* LEFT - CTA Image */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative flex items-center justify-center lg:justify-start"
+          >
+            <Image
+              src="/images/CTA.png"
+              alt="Let's connect"
+              width={300}
+              height={300}
+              className="w-full max-w-xs object-contain"
+              priority
+            />
+          </motion.div>
+
+          {/* RIGHT - Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6"
+          >
+            {/* Contact Cards */}
+            <div className="space-y-2">
+              {contactMethods.map((method, index) => (
+                <motion.a
+                  key={index}
+                  href={method.href}
+                  target={method.href.startsWith('http') ? '_blank' : undefined}
+                  rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+                  whileHover={{ scale: 1.01, x: 3 }}
+                  className="group flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-900/50 backdrop-blur-sm px-4 py-2.5 hover:border-pink-500/50 transition-all cursor-pointer"
+                >
+                  {/* Icon */}
+                  <div className="p-2 rounded-md bg-pink-500/10 text-pink-400">
+                    {method.icon}
+                  </div>
+
+                  {/* Text */}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[10px] uppercase tracking-wider text-gray-500">
+                      {method.label}
+                    </div>
+                    <div className="text-sm font-medium text-gray-200 truncate group-hover:text-pink-400 transition-colors">
+                      {method.value}
+                    </div>
+                  </div>
+
+                  {/* Arrow */}
+                  <Send className="w-4 h-4 text-gray-600 group-hover:text-pink-400 transition-colors" />
+                </motion.a>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex gap-3"
+            >
+              <a
+                href="mailto:anishakumari6145@gmail.com"
+                className="flex-1 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white text-center text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-pink-500/30 transition-all"
+              >
+                Email Me
+              </a>
+              <a
+                href="https://linkedin.com/in/yesanisha"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 px-6 py-3 bg-gray-900 text-gray-300 text-center text-sm font-semibold rounded-lg border border-gray-800 hover:border-pink-500/50 hover:text-white transition-all"
+              >
+                LinkedIn
+              </a>
+            </motion.div>
+
+            {/* Location */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="pt-4 border-t border-gray-800"
+            >
+              <div className="flex items-center gap-2 text-gray-400">
+                <MapPin className="w-4 h-4 text-pink-400 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-white">Bengaluru, India</span>
+                  <span className="text-gray-500"> • Remote friendly</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
