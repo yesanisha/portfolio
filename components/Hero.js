@@ -229,7 +229,7 @@ export default function Hero() {
               className="flex items-center gap-6 pt-2"
             >
               {[
-                { icon: Github, href: 'https://github.com/yesanisha-11' },
+                { icon: Github, href: 'https://github.com/yesanisha' },
                 { icon: Linkedin, href: 'https://linkedin.com/in/yesanisha' },
                 { icon: Mail, href: 'mailto:anishakumari6145@gmail.com' },
               ].map((social, i) => (
