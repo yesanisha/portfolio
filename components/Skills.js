@@ -85,7 +85,7 @@ export default function Skills() {
           </div>
 
           {/* Skills Grid - 5 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={categoryIndex}
@@ -94,7 +94,7 @@ export default function Skills() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-gray-900/50 border border-pink-500/20 hover:border-pink-500/50 p-6 hover:shadow-2xl hover:shadow-pink-500/10 transition-all backdrop-blur-sm"
+                className="bg-gray-900/50 border border-pink-500/20 hover:border-pink-500/50 p-4 sm:p-6 hover:shadow-2xl hover:shadow-pink-500/10 transition-all backdrop-blur-sm"
               >
                 {/* Category Header */}
                 <div className="mb-6">
@@ -162,9 +162,9 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-12 bg-gray-900/50 border border-pink-500/20 shadow-md p-6 backdrop-blur-sm"
+            className="mt-12 bg-gray-900/50 border border-pink-500/20 shadow-md p-4 sm:p-6 backdrop-blur-sm"
           >
-            <div className="flex flex-wrap justify-center gap-6 text-sm font-mono">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-mono">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500"></div>
                 <span className="text-gray-400 font-medium">Expert ≥ 90%</span>

@@ -1,11 +1,8 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Briefcase, MapPin, Calendar, GraduationCap } from 'lucide-react';
-import { useState } from 'react';
 
 export default function Experience() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   const experiences = [
     {
       title: 'Full Stack Developer Intern',
@@ -94,116 +91,73 @@ export default function Experience() {
 
           {/* Experience items */}
           <div className="space-y-8">
-            {experiences.map((exp, index) => {
-              const isHovered = hoveredIndex === index;
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative pl-0 md:pl-16"
+              >
+                {/* Timeline dot */}
+                <div className="absolute left-0 md:left-8 top-6 -translate-x-1/2">
+                  <div
+                    className={`w-4 h-4 rounded-full border-4 border-black transition-transform duration-200 group-hover:scale-125 ${
+                      exp.status === 'current' ? 'bg-pink-500' : 'bg-gray-600'
+                    }`}
+                  />
+                </div>
 
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  onHoverStart={() => setHoveredIndex(index)}
-                  onHoverEnd={() => setHoveredIndex(null)}
-                  className="relative pl-0 md:pl-16"
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 md:left-8 top-6 -translate-x-1/2">
-                    <motion.div
-                      className={`w-4 h-4 rounded-full border-4 border-black ${
-                        exp.status === 'current' ? 'bg-pink-500' : 'bg-gray-600'
-                      }`}
-                      animate={{
-                        scale: isHovered ? 1.3 : 1,
-                      }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </div>
-
-                  {/* Card */}
-                  <motion.div
-                    className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg overflow-hidden cursor-pointer"
-                    animate={{
-                      borderColor: isHovered ? 'rgba(236, 72, 153, 0.5)' : 'rgba(31, 41, 55, 1)',
-                    }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {/* Default view - Company name and dates */}
-                    {!isHovered && (
-                      <div className="p-6">
-                        <div className="flex items-center justify-between flex-wrap gap-3">
-                          <div className="flex items-center gap-4">
-                            <Briefcase className="w-5 h-5 text-pink-500 flex-shrink-0" />
-                            <div>
-                              <h3 className="text-xl font-bold text-white">
-                                {exp.company}
-                              </h3>
-                              <p className="text-sm text-gray-400 flex items-center gap-2 mt-1">
-                                <Calendar className="w-3 h-3" />
-                                {exp.period}
-                              </p>
-                            </div>
-                            {exp.status === 'current' && (
-                              <span className="px-3 py-1 bg-pink-500/20 text-pink-400 text-xs font-medium rounded-full border border-pink-500/30">
-                                Current
-                              </span>
-                            )}
-                          </div>
-                          <span className="text-gray-500 text-sm">Hover for details</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Expanded view - Full details on hover */}
-                    {isHovered && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                        className="p-6"
-                      >
-                        {/* Header */}
-                        <div className="mb-6">
-                          <div className="flex items-start justify-between mb-3">
-                            <div className="flex-1">
-                              <h3 className="text-2xl font-bold text-white mb-2">
-                                {exp.company}
-                              </h3>
-                              <p className="text-lg text-pink-400 font-medium mb-3">
-                                {exp.title}
-                              </p>
-                            </div>
-                            {exp.status === 'current' && (
-                              <span className="px-3 py-1 bg-pink-500/20 text-pink-400 text-xs font-medium rounded-full border border-pink-500/30">
-                                Current
-                              </span>
-                            )}
-                          </div>
-
-                          <div className="flex flex-wrap gap-4 text-sm text-gray-400">
-                            <span className="flex items-center gap-2">
-                              <MapPin className="w-4 h-4" />
-                              {exp.location}
-                            </span>
-                            <span className="flex items-center gap-2">
-                              <Calendar className="w-4 h-4" />
+                {/* Card */}
+                <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-pink-500/50 rounded-lg cursor-pointer transition-all duration-300">
+                    <div className="p-4 sm:p-6">
+                      {/* Company header - always visible */}
+                      <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+                        <div className="flex items-center gap-4">
+                          <Briefcase className="w-5 h-5 text-pink-500 flex-shrink-0" />
+                          <div>
+                            <h3 className="text-xl font-bold text-white group-hover:text-pink-500 transition-colors">
+                              {exp.company}
+                            </h3>
+                            <p className="text-sm text-gray-400 flex items-center gap-2 mt-1">
+                              <Calendar className="w-3 h-3" />
                               {exp.period}
-                            </span>
+                            </p>
                           </div>
+                          {exp.status === 'current' && (
+                            <span className="px-3 py-1 bg-pink-500/20 text-pink-400 text-xs font-medium rounded-full border border-pink-500/30">
+                              Current
+                            </span>
+                          )}
                         </div>
+                        <span className="hidden sm:block text-gray-500 text-sm group-hover:opacity-0 transition-opacity">
+                          Hover for details
+                        </span>
+                      </div>
+
+                      {/* Expanded details - hidden by default, shows on hover */}
+                      <div className="max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-500 opacity-0 group-hover:opacity-100">
+                        {/* Job Title */}
+                        <p className="text-lg text-pink-400 font-medium mb-3">
+                          {exp.title}
+                        </p>
+
+                        {/* Location */}
+                        <p className="text-sm text-gray-400 flex items-center gap-2 mb-4">
+                          <MapPin className="w-4 h-4" />
+                          {exp.location}
+                        </p>
 
                         {/* Description */}
-                        <div className="mb-6">
-                          <ul className="space-y-2">
-                            {exp.description.map((item, i) => (
-                              <li key={i} className="text-gray-300 text-sm flex items-start gap-3">
-                                <span className="text-pink-500 mt-1 flex-shrink-0">•</span>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                        <ul className="space-y-2 mb-4">
+                          {exp.description.map((item, i) => (
+                            <li key={i} className="text-gray-300 text-sm flex items-start gap-3">
+                              <span className="text-pink-500 mt-1 flex-shrink-0">›</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
 
                         {/* Tech stack */}
                         <div className="flex flex-wrap gap-2">
@@ -216,12 +170,11 @@ export default function Experience() {
                             </span>
                           ))}
                         </div>
-                      </motion.div>
-                    )}
-                  </motion.div>
-                </motion.div>
-              );
-            })}
+                      </div>
+                    </div>
+                  </div>
+              </motion.div>
+            ))}
           </div>
         </div>
 
@@ -238,7 +191,7 @@ export default function Experience() {
             Education
           </h3>
 
-          <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg p-8">
+          <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg p-6 sm:p-8">
             <div className="flex flex-col md:flex-row items-start justify-between gap-6 mb-6">
               <div>
                 <h4 className="text-2xl font-bold text-white mb-2">

@@ -54,7 +54,7 @@ contact<span className="text-gradient"></span>
           </p>
 
           {/* Contact Cards – Minimal */}
-<div className="grid md:grid-cols-2 gap-3 mb-10">
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
   {contactMethods.map((method, index) => (
     <motion.a
       key={index}
@@ -115,10 +115,10 @@ contact<span className="text-gradient"></span>
                 Whether you have a project idea, a job opportunity, or just want to connect over
                 coffee, feel free to reach out!
               </p>
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
                 <a
                   href="mailto:anishakumari6145@gmail.com"
-                  className="px-8 py-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold hover:shadow-xl hover:shadow-pink-500/30 transition-all font-mono"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold hover:shadow-xl hover:shadow-pink-500/30 transition-all font-mono text-center"
                 >
                   $ send --email
                 </a>
@@ -126,7 +126,7 @@ contact<span className="text-gradient"></span>
                   href="https://linkedin.com/in/yesanisha"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 bg-gray-800 text-gray-300 border border-pink-500/30 hover:border-pink-500 hover:text-pink-400 font-semibold transition-all font-mono"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-800 text-gray-300 border border-pink-500/30 hover:border-pink-500 hover:text-pink-400 font-semibold transition-all font-mono text-center"
                 >
                   $ connect --linkedin
                 </a>

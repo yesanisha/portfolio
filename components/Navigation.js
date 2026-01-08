@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,18 +35,24 @@ export default function Navigation() {
         <motion.div
           className={`transition-all duration-500 ${
             isScrolled
-              ? 'bg-white/10 backdrop-blur-xl shadow-lg shadow-black/50 px-6 py-3'
-              : 'bg-white/5 backdrop-blur-lg px-8 py-4'
+              ? 'bg-white/10 backdrop-blur-xl shadow-lg shadow-black/50 px-4 py-2'
+              : 'bg-white/5 backdrop-blur-lg px-6 py-2.5'
           } rounded-full border border-white/10`}
         >
-          <div className="flex items-center justify-between gap-12">
+          <div className="flex items-center justify-between gap-8 md:gap-12">
           {/* Logo - Minimal */}
           <motion.a
             href="#"
-            className="text-lg font-bold text-white"
+            className="relative flex-shrink-0"
             whileHover={{ scale: 1.02 }}
           >
-            ANISHA
+            <Image
+              src="/images/logo.png"
+              alt="Logo"
+              width={32}
+              height={32}
+              className="object-contain w-8 h-8"
+            />
           </motion.a>
 
           {/* Desktop Navigation - Clean links */}
@@ -69,7 +76,7 @@ export default function Navigation() {
           {/* CTA Button - Minimal */}
           <motion.a
             href="#contact"
-            className="hidden md:block px-6 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all duration-300"
+            className="hidden md:block px-5 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

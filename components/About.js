@@ -90,7 +90,7 @@ useEffect(() => {
             {/* Profile Image Carousel */}
 <motion.div
   whileHover={{ scale: 1.02 }}
-  className="relative w-56 h-56 flex-shrink-0"
+  className="relative w-48 h-48 sm:w-56 sm:h-56 flex-shrink-0"
 >
   <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl blur-2xl opacity-20" />
 
@@ -121,9 +121,9 @@ useEffect(() => {
             <div className="flex-1">
               <h3 className="text-2xl font-bold text-white mb-3">Hey, I'm Anisha</h3>
               <p className="text-gray-400 leading-relaxed">
-A developer who loves building products that make a real impact.
-From consumer mobile apps used by thousands to enterprise-grade platforms handling real-time logistics, I focus on writing clean, scalable, and production-ready software.              </p>
-            </div>
+                I’m a developer who enjoys building products that actually get used and make a difference. I’ve worked on everything from consumer mobile apps used by thousands to enterprise platforms handling real-time logistics, and I care deeply about writing clean, scalable, production-ready code. Outside of work, I love travelling and exploring new places solo, it keeps me curious, independent, and constantly learning.
+              </p>
+           </div>
           </div>
         </motion.div>
 

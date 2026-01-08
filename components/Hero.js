@@ -105,8 +105,8 @@ export default function Hero() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
           {/* LEFT COLUMN - Content */}
           <motion.div
@@ -116,14 +116,15 @@ export default function Hero() {
             className="space-y-10"
           >
             {/* Name - Large 3D text */}
-            <div className="space-y-4">
+            <div className="space-y-4 mt-16">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-8xl md:text-9xl font-black tracking-tighter"
+                className="text-6xl md:text-7xl font-semibold tracking-wide"
                 style={{
-                  textShadow: '0 0 80px rgba(255,255,255,0.1), 0 4px 0 rgba(255,255,255,0.05), 0 8px 0 rgba(255,255,255,0.03)'
+                  textShadow: '0 0 80px rgba(255,255,255,0.1), 0 4px 0 rgba(255,255,255,0.05), 0 8px 0 rgba(255,255,255,0.03)',
+                  fontFamily: '"Inter", "SF Pro Display", -apple-system, sans-serif'
                 }}
               >
                 <span className="text-white">ANISHA</span>
@@ -153,7 +154,7 @@ export default function Hero() {
             </motion.p>
 
             {/* Stats - 3D cards */}
-            <div className="grid grid-cols-3 gap-4 max-w-md">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-md">
               {stats.slice(0, 3).map((stat, index) => (
                 <motion.div
                   key={index}
@@ -185,7 +186,7 @@ export default function Hero() {
             </div>
 
             {/* CTAs - Minimal and clean */}
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4">
               <motion.a
                 href="#projects"
                 initial={{ opacity: 0 }}
@@ -193,7 +194,7 @@ export default function Hero() {
                 transition={{ delay: 1 }}
                 whileHover={{ scale: 1.02, x: 4 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative px-8 py-4 bg-white text-black font-semibold rounded-none overflow-hidden"
+                className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-white text-black font-semibold rounded-none overflow-hidden text-center"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   View Work
@@ -214,7 +215,7 @@ export default function Hero() {
                 transition={{ delay: 1.1 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 border border-white/20 text-white font-semibold rounded-none hover:bg-white/5 transition-all"
+                className="px-6 sm:px-8 py-3 sm:py-4 border border-white/20 text-white font-semibold rounded-none hover:bg-white/5 transition-all text-center"
               >
                 Get in touch
               </motion.a>
@@ -251,7 +252,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="relative h-[600px] flex items-center justify-center"
+            className="relative h-[500px] sm:h-[600px] flex items-start justify-center pt-16 order-first lg:order-last"
           >
             
             {/* Realistic 3D Phone Mockup */}
@@ -270,7 +271,7 @@ export default function Hero() {
               className="relative z-20"
             >
               {/* Phone Outer Shell - Aerospace Aluminum */}
-              <div className="relative w-[300px] h-[600px] rounded-[3.5rem] overflow-hidden"
+              <div className="relative w-[240px] sm:w-[280px] lg:w-[300px] h-[480px] sm:h-[560px] lg:h-[600px] rounded-[3.5rem] overflow-hidden"
                 style={{
                   background: `
                     linear-gradient(135deg,
@@ -355,7 +356,7 @@ export default function Hero() {
                   />
 
                   {/* Dynamic Island - Realistic cutout */}
-                  <div className="absolute top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-black rounded-[2rem] z-20"
+                  <div className="absolute top-2 sm:top-2.5 lg:top-3 left-1/2 -translate-x-1/2 w-24 sm:w-28 lg:w-32 h-6 sm:h-7 lg:h-8 bg-black rounded-[1.5rem] sm:rounded-[1.8rem] lg:rounded-[2rem] z-20"
                     style={{
                       boxShadow: `
                         inset 0 3px 8px rgba(0,0,0,1),
@@ -366,13 +367,13 @@ export default function Hero() {
                     }}
                   >
                     {/* Camera lens */}
-                    <div className="absolute left-6 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-blue-900/50 to-purple-900/30"
+                    <div className="absolute left-4 sm:left-5 lg:left-6 top-1/2 -translate-y-1/2 w-2.5 sm:w-2.5 lg:w-3 h-2.5 sm:h-2.5 lg:h-3 rounded-full bg-gradient-to-br from-blue-900/50 to-purple-900/30"
                       style={{
                         boxShadow: 'inset 0 1px 2px rgba(100,100,255,0.3), 0 0 4px rgba(100,100,255,0.2)',
                       }}
                     />
                     {/* Infrared sensor */}
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-red-950/40" />
+                    <div className="absolute right-4 sm:right-5 lg:right-6 top-1/2 -translate-y-1/2 w-1.5 sm:w-1.5 lg:w-2 h-1.5 sm:h-1.5 lg:h-2 rounded-full bg-red-950/40" />
                   </div>
 
                   {/* Speaker Grille - Top */}
@@ -391,7 +392,7 @@ export default function Hero() {
                   {/* Screen Content */}
                   <div className="relative w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-900">
                     {/* Status Bar */}
-                    <div className="flex justify-between items-center px-8 pt-4 text-white/80 text-xs font-light">
+                    <div className="flex justify-between items-center px-4 sm:px-6 lg:px-8 pt-3 sm:pt-3.5 lg:pt-4 text-white/80 text-[10px] sm:text-xs font-light">
                       <span className="font-semibold">9:41</span>
                       <div className="flex items-center gap-1.5">
                         {/* Signal strength */}
@@ -405,15 +406,15 @@ export default function Hero() {
                           <path d="M10 3.5c3.5 0 6.7 1.4 9 3.7l-1.4 1.4C15.7 6.8 13 5.5 10 5.5S4.3 6.8 2.4 8.6L1 7.2c2.3-2.3 5.5-3.7 9-3.7zM10 7.5c2.5 0 4.8 1 6.5 2.6L15 11.6c-1.3-1.3-3.1-2.1-5-2.1s-3.7.8-5 2.1L3.5 10c1.7-1.6 4-2.6 6.5-2.6zm0 4c1.4 0 2.6.6 3.5 1.5L10 16.5 6.5 13c.9-.9 2.1-1.5 3.5-1.5z"/>
                         </svg>
                         {/* Battery */}
-                        <div className="w-5 h-2.5 border border-white/60 rounded-[2px] relative">
+                        <div className="w-4 sm:w-5 h-2 sm:h-2.5 border border-white/60 rounded-[2px] relative">
                           <div className="absolute inset-[1px] bg-white/80 rounded-[1px]" />
-                          <div className="absolute -right-[2px] top-1/2 -translate-y-1/2 w-[1px] h-1.5 bg-white/60 rounded-r" />
+                          <div className="absolute -right-[2px] top-1/2 -translate-y-1/2 w-[1px] h-1 sm:h-1.5 bg-white/60 rounded-r" />
                         </div>
                       </div>
                     </div>
 
                     {/* App Grid */}
-                    <div className="p-6 grid grid-cols-3 gap-4 mt-10">
+                    <div className="p-3 sm:p-4 lg:p-6 grid grid-cols-3 gap-2 sm:gap-3 lg:gap-4 mt-6 sm:mt-8 lg:mt-10">
                       {phoneApps.map((app, i) => (
                         <motion.button
                           key={i}
@@ -423,10 +424,10 @@ export default function Hero() {
                           whileHover={{ scale: 1.1, y: -5 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setSelectedApp(app)}
-                          className="flex flex-col items-center gap-2 relative cursor-pointer"
+                          className="flex flex-col items-center gap-1 sm:gap-2 relative cursor-pointer"
                         >
                           {/* App Icon - iOS style glass with gradient */}
-                          <div className={`w-16 h-16 ${app.gradient} rounded-[1.2rem] relative overflow-hidden flex items-center justify-center`}
+                          <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${app.gradient} rounded-[1rem] sm:rounded-[1.1rem] lg:rounded-[1.2rem] relative overflow-hidden flex items-center justify-center`}
                             style={{
                               boxShadow: `
                                 0 8px 16px rgba(0,0,0,0.4),
@@ -451,7 +452,7 @@ export default function Hero() {
                             />
 
                             {/* App Icon */}
-                            <app.icon className="w-8 h-8 text-white relative z-10"
+                            <app.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white relative z-10"
                               style={{
                                 filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
                               }}
@@ -463,19 +464,19 @@ export default function Hero() {
                             <motion.div
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
-                              className="absolute -top-1 -right-1 bg-red-500 text-white text-[6px] font-bold px-1.5 py-0.5 rounded-full border border-black"
+                              className="absolute -top-1 -right-1 bg-red-500 text-white text-[5px] sm:text-[6px] font-bold px-1 sm:px-1.5 py-0.5 rounded-full border border-black"
                             >
                               {app.badge}
                             </motion.div>
                           )}
 
-                          <span className="text-white text-[9px] font-medium">{app.name}</span>
+                          <span className="text-white text-[7px] sm:text-[8px] lg:text-[9px] font-medium truncate max-w-full px-1">{app.name}</span>
                         </motion.button>
                       ))}
                     </div>
 
                     {/* Dock - iOS frosted glass */}
-                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 px-5 py-3.5 rounded-[2rem]"
+                    <div className="absolute bottom-4 sm:bottom-5 lg:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 lg:gap-4 px-3 sm:px-4 lg:px-5 py-2 sm:py-3 lg:py-3.5 rounded-[1.5rem] sm:rounded-[1.8rem] lg:rounded-[2rem]"
                       style={{
                         background: 'rgba(30, 30, 30, 0.6)',
                         backdropFilter: 'blur(40px) saturate(180%)',
@@ -497,7 +498,7 @@ export default function Hero() {
                           key={i}
                           whileHover={{ scale: 1.2, y: -8 }}
                           whileTap={{ scale: 0.95 }}
-                          className={`w-14 h-14 bg-gradient-to-br ${gradient} rounded-[1.2rem] relative overflow-hidden cursor-pointer`}
+                          className={`w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br ${gradient} rounded-[1rem] sm:rounded-[1.1rem] lg:rounded-[1.2rem] relative overflow-hidden cursor-pointer`}
                           style={{
                             boxShadow: `
                               0 8px 16px rgba(0,0,0,0.4),
