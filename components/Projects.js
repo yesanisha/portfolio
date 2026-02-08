@@ -16,7 +16,7 @@ export default function Projects() {
       period: 'Dec 2025 - Present',
       tech: ['React Native', 'Expo', 'Firebase', 'Firestore', 'Cloud Storage'],
       github: 'https://github.com/yesanisha/dotko',
-      download: 'https://expo.dev/artifacts/eas/mk2LchUrR6YG4hJ55WnpLe.apk',
+      download: 'https://expo.dev/artifacts/eas/j6QyJ8cyDNKuQ3veneo7zD.apk',
       demo: '/images/dotko.jpg',
       demoType: 'images',
       qrCode: '/images/dotkoscanner_app.png',
@@ -73,7 +73,7 @@ export default function Projects() {
       image: '/images/MoveABox.jpg',
       tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
       github: 'https://github.com/yesanisha/moveabox',
-      download: 'https://moveabox.com',
+      download: 'https://www.moveabox.in/',
       demo: '/images/MoveABox.jpg',
       demoType: 'images',
       featured: false
