@@ -17,7 +17,18 @@ export default function Projects() {
       tech: ['React Native', 'Expo', 'Firebase', 'Firestore', 'Cloud Storage'],
       github: 'https://github.com/yesanisha/dotko',
       download: 'https://expo.dev/artifacts/eas/j6QyJ8cyDNKuQ3veneo7zD.apk',
-      demo: '/images/dotko.jpg',
+      demo: [
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.58.jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.58 (1).jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.58 (2).jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.58 (3).jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.59.jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.59 (1).jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.59 (2).jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.33.00.jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.33.00 (1).jpeg',
+        '/Dotko/WhatsApp Image 2026-02-12 at 19.33.00 (2).jpeg'
+      ],
       demoType: 'images',
       qrCode: '/images/dotkoscanner_app.png',
       featured: true,
@@ -378,12 +389,25 @@ export default function Projects() {
                   />
                 </div>
               ) : (
-                <div className="grid gap-4">
-                  <img
-                    src={selectedApp.demo}
-                    alt={`${selectedApp.title} demo`}
-                    className="w-full rounded-lg border border-gray-800"
-                  />
+                <div className="space-y-4">
+                  {Array.isArray(selectedApp.demo) ? (
+                    <div className="grid grid-cols-3 gap-3">
+                      {selectedApp.demo.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image}
+                          alt={`${selectedApp.title} demo ${index + 1}`}
+                          className="w-full object-contain rounded-lg border border-gray-800 hover:scale-105 transition-transform duration-200"
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <img
+                      src={selectedApp.demo}
+                      alt={`${selectedApp.title} demo`}
+                      className="w-full rounded-lg border border-gray-800"
+                    />
+                  )}
                   <p className="text-gray-400 text-center text-sm">
                     Demo screenshots and media
                   </p>

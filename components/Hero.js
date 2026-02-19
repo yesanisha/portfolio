@@ -254,7 +254,30 @@ export default function Hero() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="relative h-[500px] sm:h-[600px] flex items-start justify-center pt-16 order-first lg:order-last"
           >
-            
+
+            {/* Animation Character - Positioned beside phone from right, slightly behind */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="absolute right-[80%] top-1/2 -translate-y-1/2 z-[15] pointer-events-none"
+              style={{
+                width: '200px',
+                height: 'auto',
+              }}
+            >
+              <Image
+                src="/images/mobile beside image.png"
+                alt="Animation character"
+                width={200}
+                height={300}
+                className="object-contain drop-shadow-2xl"
+                style={{
+                  filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.5))',
+                }}
+              />
+            </motion.div>
+
             {/* Realistic 3D Phone Mockup */}
             <motion.div
               animate={{

@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 
 export default function About() {
   const [counters, setCounters] = useState({ technologies: 0, projects: 0, companies: 0, downloads: 0 });
+  const [showVideo, setShowVideo] = useState(false);
 
   const images = [
   '/images/pic1.jpeg',
@@ -117,13 +118,65 @@ useEffect(() => {
 </motion.div>
 
 
-            {/* Quick Intro */}
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-white mb-3">Hey, I'm Anisha</h3>
-              <p className="text-gray-400 leading-relaxed">
-                I’m a developer who enjoys building products that actually get used and make a difference. I’ve worked on everything from consumer mobile apps used by thousands to enterprise platforms handling real-time logistics, and I care deeply about writing clean, scalable, production-ready code. Outside of work, I love travelling and exploring new places solo, it keeps me curious, independent, and constantly learning.
-              </p>
-           </div>
+            {/* Quick Intro with Image */}
+            <div className="flex-1 flex gap-6 items-start">
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-white mb-3">Hey, I'm Anisha</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  I'm a developer who enjoys building products that actually get used and make a difference. I've worked on everything from consumer mobile apps used by thousands to enterprise platforms handling real-time logistics, and I care deeply about writing clean, scalable, production-ready code. Outside of work, I love travelling and exploring new places solo, it keeps me curious, independent, and constantly learning.
+                </p>
+              </div>
+
+              {/* Gemini Generated Image with Speech Bubble */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="relative w-32 h-32 sm:w-48 sm:h-48 flex-shrink-0 cursor-pointer group"
+                onClick={() => setShowVideo(true)}
+                onMouseEnter={() => setShowVideo(true)}
+              >
+                {/* Speech Bubble - Minimal Aesthetic */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: 0.6,
+                    duration: 0.4,
+                    ease: "easeOut"
+                  }}
+                  className="absolute -top-14 sm:-top-16 -left-6 sm:-left-10 z-10"
+                >
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg px-3 py-2 group-hover:bg-white/10 transition-all duration-300"
+                    style={{
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                    }}
+                  >
+                    <p className="text-xs sm:text-sm font-light text-white/90 tracking-wide whitespace-nowrap">
+                      I loveee travelling solo
+                    </p>
+
+                    {/* Minimal tail */}
+                    <div className="absolute -bottom-1 left-6 w-2 h-2 bg-white/5 backdrop-blur-xl border-l border-b border-white/10 transform rotate-45 group-hover:bg-white/10 transition-all duration-300" />
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Image
+                    src="/images/Gemini_Generated_Image_btm2s5btm2s5btm2-Photoroom.png"
+                    alt="Anisha illustration"
+                    width={192}
+                    height={192}
+                    className="object-contain"
+                  />
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
         </motion.div>
 
@@ -236,6 +289,51 @@ useEffect(() => {
         </motion.div>
 
       </div>
+
+      {/* Video Modal - Minimal Design */}
+      <AnimatePresence>
+        {showVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowVideo(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative max-w-2xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setShowVideo(false)}
+                className="absolute -top-12 right-0 text-white/60 hover:text-white transition-colors text-sm font-light tracking-wider"
+              >
+                Close
+              </button>
+
+              {/* Video container */}
+              <div className="relative bg-black rounded-lg overflow-hidden border border-white/10"
+                style={{
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+                }}
+              >
+                <video
+                  src="/images/miai_bg_remover-1770975639000.mp4"
+                  autoPlay
+                  loop
+                  controls
+                  className="w-full h-auto"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
