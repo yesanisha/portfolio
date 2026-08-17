@@ -1,448 +1,163 @@
 'use client';
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Download, Play, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
+import { Apple, ArrowUpRight, ExternalLink, Smartphone } from 'lucide-react';
+
+const products = [
+  {
+    name: 'Guac',
+    type: 'Workforce management',
+    description: 'Scheduling, leave, attendance and employee self-service for shift-based teams.',
+    image: '/images/guac-dashboard.webp',
+    imageAlt: 'Guac workforce management dashboard',
+    stack: 'React Native · Firebase',
+    links: [
+      ['Google Play', 'https://play.google.com/store/apps/details?id=com.guac.roster&hl=en_IN', Smartphone],
+      ['App Store', 'https://apps.apple.com/us/app/guac/id1660776179', Apple],
+      ['Website', 'https://www.guac.sg/', ExternalLink],
+    ],
+  },
+  {
+    name: 'Clnk.',
+    type: 'Digital networking',
+    description: 'One digital identity for profiles, contacts, appointments, NFC and QR sharing.',
+    image: '/images/clnk-preview.webp',
+    imageAlt: 'Clnk digital networking product',
+    stack: 'React Native · AWS',
+    links: [
+      ['Google Play', 'https://play.google.com/store/apps/details?id=com.rescuetribe.clnk&hl=en_IN', Smartphone],
+      ['App Store', 'https://apps.apple.com/us/app/clnk/id6760162175', Apple],
+      ['Website', 'https://clnk.sg/', ExternalLink],
+    ],
+  },
+  {
+    name: 'MoveABox',
+    type: 'Logistics platform',
+    description: 'A booking and service journey for relocation, courier, storage and corporate logistics.',
+    image: '/images/moveabox.jpg',
+    imageAlt: 'MoveABox logistics website',
+    stack: 'Next.js · Node.js',
+    links: [['Live website', 'https://www.moveabox.in/', ExternalLink]],
+  },
+];
+
+const explorations = [
+  {
+    name: 'TouchGrass',
+    status: 'Building now',
+    description: 'Real-world quests, XP and streaks that make getting offline feel rewarding.',
+    stack: ['React Native', 'Expo'],
+    href: 'https://github.com/yesanisha/touchgrass',
+    kind: 'touchgrass',
+  },
+  {
+    name: 'Curricula',
+    status: 'Live concept',
+    description: 'Personal learning paths and focused daily planning in one calm workspace.',
+    stack: ['Next.js', 'Firebase'],
+    href: 'https://curricula-anisha-2026.web.app/',
+    kind: 'curricula',
+  },
+  {
+    name: 'Crave',
+    status: 'Live concept',
+    description: 'A personal recipe journal with a kitchen companion and practical cooking tools.',
+    stack: ['Next.js', 'Firebase'],
+    href: 'https://folio-recipes-anisha-2026.web.app/',
+    kind: 'crave',
+  },
+];
 
 export default function Projects() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedApp, setSelectedApp] = useState(null);
-
-  const projects = [
-    {
-      title: 'DOTKO.IN',
-      description: 'Comprehensive MSME Trust & Verification Platform - India\'s first transparent B2B rating system for MSMEs with verified transaction tracking and fair dispute resolution.',
-      image: '/images/dotko.jpg',
-      period: 'Dec 2025 - Present',
-      tech: ['React Native', 'Expo', 'Firebase', 'Firestore', 'Cloud Storage'],
-      github: 'https://github.com/yesanisha/dotko',
-      download: 'https://expo.dev/artifacts/eas/j6QyJ8cyDNKuQ3veneo7zD.apk',
-      demo: [
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.58.jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.58 (1).jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.58 (2).jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.58 (3).jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.59.jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.59 (1).jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.32.59 (2).jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.33.00.jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.33.00 (1).jpeg',
-        '/Dotko/WhatsApp Image 2026-02-12 at 19.33.00 (2).jpeg'
-      ],
-      demoType: 'images',
-      qrCode: '/images/dotkoscanner_app.png',
-      featured: true,
-      highlights: [
-        'Built comprehensive MSME verification platform with GSTIN/PAN lookup',
-        'Designed fair 72-hour appeal process for transparent dispute resolution',
-        'Implemented secure multi-step signup with business identity verification',
-        'Created supplier protection system with mandatory PDF document proof',
-        'Architected privacy-first design keeping supplier details confidential'
-      ]
-    },
-    
-    {
-      title: 'Farma',
-      description: 'Production-ready cross-platform mobile application with AI-powered plant disease detection using computer vision and real-time ML inference.',
-      image: '/images/Farma.jpg',
-      period: 'Aug 2025 - Oct 2025',
-      tech: ['React Native', 'Firebase', 'Flask', 'YOLOv5/v8', 'GCP'],
-      github: 'https://github.com/yesanisha/farma-v3',
-      download: 'https://expo.dev/accounts/yesanisha/projects/farma/builds/f9da75a2-1427-4216-8308-7a19f37e0143',
-      demo: 'https://appetize.io/app/b_ff44pezyfq6kwk2vcb4jor6ja4',
-      demoType: 'video',
-      featured: true,
-      highlights: [
-        'Built cross-platform app with React Native frontend, Firebase backend, and Flask ML API',
-        'Created offline-first architecture with AsyncStorage caching for 5 plant species',
-        'Successfully integrated Gemini API chatbot to enhance user interaction',
-        'Secure authentication with Firebase Phone Auth + JWT serving real-time ML predictions'
-      ]
-    },
-    {
-      title: 'HeyRoomie',
-      description: 'Mobile app with multi-tiered architecture connecting people looking for roommates through intelligent ML-powered matching algorithms.',
-      image: '/images/HeyRoomie.jpg',
-      period: 'Sept 2025 - Nov 2025',
-      tech: ['React Native', 'FastAPI', 'Firebase', 'OAuth 2.0', 'ML'],
-      github: 'https://github.com/yesanisha/heyroomie-app',
-      download: 'https://heyroomie.in',
-      demo: '/images/HeyRoomie.jpg',
-      demoType: 'images',
-      featured: true,
-      highlights: [
-        'Architecting mobile app with multi-tiered architecture',
-        'Designing ML-powered matching algorithms analyzing user preferences',
-        'Implementing secure authentication with OAuth 2.0 and encrypted data storage',
-        'Working in agile environment with bi-weekly sprints and code reviews'
-      ]
-    },
-    
-    {
-      title: 'MoveABox',
-      description: 'Professional logistics and moving services platform connecting customers with verified movers and packers across India.',
-      image: '/images/MoveABox.jpg',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
-      github: 'https://github.com/yesanisha/moveabox',
-      download: 'https://www.moveabox.in/',
-      demo: '/images/MoveABox.jpg',
-      demoType: 'images',
-      featured: false
-    },
-    {
-      title: 'MovieTime',
-      description: 'Android movie recommendation application with personalized suggestions and trending content.',
-      image: '/images/MovieTime.jpg',
-      tech: ['Kotlin', 'Android SDK', 'TMDB API', 'Material Design'],
-      github: 'https://github.com/yesanisha/movie-recommendation-application',
-      download: null,
-      demo: '/images/MovieTime.jpg',
-      demoType: 'images',
-      featured: false
-    },
-    {
-      title: 'LinkedIn Auto Search',
-      description: 'Automation tool for LinkedIn job search and application tracking with intelligent filtering.',
-      image: '/images/LinkedIn.jpg',
-      tech: ['JavaScript', 'Node.js', 'Puppeteer', 'Automation'],
-      github: 'https://github.com/yesanisha/linkedin-auto-search',
-      download: null,
-      demo: '/images/LinkedIn.jpg',
-      demoType: 'images',
-      featured: false
-    }
-  ];
+  const [activeProduct, setActiveProduct] = useState(0);
 
   return (
-    <section id="projects" className="py-32 px-6 bg-black relative">
-      <div className="max-w-7xl mx-auto">
-        {/* Header - Minimal */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <p className="text-sm text-pink-500 font-mono mb-2">$ ls projects/</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
-            Selected Work
-          </h2>
-        </motion.div>
+    <section id="projects" className="bg-[#e5e0d7] px-5 py-16 text-[#171714] sm:px-8 lg:px-12 lg:py-20">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="grid gap-4 border-t border-black/20 pt-4 sm:grid-cols-[160px_1fr]">
+          <p className="text-[11px] font-semibold uppercase tracking-[.22em] text-black/45">Work / 01</p>
+          <div>
+            <h2 className="text-2xl font-medium tracking-[-.03em] sm:text-3xl">Selected products</h2>
+            <p className="mt-1 text-sm text-black/45">Live on mobile and web.</p>
+          </div>
+        </div>
 
-        {/* Featured Projects - Large Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-16">
-          {projects.filter(p => p.featured).map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+        <div className="mt-10 flex flex-col gap-4 lg:h-[540px] lg:flex-row">
+          {products.map((product, index) => (
+            <motion.article
+              key={product.name}
+              layout
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
+              animate={{ flexGrow: activeProduct === index ? 2.2 : 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-800 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/20 transition-all duration-500"
+              transition={{
+                opacity: { duration: .55, delay: index * .06 },
+                y: { duration: .55, delay: index * .06, ease: [0.22, 1, 0.36, 1] },
+                flexGrow: { type: 'spring', stiffness: 105, damping: 22, mass: .7 },
+                layout: { type: 'spring', stiffness: 105, damping: 22, mass: .7 },
+              }}
+              onMouseEnter={() => setActiveProduct(index)}
+              onFocusCapture={() => setActiveProduct(index)}
+              onClick={() => setActiveProduct(index)}
+              className="group relative min-h-[390px] flex-1 transform-gpu overflow-hidden rounded-2xl border border-black/10 shadow-[0_16px_45px_rgba(42,35,28,.10)] will-change-[flex-grow] lg:min-h-0"
             >
-              {/* Image Container */}
-              <div className="relative h-56 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                />
-
-                {/* QR Code - Bottom Right */}
-                {project.qrCode && (
-                  <div className="absolute bottom-3 right-3 bg-white p-2 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <img
-                      src={project.qrCode}
-                      alt="Scan QR for application"
-                      className="w-20 h-20"
-                    />
-                    <p className="text-[8px] text-center text-gray-600 mt-1 font-medium">
-                      Scan QR
-                    </p>
-                  </div>
-                )}
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    {project.period && (
-                      <span className="inline-block text-xs text-white/90 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
-                        {project.period}
-                      </span>
-                    )}
-                  </div>
+              <Image src={product.image} alt={product.imageAlt} fill sizes="(max-width: 1024px) 100vw, 60vw" className={`object-cover transition duration-1000 ease-out ${activeProduct === index ? 'lg:scale-100' : 'lg:scale-105'}`} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end p-5 text-white sm:p-6">
+                <div className="flex items-end justify-between gap-4">
+                  <div><p className="text-[10px] uppercase tracking-[.18em] text-white/55">{product.type}</p><h3 className="mt-1 text-2xl font-medium tracking-tight">{product.name}</h3></div>
+                  <span className="text-xs text-white/45">0{index + 1}</span>
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-pink-500 transition-colors">
-                  {project.title}
-                </h3>
-
-                {/* Description - shows only snippet, full on hover */}
-                <div className="relative overflow-hidden mb-4">
-                  <p className="text-sm text-gray-400 line-clamp-2 group-hover:line-clamp-none transition-all">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Tech Stack - compact pills */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.slice(0, 3).map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-2 py-1 bg-gray-800 text-gray-300 rounded-md border border-gray-700"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <span className="text-xs px-2 py-1 text-gray-500">
-                      +{project.tech.length - 3}
-                    </span>
-                  )}
-                </div>
-
-                {/* Highlights - hidden, shows on hover */}
-                {project.highlights && (
-                  <div className="max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-500 opacity-0 group-hover:opacity-100">
-                    <ul className="space-y-1 mb-4 text-xs text-gray-400">
-                      {project.highlights.slice(0, 3).map((highlight, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-pink-400 mt-0.5">›</span>
-                          <span>{highlight}</span>
-                        </li>
+                <div className={`grid transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] lg:overflow-hidden ${activeProduct === index ? 'lg:grid-rows-[1fr] lg:opacity-100' : 'lg:grid-rows-[0fr] lg:opacity-0'}`}>
+                  <div className="min-h-0">
+                    <p className="mt-4 max-w-lg text-sm leading-5 text-white/75">{product.description}</p>
+                    <p className="mt-2 text-[11px] text-white/45">{product.stack}</p>
+                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                      {product.links.map(([label, href, Icon]) => (
+                        <a key={href} href={href} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()} className="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 text-[11px] font-medium text-white backdrop-blur-md transition hover:bg-white hover:text-black"><Icon className="h-3 w-3" />{label}</a>
                       ))}
-                    </ul>
+                    </div>
                   </div>
-                )}
-
-                {/* Actions - 3 Buttons */}
-                <div className="flex flex-wrap gap-2">
-                  {/* Code Button */}
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-400 hover:text-white border border-gray-700 hover:border-gray-600 rounded-lg transition-colors"
-                  >
-                    <Code className="w-4 h-4" />
-                    Code
-                  </a>
-
-                  {/* Download App Button */}
-                  {project.download && (
-                    <a
-                      href={project.download}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 text-sm bg-pink-500 text-white hover:bg-pink-600 rounded-lg transition-colors"
-                    >
-                      <Download className="w-4 h-4" />
-                      Download
-                    </a>
-                  )}
-
-                  {/* Demo Button */}
-                  {project.demo && (
-                    <button
-                      onClick={() => {
-                        setSelectedApp(project);
-                        setIsModalOpen(true);
-                      }}
-                      className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-700 text-white hover:bg-gray-600 rounded-lg transition-colors"
-                    >
-                      <Play className="w-4 h-4" />
-                      Demo
-                    </button>
-                  )}
                 </div>
               </div>
-
-              {/* Corner accent - appears on hover */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/0 to-purple-500/0 group-hover:from-pink-500/10 group-hover:to-purple-500/10 transition-all duration-300 rounded-bl-[100%]" />
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
-        {/* Other Projects - Compact List */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-semibold text-white mb-6">More Projects</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {projects.filter(p => !p.featured).map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="group bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-pink-500/50 rounded-xl p-5 hover:shadow-lg hover:shadow-pink-500/20 transition-all duration-300"
-              >
-                {/* Image - smaller */}
-                <div className="relative h-32 bg-gray-800 rounded-lg overflow-hidden mb-4">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+        <div className="mt-16 border-t border-black/20 pt-4">
+          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div><p className="text-[11px] font-semibold uppercase tracking-[.22em] text-black/45">Personal work</p><h2 className="mt-2 text-2xl font-medium tracking-tight">Personal explorations</h2></div>
+            <p className="text-sm text-black/45">Independent ideas designed and built end to end.</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {explorations.map((project) => (
+              <motion.a key={project.name} href={project.href} target="_blank" rel="noreferrer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -4 }} viewport={{ once: true }} transition={{ duration: .55, ease: [0.22, 1, 0.36, 1] }} className="group overflow-hidden border border-black/10 bg-[#f5f1e9] shadow-[0_12px_35px_rgba(42,35,28,.04)] transition hover:border-black/25">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  {project.kind === 'touchgrass' ? (
+                    <div className="absolute inset-0 flex items-center justify-center bg-[#e3d5bd] p-5">
+                      <div className="w-full rounded-[1.4rem] border border-black/10 bg-[#f5efe3]/90 p-5 shadow-[0_20px_50px_rgba(64,49,36,.13)]">
+                        <p className="text-[9px] font-semibold uppercase tracking-[.2em] text-black/40">Quest board</p>
+                        <p className="mt-5 text-2xl font-semibold tracking-[-.04em]">Your next adventure is outside.</p>
+                        <p className="mt-3 text-xs text-black/40">100 quests · XP · streaks · titles</p>
+                      </div>
+                    </div>
+                  ) : project.kind === 'crave' ? (
+                    <Image src="/images/crave-preview.png" alt="Crave recipe journal" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-700 group-hover:scale-[1.02]" />
+                  ) : <Image src="/images/curricula-preview.png" alt="Curricula learning planner" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-700 group-hover:scale-[1.02]" />}
                 </div>
-
-                <h4 className="font-semibold text-white mb-2">{project.title}</h4>
-                <p className="text-sm text-gray-400 mb-3 line-clamp-2">{project.description}</p>
-
-                {/* Tech tags - minimal */}
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {project.tech.slice(0, 2).map((tech, i) => (
-                    <span key={i} className="text-xs px-2 py-0.5 bg-gray-800 text-gray-400 rounded border border-gray-700">
-                      {tech}
-                    </span>
-                  ))}
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-4"><div><p className="text-[10px] uppercase tracking-[.16em] text-black/35">{project.status}</p><h3 className="mt-1.5 text-xl font-medium">{project.name}</h3></div><ArrowUpRight className="h-4 w-4 text-black/35 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-black" /></div>
+                  <p className="mt-3 text-xs leading-5 text-black/55">{project.description}</p>
+                  <div className="mt-4 flex gap-3">{project.stack.map(item => <span key={item} className="text-[11px] text-black/35">{item}</span>)}</div>
                 </div>
-
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  View Code
-                  <ArrowUpRight className="w-3 h-3" />
-                </a>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
-        </motion.div>
-
-        {/* GitHub Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <a
-            href="https://github.com/yesanisha"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-          >
-            <span>View 19+ repositories on GitHub</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
-        </motion.div>
+        </div>
       </div>
-
-      {/* Demo Modal */}
-      {isModalOpen && selectedApp && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6"
-          onClick={() => {
-            setIsModalOpen(false);
-            setSelectedApp(null);
-          }}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-gray-900 border border-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="p-6 border-b border-gray-800 flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl font-bold text-white">{selectedApp.title}</h3>
-                <p className="text-gray-400 text-sm mt-1">Demo Preview</p>
-              </div>
-              <button
-                onClick={() => {
-                  setIsModalOpen(false);
-                  setSelectedApp(null);
-                }}
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Content */}
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-              {selectedApp.demoType === 'video' ? (
-                <div className="aspect-video bg-black rounded-lg overflow-hidden">
-                  <iframe
-                    src={selectedApp.demo}
-                    className="w-full h-full"
-                    allow="camera; microphone; geolocation"
-                    loading="lazy"
-                  />
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {Array.isArray(selectedApp.demo) ? (
-                    <div className="grid grid-cols-3 gap-3">
-                      {selectedApp.demo.map((image, index) => (
-                        <img
-                          key={index}
-                          src={image}
-                          alt={`${selectedApp.title} demo ${index + 1}`}
-                          className="w-full object-contain rounded-lg border border-gray-800 hover:scale-105 transition-transform duration-200"
-                        />
-                      ))}
-                    </div>
-                  ) : (
-                    <img
-                      src={selectedApp.demo}
-                      alt={`${selectedApp.title} demo`}
-                      className="w-full rounded-lg border border-gray-800"
-                    />
-                  )}
-                  <p className="text-gray-400 text-center text-sm">
-                    Demo screenshots and media
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Footer */}
-            <div className="p-6 border-t border-gray-800 flex gap-3">
-              {selectedApp.github && (
-                <a
-                  href={selectedApp.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-gray-400 hover:text-white border border-gray-700 hover:border-gray-600 rounded-lg transition-colors"
-                >
-                  <Code className="w-4 h-4" />
-                  View Code
-                </a>
-              )}
-              {selectedApp.download && (
-                <a
-                  href={selectedApp.download}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 text-sm bg-pink-500 text-white hover:bg-pink-600 rounded-lg transition-colors"
-                >
-                  <Download className="w-4 h-4" />
-                  Download App
-                </a>
-              )}
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
     </section>
   );
 }

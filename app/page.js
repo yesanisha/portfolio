@@ -8,7 +8,6 @@ import Projects from '@/components/Projects';
 // import Travel from '@/components/Travel';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import EasterEggs from '@/components/EasterEggs';
 
 export default function Home() {
   return (
@@ -16,19 +15,12 @@ export default function Home() {
       {/* Navigation */}
       <Navigation />
 
-      {/* Easter Eggs Handler */}
-      <EasterEggs />
-
-      {/* Main Content */}
       <Hero />
-      <About />
-      <Skills />
-      <Experience />
       <Projects />
-      {/* <Travel /> */}
+      <About />
+      <Experience />
+      <Skills />
       <Contact />
-
-      {/* Footer */}
       <Footer />
     </main>
   );

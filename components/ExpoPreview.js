@@ -20,7 +20,7 @@ export default function ExpoPreview() {
   const features = [
     { icon: Zap, text: "Lightning-fast updates", color: "from-yellow-400 to-orange-500" },
     { icon: Rocket, text: "Production-ready build", color: "from-pink-500 to-purple-600" },
-    { icon: CheckCircle, text: "Cross-platform compatible", color: "from-green-400 to-emerald-600" },
+    { icon: CheckCircle, text: "Cross-platform compatible", color: "from-stone-400 to-stone-600" },
     { icon: Sparkles, text: "Latest runtime v1.0.0", color: "from-cyan-400 to-blue-600" }
   ];
 

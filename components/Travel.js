@@ -4,7 +4,7 @@ import { MapPin, Camera, Plane } from 'lucide-react';
 
 export default function Travel() {
   const destinations = [
-    { city: 'Jaipur', country: 'India', emoji: '🏰', memory: 'Pink city vibes and royal palaces' },
+    { city: 'Jaipur', country: 'India', emoji: '🏰', memory: 'Pink City architecture and royal palaces' },
     { city: 'Goa', country: 'India', emoji: '🏖️', memory: 'Beach sunsets and Portuguese architecture' },
     { city: 'Delhi', country: 'India', emoji: '🕌', memory: 'Historical monuments and street food' },
     { city: 'Mumbai', country: 'India', emoji: '🌆', memory: 'City that never sleeps' },

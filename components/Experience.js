@@ -1,235 +1,56 @@
 'use client';
+
 import { motion } from 'framer-motion';
-import { Briefcase, MapPin, Calendar, GraduationCap } from 'lucide-react';
+
+const roles = [
+  {
+    period: 'Mar 2026 to Present', company: 'The Rescue Tribe', title: 'Mobile App Developer', place: 'Singapore · Remote', current: true,
+    summary: 'Owning mobile development across Guac and Clnk, from product flows and API integrations to release quality and store delivery.',
+    points: ['Own mobile application development across Guac and Clnk, translating product requirements into production-ready React Native experiences.', 'Build Guac workflows for roster visibility, shift requests and swaps, leave, attendance, notifications, and employee self-service.', 'Develop Clnk experiences for digital profiles, QR and NFC sharing, contact exchange, appointments, and link management.', 'Integrate secure authentication and backend APIs while handling application state, edge cases, and cross-platform behavior.', 'Handle testing, debugging, performance refinement, and Android and iOS release delivery.'],
+    stack: ['React Native', 'REST APIs', 'Firebase', 'Android & iOS']
+  },
+  {
+    period: 'Nov 2025 to Feb 2026', company: 'MoveABox', title: 'Full Stack Developer Intern', place: 'Bengaluru',
+    summary: 'Building the production logistics platform and the systems behind pricing, customer capture, operations, and delivery workflows.',
+    points: ['Developed the logistics platform with real-time shipment tracking and automated operational workflows.', 'Built the full-stack application with Next.js and optimized client-side performance.', 'Integrated Zoho CRM APIs for customer management, invoice generation, and automated communication.', 'Implemented APIs for order tracking, packing automation, and multi-stage shipment updates.', 'Built responsive admin tools for analytics, operations, and live order visibility.'],
+    stack: ['Next.js', 'Node.js', 'Zoho API', 'PostgreSQL', 'REST APIs']
+  },
+  {
+    period: 'Sep to Nov 2025', company: 'Hey Roomie', title: 'React Native Developer & Technical Lead', place: 'Remote',
+    summary: 'Led mobile architecture for a roommate discovery product with preference-based matching and secure account flows.',
+    points: ['Architected the React Native application with FastAPI, Firebase, and a recommendation layer.', 'Designed preference and compatibility flows for roommate discovery.', 'Implemented OAuth authentication and secure account data handling.', 'Led technical execution through sprint planning, reviews, and evolving product requirements.'], stack: ['React Native', 'FastAPI', 'Firebase', 'OAuth', 'Python']
+  },
+  {
+    period: 'Nov 2024 to Feb 2025', company: 'Wrexa Technologies', title: 'UI/UX Design Intern', place: 'Remote',
+    summary: 'Designed responsive mobile and web experiences for client products and partnered with developers through implementation.',
+    points: ['Collaborated with international clients on mobile and web product design.', 'Created more than 15 responsive interfaces for ecommerce and SaaS products.', 'Partnered with developers to maintain design fidelity through implementation.', 'Iterated prototypes and interfaces through direct client feedback.'], stack: ['Figma', 'Prototyping', 'Responsive design', 'Adobe XD']
+  }
+];
 
 export default function Experience() {
-  const experiences = [
-    {
-      title: 'Full Stack Developer Intern',
-      company: 'MoveABox',
-      location: 'Bengaluru',
-      period: 'Nov 2025 - Present',
-      description: [
-        'Developed enterprise logistics platform for packers and movers with real-time shipment tracking and automated workflows',
-        'Architected full-stack solution using Next.js for server-side rendering and optimized client performance',
-        'Integrated Zoho CRM APIs for customer management, invoice generation, and automated email communications',
-        'Implemented RESTful APIs for order tracking, packing automation, and multi-stage shipment status updates',
-        'Built responsive admin dashboard with analytics, route optimization, and real-time location tracking integration'
-      ],
-      tech: ['Next.js', 'Node.js', 'Zoho API', 'PostgreSQL', 'REST APIs', 'React', 'Tailwind CSS'],
-      status: 'current'
-    },
-    {
-      title: 'React Native App Developer (Intern) & Technical Lead',
-      company: 'Hey Roomie',
-      location: 'Remote',
-      period: 'Sept 2025 - Nov 2025',
-      description: [
-        'Architecting mobile app with multi-tiered architecture: React Native frontend, FastAPI backend, Firebase, and ML recommendation engine',
-        'Designing matching algorithms analyzing user preferences and compatibility metrics to optimize user experience',
-        'Implementing secure authentication with OAuth 2.0 and encrypted data storage following OWASP practices',
-        'Working in agile environment with bi-weekly sprints, code reviews, and handling ambiguous product requirements'
-      ],
-      tech: ['React Native', 'FastAPI', 'Firebase', 'OAuth 2.0', 'ML', 'Python', 'Agile'],
-      status: 'completed'
-    },
-    {
-      title: 'UI/UX Designer (Intern)',
-      company: 'Wrexa Technologies',
-      location: 'Remote',
-      period: 'Nov 2024 - Feb 2025',
-      description: [
-        'Collaborated with international clients to deliver mobile and web application designs',
-        'Created 15+ responsive UI/UX designs in Figma for e-commerce and SaaS applications',
-        'Worked directly with developers to ensure design implementation fidelity',
-        'Participated in client feedback sessions and iterated designs based on requirements'
-      ],
-      tech: ['Figma', 'UI/UX Design', 'Prototyping', 'Responsive Design', 'Adobe XD'],
-      status: 'completed'
-    }
-  ];
-
-  const education = {
-    degree: 'Bachelor of Computer Application',
-    school: 'Christ University',
-    location: 'Bengaluru, Karnataka',
-    period: '2023 - 2026',
-    gpa: '8.5 CGPA',
-    highlights: [
-      'Relevant Coursework: Data Structures, Algorithms, Database Management, Web Development',
-      'Active member of coding clubs and tech communities',
-      'Participated in multiple hackathons and coding competitions'
-    ]
-  };
-
   return (
-    <section id="experience" className="py-20 px-4 bg-black relative overflow-hidden">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(236,72,153,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(236,72,153,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-      <div className="max-w-5xl mx-auto relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
-            Experience
-          </h2>
-          <p className="text-gray-400">
-            Professional journey and key contributions
-          </p>
-        </motion.div>
-
-        {/* Timeline Roadmap */}
-        <div className="relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-pink-500/50 via-pink-500/30 to-transparent" />
-
-          {/* Experience items */}
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative pl-0 md:pl-16"
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-0 md:left-8 top-6 -translate-x-1/2">
-                  <div
-                    className={`w-4 h-4 rounded-full border-4 border-black transition-transform duration-200 group-hover:scale-125 ${
-                      exp.status === 'current' ? 'bg-pink-500' : 'bg-gray-600'
-                    }`}
-                  />
-                </div>
-
-                {/* Card */}
-                <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-pink-500/50 rounded-lg cursor-pointer transition-all duration-300">
-                    <div className="p-4 sm:p-6">
-                      {/* Company header - always visible */}
-                      <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
-                        <div className="flex items-center gap-4">
-                          <Briefcase className="w-5 h-5 text-pink-500 flex-shrink-0" />
-                          <div>
-                            <h3 className="text-xl font-bold text-white group-hover:text-pink-500 transition-colors">
-                              {exp.company}
-                            </h3>
-                            <p className="text-sm text-gray-400 flex items-center gap-2 mt-1">
-                              <Calendar className="w-3 h-3" />
-                              {exp.period}
-                            </p>
-                          </div>
-                          {exp.status === 'current' && (
-                            <span className="px-3 py-1 bg-pink-500/20 text-pink-400 text-xs font-medium rounded-full border border-pink-500/30">
-                              Current
-                            </span>
-                          )}
-                        </div>
-                        <span className="hidden sm:block text-gray-500 text-sm group-hover:opacity-0 transition-opacity">
-                          Hover for details
-                        </span>
-                      </div>
-
-                      {/* Expanded details - hidden by default, shows on hover */}
-                      <div className="max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-500 opacity-0 group-hover:opacity-100">
-                        {/* Job Title */}
-                        <p className="text-lg text-pink-400 font-medium mb-3">
-                          {exp.title}
-                        </p>
-
-                        {/* Location */}
-                        <p className="text-sm text-gray-400 flex items-center gap-2 mb-4">
-                          <MapPin className="w-4 h-4" />
-                          {exp.location}
-                        </p>
-
-                        {/* Description */}
-                        <ul className="space-y-2 mb-4">
-                          {exp.description.map((item, i) => (
-                            <li key={i} className="text-gray-300 text-sm flex items-start gap-3">
-                              <span className="text-pink-500 mt-1 flex-shrink-0">›</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        {/* Tech stack */}
-                        <div className="flex flex-wrap gap-2">
-                          {exp.tech.map((tech, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-medium rounded border border-gray-700"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </motion.div>
-            ))}
-          </div>
+    <section id="experience" className="bg-[#f2f0ea] px-5 py-20 text-[#171714] sm:px-8 lg:px-12 lg:py-24">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="grid gap-10 border-t border-black/20 pt-5 lg:grid-cols-12">
+          <p className="text-xs font-semibold uppercase tracking-[.2em] lg:col-span-3">Experience / 03</p>
+          <div className="lg:col-span-8"><h2 className="text-3xl font-medium tracking-[-.045em] sm:text-5xl">The road so far.</h2><p className="mt-4 max-w-xl text-sm leading-6 text-black/50">A progression from interface design to leading and shipping complete mobile and web products.</p></div>
         </div>
-
-        {/* Education */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20"
-        >
-          <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-            <GraduationCap className="w-8 h-8 text-pink-500" />
-            Education
-          </h3>
-
-          <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg p-6 sm:p-8">
-            <div className="flex flex-col md:flex-row items-start justify-between gap-6 mb-6">
-              <div>
-                <h4 className="text-2xl font-bold text-white mb-2">
-                  {education.degree}
-                </h4>
-                <p className="text-xl text-pink-400 font-medium mb-2">
-                  {education.school}
-                </p>
-                <p className="text-gray-400 flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  {education.location}
-                </p>
+        <div className="relative mt-12 lg:ml-[25%]">
+          <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }} className="absolute bottom-8 left-[7px] top-3 w-px origin-top bg-black/20 sm:left-[172px]" />
+          {roles.map((role, i) => (
+            <motion.article key={role.company} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: .55, delay: i * .05, ease: [0.22, 1, 0.36, 1] }} className="relative grid gap-4 pb-10 pl-8 sm:grid-cols-[150px_1fr] sm:pl-0">
+              <span className={`absolute left-0 top-1.5 z-10 h-[15px] w-[15px] rounded-full border-2 border-[#f2f0ea] ${role.current ? 'bg-[#171714]' : 'bg-[#aaa397]'} sm:left-[165px]`} />
+              <div><p className="text-xs font-semibold uppercase tracking-[.08em]">{role.period}</p><p className="mt-1 text-xs text-black/40">{role.place}</p></div>
+              <div className="sm:pl-10">
+                <div className="flex flex-wrap items-center gap-3"><h3 className="text-xl font-medium tracking-tight sm:text-2xl">{role.company}</h3>{role.current && <span className="rounded-full border border-black/20 bg-white/35 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Current</span>}</div>
+                <p className="mt-1 text-sm font-medium text-black/50">{role.title}</p>
+                <p className="mt-4 max-w-3xl text-sm leading-6 text-black/65">{role.summary}</p>
+                <ul className="mt-4 max-w-3xl space-y-2">{role.points.map(point => <li key={point} className="grid grid-cols-[14px_1fr] text-sm leading-5 text-black/55"><span className="text-black/30">•</span><span>{point}</span></li>)}</ul>
+                <div className="mt-4 flex flex-wrap gap-2">{role.stack.map(item => <span key={item} className="rounded-full border border-black/15 px-2.5 py-1 text-[11px] text-black/55">{item}</span>)}</div>
               </div>
-
-              <div className="text-right">
-                <div className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 mb-3">
-                  <Calendar className="w-5 h-5 text-gray-400 mx-auto mb-1" />
-                  <p className="text-white font-medium text-sm">{education.period}</p>
-                </div>
-                <div className="text-3xl font-bold text-pink-500">
-                  {education.gpa}
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {education.highlights.map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 text-gray-300 text-sm"
-                >
-                  <span className="text-pink-500 mt-1">•</span>
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );
