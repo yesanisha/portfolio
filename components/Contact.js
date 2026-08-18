@@ -13,7 +13,7 @@ export default function Contact() {
           <a href="mailto:anishakumari6145@gmail.com" className="group text-sm"><span className="block text-black/45">Email</span><span className="mt-2 flex items-center gap-2 font-medium break-all">anishakumari6145@gmail.com <ArrowUpRight className="h-4 w-4 transition group-hover:-translate-y-1 group-hover:translate-x-1" /></span></a>
           <a href="https://linkedin.com/in/yesanisha" target="_blank" rel="noreferrer" className="group text-sm"><span className="block text-black/45">LinkedIn</span><span className="mt-2 flex items-center gap-2 font-medium">/in/yesanisha <ArrowUpRight className="h-4 w-4" /></span></a>
           <a href="https://github.com/yesanisha" target="_blank" rel="noreferrer" className="group text-sm"><span className="block text-black/45">GitHub</span><span className="mt-2 flex items-center gap-2 font-medium">@yesanisha <ArrowUpRight className="h-4 w-4" /></span></a>
-          <div className="text-sm"><span className="block text-black/45">Based in</span><span className="mt-2 block font-medium">Bengaluru · Remote friendly</span></div>
+          <div className="text-sm"><span className="block text-black/45">Based in</span><span className="mt-2 block font-medium">Jaipur · Remote friendly</span></div>
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ const roles = [
     stack: ['React Native', 'REST APIs', 'Firebase', 'Android & iOS']
   },
   {
-    period: 'Nov 2025 to Feb 2026', company: 'MoveABox', title: 'Full Stack Developer Intern', place: 'Bengaluru',
+    period: 'Nov 2025 to Feb 2026', company: 'MoveABox', title: 'Full Stack Developer Intern', place: 'Jaipur',
     summary: 'Building the production logistics platform and the systems behind pricing, customer capture, operations, and delivery workflows.',
     points: ['Developed the logistics platform with real-time shipment tracking and automated operational workflows.', 'Built the full-stack application with Next.js and optimized client-side performance.', 'Integrated Zoho CRM APIs for customer management, invoice generation, and automated communication.', 'Implemented APIs for order tracking, packing automation, and multi-stage shipment updates.', 'Built responsive admin tools for analytics, operations, and live order visibility.'],
     stack: ['Next.js', 'Node.js', 'Zoho API', 'PostgreSQL', 'REST APIs']

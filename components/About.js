@@ -12,7 +12,7 @@ export default function About() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="lg:col-span-7">
             <h2 className="text-4xl font-medium leading-[1.05] tracking-[-.045em] sm:text-6xl">Engineering with a product point of view.</h2>
             <div className="mt-10 grid gap-6 text-base leading-7 text-black/65 sm:grid-cols-2">
-              <p>I’m a Bengaluru-based product engineer focused on mobile and web experiences. I care about the whole journey: understanding the problem, shaping a clear interface, building reliable systems, and getting the result into users’ hands.</p>
+              <p>I’m a Jaipur-based product engineer focused on mobile and web experiences. I care about the whole journey: understanding the problem, shaping a clear interface, building reliable systems, and getting the result into users’ hands.</p>
               <p>At The Rescue Tribe, I work remotely with a Singapore team across Guac and Clnk. My work spans React Native development, product flows, API integration, authentication, quality, and store delivery.</p>
             </div>
           </motion.div>
