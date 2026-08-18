@@ -129,8 +129,8 @@ export default function Projects() {
 
         <div className="mt-16 border-t border-black/20 pt-4">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div><p className="text-[11px] font-semibold uppercase tracking-[.22em] text-black/45">Personal work</p><h2 className="mt-2 text-2xl font-medium tracking-tight">Personal explorations</h2></div>
-            <p className="text-sm text-black/45">Independent ideas designed and built end to end.</p>
+            <div><p className="text-[11px] font-semibold uppercase tracking-[.22em] text-black/45">Personal work · 03 and growing</p><h2 className="mt-2 text-2xl font-medium tracking-tight">Personal explorations</h2></div>
+            <p className="max-w-md text-sm leading-5 text-black/45">An evolving collection of independent products where I explore new ideas, interactions, and ways of building.</p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {explorations.map((project) => (
