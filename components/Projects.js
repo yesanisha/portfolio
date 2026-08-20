@@ -41,6 +41,15 @@ const products = [
     stack: 'Next.js · Node.js',
     links: [['Live website', 'https://www.moveabox.in/', ExternalLink]],
   },
+  {
+    name: 'Himalya Ropes',
+    type: 'Manufacturing website',
+    description: 'A product-led company website for an Indian manufacturer and exporter of PP and HDPE ropes.',
+    image: '/images/himalya-ropes.jpg',
+    imageAlt: 'Himalya Ropes manufacturing website',
+    stack: 'HTML · CSS · JavaScript',
+    links: [['Live website', 'https://himalyaropes.vercel.app/index.html', ExternalLink]],
+  },
 ];
 
 const explorations = [
