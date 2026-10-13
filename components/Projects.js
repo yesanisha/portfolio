@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useCallback, useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { Apple, ArrowUpRight, ExternalLink, Smartphone } from 'lucide-react';
 
@@ -54,6 +54,20 @@ const products = [
 
 const explorations = [
   {
+    name: 'DiskLens',
+    status: 'Mac app',
+    description: 'A native macOS disk analyzer with treemaps, cleanup suggestions, duplicate and similar-photo finders.',
+    stack: ['SwiftUI', 'macOS'],
+    download: '/downloads/DiskLens.dmg',
+    video: '/images/disklens/walkthrough.mp4',
+    gallery: [
+      { src: '/images/disklens/shot-2.jpg', alt: 'DiskLens overview showing storage, recoverable space and insights' },
+      { src: '/images/disklens/shot-3.jpg', alt: 'DiskLens space treemap of folders on a drive' },
+      { src: '/images/disklens/shot-1.jpg', alt: 'DiskLens growth tracking with weekly snapshots' },
+    ],
+    kind: 'disklens',
+  },
+  {
     name: 'TouchGrass',
     status: 'Building now',
     description: 'Real-world quests, XP and streaks that make getting offline feel rewarding.',
@@ -61,26 +75,68 @@ const explorations = [
     href: 'https://github.com/yesanisha/touchgrass',
     kind: 'touchgrass',
   },
-  {
-    name: 'Curricula',
-    status: 'Live concept',
-    description: 'Personal learning paths and focused daily planning in one calm workspace.',
-    stack: ['Next.js', 'Firebase'],
-    href: 'https://curricula-anisha-2026.web.app/',
-    kind: 'curricula',
-  },
-  {
-    name: 'Crave',
-    status: 'Live concept',
-    description: 'A personal recipe journal with a kitchen companion and practical cooking tools.',
-    stack: ['Next.js', 'Firebase'],
-    href: 'https://folio-recipes-anisha-2026.web.app/',
-    kind: 'crave',
-  },
 ];
+
+function ExplorationGallery({ project, onClose }) {
+  const [index, setIndex] = useState(0);
+  const items = [...project.gallery.map((shot) => ({ type: 'image', ...shot })), { type: 'video', src: project.video, alt: `${project.name} walkthrough video` }];
+  const current = items[index];
+
+  useEffect(() => {
+    const handleKey = (event) => event.key === 'Escape' && onClose();
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [onClose]);
+
+  return (
+    <motion.div role="dialog" aria-modal="true" aria-label={`${project.name} gallery`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .25 }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm" onClick={onClose}>
+      <motion.div initial={{ opacity: 0, y: 24, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 16, scale: .98 }} transition={{ duration: .45, ease: [0.22, 1, 0.36, 1] }} className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-[#1c1a17] text-white shadow-2xl" onClick={(event) => event.stopPropagation()}>
+        <div className="flex items-start justify-between gap-4 p-5 sm:p-6">
+          <div>
+            <p className="text-[10px] uppercase tracking-[.16em] text-white/45">{project.status} · macOS 14+</p>
+            <h3 className="mt-1 text-xl font-medium">{project.name}</h3>
+            <p className="mt-1 max-w-xl text-xs leading-5 text-white/55">{project.description}</p>
+          </div>
+          <button type="button" onClick={onClose} aria-label="Close" className="rounded-full border border-white/20 px-3 py-1 text-xs text-white/70 transition hover:bg-white hover:text-black">Close</button>
+        </div>
+
+        <div className="relative aspect-video bg-black">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={current.src} initial={{ opacity: 0, scale: 1.02 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: .3, ease: 'easeOut' }} className="absolute inset-0">
+              {current.type === 'video' ? (
+                <video src={current.src} controls playsInline preload="metadata" className="h-full w-full object-contain" />
+              ) : (
+                <Image src={current.src} alt={current.alt} fill sizes="(max-width: 896px) 100vw, 896px" className="object-contain" />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div className="flex gap-2 overflow-x-auto">
+            {items.map((item, itemIndex) => (
+              <button key={item.src} type="button" onClick={() => setIndex(itemIndex)} aria-label={item.alt} aria-current={itemIndex === index} className={`relative h-14 w-24 shrink-0 overflow-hidden rounded-lg border transition ${itemIndex === index ? 'border-white' : 'border-white/15 opacity-60 hover:opacity-100'}`}>
+                {item.type === 'video' ? (
+                  <span className="flex h-full w-full items-center justify-center bg-white/10 text-[10px] uppercase tracking-[.14em] text-white/80">Video</span>
+                ) : (
+                  <Image src={item.src} alt="" fill sizes="96px" className="object-cover" />
+                )}
+              </button>
+            ))}
+          </div>
+          <a href={project.download} download className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-black transition hover:bg-white/85">
+            <ArrowUpRight className="h-4 w-4" />Download DMG
+          </a>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function Projects() {
   const [activeProduct, setActiveProduct] = useState(0);
+  const [openExploration, setOpenExploration] = useState(null);
+  const closeExploration = useCallback(() => setOpenExploration(null), []);
 
   return (
     <section id="projects" className="bg-[#e5e0d7] px-5 py-16 text-[#171714] sm:px-8 lg:px-12 lg:py-20">
@@ -141,11 +197,18 @@ export default function Projects() {
             <div><p className="text-[11px] font-semibold uppercase tracking-[.22em] text-black/45">Personal work · 03 and growing</p><h2 className="mt-2 text-2xl font-medium tracking-tight">Personal explorations</h2></div>
             <p className="max-w-md text-sm leading-5 text-black/45">An evolving collection of independent products where I explore new ideas, interactions, and ways of building.</p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {explorations.map((project) => (
-              <motion.a key={project.name} href={project.href} target="_blank" rel="noreferrer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -4 }} viewport={{ once: true }} transition={{ duration: .55, ease: [0.22, 1, 0.36, 1] }} className="group overflow-hidden border border-black/10 bg-[#f5f1e9] shadow-[0_12px_35px_rgba(42,35,28,.04)] transition hover:border-black/25">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {explorations.map((project) => {
+              const Card = project.href ? motion.a : project.gallery ? motion.button : motion.div;
+              return (
+              <Card key={project.name} href={project.href} target={project.href ? '_blank' : undefined} rel={project.href ? 'noreferrer' : undefined} type={project.gallery ? 'button' : undefined} onClick={project.gallery ? () => setOpenExploration(project) : undefined} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -4 }} viewport={{ once: true }} transition={{ duration: .55, ease: [0.22, 1, 0.36, 1] }} className="group block w-full overflow-hidden border border-black/10 bg-[#f5f1e9] text-left shadow-[0_12px_35px_rgba(42,35,28,.04)] transition hover:border-black/25">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  {project.kind === 'touchgrass' ? (
+                  {project.kind === 'disklens' ? (
+                    <>
+                      <Image src="/images/disklens/shot-2.jpg" alt="DiskLens overview dashboard" fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover object-top transition duration-700 group-hover:scale-[1.02]" />
+                      <Image src="/images/disklens/icon.png" alt="" width={56} height={56} className="absolute bottom-3 right-3 h-14 w-14 rounded-[14px] shadow-[0_8px_20px_rgba(0,0,0,.35)] ring-1 ring-black/10" />
+                    </>
+                  ) : project.kind === 'touchgrass' ? (
                     <div className="absolute inset-0 flex items-center justify-center bg-[#e3d5bd] p-5">
                       <div className="w-full rounded-[1.4rem] border border-black/10 bg-[#f5efe3]/90 p-5 shadow-[0_20px_50px_rgba(64,49,36,.13)]">
                         <p className="text-[9px] font-semibold uppercase tracking-[.2em] text-black/40">Quest board</p>
@@ -153,18 +216,20 @@ export default function Projects() {
                         <p className="mt-3 text-xs text-black/40">100 quests · XP · streaks · titles</p>
                       </div>
                     </div>
-                  ) : project.kind === 'crave' ? (
-                    <Image src="/images/crave-preview.png" alt="Crave recipe journal" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-700 group-hover:scale-[1.02]" />
-                  ) : <Image src="/images/curricula-preview.png" alt="Curricula learning planner" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-700 group-hover:scale-[1.02]" />}
+                  ) : null}
                 </div>
                 <div className="p-5">
-                  <div className="flex items-start justify-between gap-4"><div><p className="text-[10px] uppercase tracking-[.16em] text-black/35">{project.status}</p><h3 className="mt-1.5 text-xl font-medium">{project.name}</h3></div><ArrowUpRight className="h-4 w-4 text-black/35 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-black" /></div>
+                  <div className="flex items-start justify-between gap-4"><div><p className="text-[10px] uppercase tracking-[.16em] text-black/35">{project.status}</p><h3 className="mt-1.5 text-xl font-medium">{project.name}</h3></div>{(project.href || project.gallery) && <ArrowUpRight className="h-4 w-4 text-black/35 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-black" />}</div>
                   <p className="mt-3 text-xs leading-5 text-black/55">{project.description}</p>
                   <div className="mt-4 flex gap-3">{project.stack.map(item => <span key={item} className="text-[11px] text-black/35">{item}</span>)}</div>
                 </div>
-              </motion.a>
-            ))}
+              </Card>
+              );
+            })}
           </div>
+          <AnimatePresence>
+            {openExploration && <ExplorationGallery key={openExploration.name} project={openExploration} onClose={closeExploration} />}
+          </AnimatePresence>
         </div>
       </div>
     </section>
