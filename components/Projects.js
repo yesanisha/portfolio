@@ -65,7 +65,24 @@ const explorations = [
       { src: '/images/disklens/shot-3.jpg', alt: 'DiskLens space treemap of folders on a drive' },
       { src: '/images/disklens/shot-1.jpg', alt: 'DiskLens growth tracking with weekly snapshots' },
     ],
-    kind: 'disklens',
+    cover: '/images/disklens/shot-2.jpg',
+    coverAlt: 'DiskLens overview dashboard',
+    icon: '/images/disklens/icon.png',
+  },
+  {
+    name: 'Explora',
+    status: 'Mac app',
+    description: 'A native macOS file browser with big thumbnails, plain-English search, text inside screenshots and clipboard history.',
+    stack: ['SwiftUI', 'Vision', 'macOS'],
+    download: '/downloads/Explora.dmg',
+    gallery: [
+      { src: '/images/explora/home.jpg', alt: 'Explora home screen showing files as large thumbnails' },
+      { src: '/images/explora/search.jpg', alt: 'Explora searching files with a plain-English query' },
+      { src: '/images/explora/downloaded-from.jpg', alt: 'Explora Downloaded From list grouping downloads by source' },
+    ],
+    cover: '/images/explora/home.jpg',
+    coverAlt: 'Explora home screen',
+    icon: '/images/explora/icon.png',
   },
   {
     name: 'TouchGrass',
@@ -79,7 +96,7 @@ const explorations = [
 
 function ExplorationGallery({ project, onClose }) {
   const [index, setIndex] = useState(0);
-  const items = [...project.gallery.map((shot) => ({ type: 'image', ...shot })), { type: 'video', src: project.video, alt: `${project.name} walkthrough video` }];
+  const items = [...project.gallery.map((shot) => ({ type: 'image', ...shot })), ...(project.video ? [{ type: 'video', src: project.video, alt: `${project.name} walkthrough video` }] : [])];
   const current = items[index];
 
   useEffect(() => {
@@ -124,9 +141,11 @@ function ExplorationGallery({ project, onClose }) {
               </button>
             ))}
           </div>
-          <a href={project.download} download className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-black transition hover:bg-white/85">
-            <ArrowUpRight className="h-4 w-4" />Download DMG
-          </a>
+          {project.download && (
+            <a href={project.download} download className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-black transition hover:bg-white/85">
+              <ArrowUpRight className="h-4 w-4" />Download DMG
+            </a>
+          )}
         </div>
       </motion.div>
     </motion.div>
@@ -203,10 +222,10 @@ export default function Projects() {
               return (
               <Card key={project.name} href={project.href} target={project.href ? '_blank' : undefined} rel={project.href ? 'noreferrer' : undefined} type={project.gallery ? 'button' : undefined} onClick={project.gallery ? () => setOpenExploration(project) : undefined} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -4 }} viewport={{ once: true }} transition={{ duration: .55, ease: [0.22, 1, 0.36, 1] }} className="group block w-full overflow-hidden border border-black/10 bg-[#f5f1e9] text-left shadow-[0_12px_35px_rgba(42,35,28,.04)] transition hover:border-black/25">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  {project.kind === 'disklens' ? (
+                  {project.cover ? (
                     <>
-                      <Image src="/images/disklens/shot-2.jpg" alt="DiskLens overview dashboard" fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover object-top transition duration-700 group-hover:scale-[1.02]" />
-                      <Image src="/images/disklens/icon.png" alt="" width={56} height={56} className="absolute bottom-3 right-3 h-14 w-14 rounded-[14px] shadow-[0_8px_20px_rgba(0,0,0,.35)] ring-1 ring-black/10" />
+                      <Image src={project.cover} alt={project.coverAlt} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover object-top transition duration-700 group-hover:scale-[1.02]" />
+                      <Image src={project.icon} alt="" width={56} height={56} className="absolute bottom-3 right-3 h-14 w-14 rounded-[14px] shadow-[0_8px_20px_rgba(0,0,0,.35)] ring-1 ring-black/10" />
                     </>
                   ) : project.kind === 'touchgrass' ? (
                     <div className="absolute inset-0 flex items-center justify-center bg-[#e3d5bd] p-5">
