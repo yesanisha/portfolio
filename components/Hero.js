@@ -13,18 +13,18 @@ export default function Hero() {
   return (
     <section ref={section} className="min-h-[92svh] overflow-hidden bg-[#f2f0ea] px-5 pb-12 pt-28 text-[#171714] sm:px-8 sm:pt-36 lg:px-12">
       <div className="mx-auto flex min-h-[calc(92svh-10rem)] max-w-[1440px] flex-col justify-between">
-        <div className="grid gap-10 border-t border-black/20 pt-5 lg:grid-cols-12">
+        <div className="grid grid-cols-[7.5rem_1fr] items-start gap-5 border-t border-black/20 pt-5 sm:grid-cols-[10rem_1fr] sm:gap-8 lg:grid-cols-12 lg:gap-10">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .7 }} className="lg:col-span-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em]">Anisha Kumari<br />Product engineer</p>
-            <div className="relative mt-7 w-32 sm:w-40 lg:w-52">
+            <p className="hidden text-xs font-semibold uppercase tracking-[0.2em] sm:block">Anisha Kumari<br />Product engineer</p>
+            <div className="relative mt-[5.25rem] w-full sm:mt-7 sm:w-40 lg:w-52">
               <div className="relative">
                 <div className="absolute bottom-0 left-1/2 h-3 w-3/4 -translate-x-1/2 translate-y-1 rounded-full bg-black/15 blur-md" />
                 <Image src="/images/mobile beside image.png" alt="Illustrated portrait of Anisha" width={694} height={1147} priority className="relative h-auto w-full object-contain drop-shadow-[9px_14px_16px_rgba(43,35,32,.20)]" />
               </div>
             </div>
           </motion.div>
-          <motion.div style={{ y: titleY, opacity: titleOpacity }} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .85, ease: [0.22, 1, 0.36, 1] }} className="lg:col-span-9">
-            <h1 className="max-w-6xl text-[clamp(3.5rem,9vw,9rem)] font-medium leading-[.88] tracking-[-0.065em]">I build digital products that make it to people.</h1>
+          <motion.div style={{ y: titleY, opacity: titleOpacity }} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .85, ease: [0.22, 1, 0.36, 1] }} className="mt-[6rem] lg:mt-0 lg:col-span-9">
+            <h1 className="max-w-6xl text-[clamp(2.25rem,9vw,9rem)] sm:text-[clamp(3.5rem,9vw,9rem)] font-medium leading-[.88] tracking-[-0.065em]">I build digital products that make it to people.</h1>
           </motion.div>
         </div>
 

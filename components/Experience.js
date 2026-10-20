@@ -6,7 +6,7 @@ const roles = [
   {
     period: 'Mar 2026 to Present', company: 'The Rescue Tribe', title: 'Mobile App Developer', place: 'Singapore · Remote', current: true,
     summary: 'Owning mobile development across Guac and Clnk, from product flows and API integrations to release quality and store delivery.',
-    points: ['Own mobile application development across Guac and Clnk, translating product requirements into production-ready React Native experiences.', 'Build Guac workflows for roster visibility, shift requests and swaps, leave, attendance, notifications, and employee self-service.', 'Develop Clnk experiences for digital profiles, QR and NFC sharing, contact exchange, appointments, and link management.', 'Integrate secure authentication and backend APIs while handling application state, edge cases, and cross-platform behavior.', 'Handle testing, debugging, performance refinement, and Android and iOS release delivery.'],
+    points: ['Own mobile application development across Guac and Clnk, translating product requirements into production-ready React Native experiences.', 'Develop Clnk experiences for digital profiles, QR and NFC sharing, contact exchange, appointments, and link management.', 'Build Guac allowance and leave request workflows, from submission and approval to balance tracking.','Integrate secure authentication and backend APIs while handling application state, edge cases, and cross-platform behavior.', 'Handle testing, debugging, performance refinement, and Android and iOS release delivery.'],
     stack: ['React Native', 'REST APIs', 'Firebase', 'Android & iOS']
   },
   {
