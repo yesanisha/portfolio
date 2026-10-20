@@ -7,19 +7,6 @@ import { Apple, ArrowUpRight, ExternalLink, Smartphone } from 'lucide-react';
 
 const products = [
   {
-    name: 'Guac',
-    type: 'Workforce management',
-    description: 'Scheduling, leave, attendance and employee self-service for shift-based teams.',
-    image: '/images/guac-dashboard.webp',
-    imageAlt: 'Guac workforce management dashboard',
-    stack: 'React Native · Firebase',
-    links: [
-      ['Google Play', 'https://play.google.com/store/apps/details?id=com.guac.roster&hl=en_IN', Smartphone],
-      ['App Store', 'https://apps.apple.com/us/app/guac/id1660776179', Apple],
-      ['Website', 'https://www.guac.sg/', ExternalLink],
-    ],
-  },
-  {
     name: 'Clnk.',
     type: 'Digital networking',
     description: 'One digital identity for profiles, contacts, appointments, NFC and QR sharing.',
@@ -50,9 +37,37 @@ const products = [
     stack: 'HTML · CSS · JavaScript',
     links: [['Live website', 'https://himalyaropes.vercel.app/index.html', ExternalLink]],
   },
+  {
+    name: 'Guac',
+    type: 'Workforce management',
+    description: 'Scheduling, leave, attendance and employee self-service for shift-based teams.',
+    image: '/images/guac-dashboard.webp',
+    imageAlt: 'Guac workforce management dashboard',
+    stack: 'React Native · Firebase',
+    links: [
+      ['Google Play', 'https://play.google.com/store/apps/details?id=com.guac.roster&hl=en_IN', Smartphone],
+      ['App Store', 'https://apps.apple.com/us/app/guac/id1660776179', Apple],
+      ['Website', 'https://www.guac.sg/', ExternalLink],
+    ],
+  },
 ];
 
 const explorations = [
+  {
+    name: 'Explora',
+    status: 'Mac app',
+    description: 'A native macOS file browser with big thumbnails, plain-English search, text inside screenshots and clipboard history.',
+    stack: ['SwiftUI', 'Vision', 'macOS'],
+    download: '/downloads/Explora.dmg',
+    gallery: [
+      { src: '/images/explora/home.jpg', alt: 'Explora home screen showing files as large thumbnails' },
+      { src: '/images/explora/search.jpg', alt: 'Explora searching files with a plain-English query' },
+      { src: '/images/explora/downloaded-from.jpg', alt: 'Explora Downloaded From list grouping downloads by source' },
+    ],
+    cover: '/images/explora/home.jpg',
+    coverAlt: 'Explora home screen',
+    icon: '/images/explora/icon.png',
+  },
   {
     name: 'DiskLens',
     status: 'Mac app',
@@ -68,21 +83,6 @@ const explorations = [
     cover: '/images/disklens/shot-2.jpg',
     coverAlt: 'DiskLens overview dashboard',
     icon: '/images/disklens/icon.png',
-  },
-  {
-    name: 'Explora',
-    status: 'Mac app',
-    description: 'A native macOS file browser with big thumbnails, plain-English search, text inside screenshots and clipboard history.',
-    stack: ['SwiftUI', 'Vision', 'macOS'],
-    download: '/downloads/Explora.dmg',
-    gallery: [
-      { src: '/images/explora/home.jpg', alt: 'Explora home screen showing files as large thumbnails' },
-      { src: '/images/explora/search.jpg', alt: 'Explora searching files with a plain-English query' },
-      { src: '/images/explora/downloaded-from.jpg', alt: 'Explora Downloaded From list grouping downloads by source' },
-    ],
-    cover: '/images/explora/home.jpg',
-    coverAlt: 'Explora home screen',
-    icon: '/images/explora/icon.png',
   },
   {
     name: 'TouchGrass',
